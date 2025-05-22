@@ -58,5 +58,9 @@
   "editor.fontSize": 16,
   "editor.formatOnSave": true,
   "java.format.settings.url": "https://raw.githubusercontent.com/redhat-developer/vscode-java/master/formatter/eclipse-formatter.xml",
-  "java.format.settings.profile": "RedHat"
+  "java.format.settings.profile": "RedHat",
+  "editor.quickSuggestions": false,
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.parameterHints.enabled": false,
+  "editor.inlineSuggest.enabled": false
 }
