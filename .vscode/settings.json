@@ -8,11 +8,38 @@
   "java.format.enabled": true, // Enable formatting
   "java.debug.settings.enableRunDebugCodeLens": false, // Disable code lens
   "editor.suggest.showSnippets": false,
-  "terminal.integrated.suggest.quickSuggestions": {
-    "commands": "on",
-    "arguments": "on",
-    "unknown": "off"
+  "editor.quickSuggestions": false,
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.tabCompletion": "off",
+  "editor.suggest.localityBonus": false,
+  "editor.suggest.shareSuggestSelections": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.parameterHints.enabled": false,
+  "editor.hover.enabled": false,
+  "editor.inlineSuggest.enabled": false,
+  "editor.suggest.maxVisibleSuggestions": 0,
+  "editor.suggest.showStatusBar": false,
+  "editor.quickSuggestionsDelay": 999999,
+  "editor.suggest.filterGraceful": false,
+  "editor.suggest.insertMode": "replace",
+  "editor.suggest.preview": false,
+  "extensions.ignoreRecommendations": true,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
   },
+  "github.copilot.inlineSuggest.enable": false,
+  "java.codeGeneration.insertionLocation": "afterCursor",
+  "java.codeGeneration.useBlocks": false,
+  "java.codeGeneration.generateComments": false,
+  "java.contentProvider.enabled": false,
+  "java.recommendations.enabled": false,
+  "java.help.showReleaseNotes": false,
   "[java]": {
     "editor.suggest.selectionMode": "never",
     "editor.acceptSuggestionOnEnter": "off",
