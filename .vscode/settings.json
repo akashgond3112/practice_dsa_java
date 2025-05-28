@@ -8,7 +8,11 @@
   "java.format.enabled": true, // Enable formatting
   "java.debug.settings.enableRunDebugCodeLens": false, // Disable code lens
   "editor.suggest.showSnippets": false,
-  "editor.quickSuggestions": false,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
   "editor.suggestOnTriggerCharacters": false,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "off",
