@@ -49,9 +49,9 @@ public class BinaryTreeVerticalOrderTraversal {
 
     public List<List<Integer>> verticalTraversal(TreeNode root) {
 
-        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new Treemap<>();
+        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
 
-        Queue<Tuple> q = new LinkedList<Tuple>();
+        Queue<Tuple> q = new LinkedList<>();
 
         q.offer(new Tuple(root, 0, 0));
 
