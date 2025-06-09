@@ -86,6 +86,6 @@ public class BasicCalculatorTwo {
             }
         }
 
-        return result;
+        return result + lastNo;
     }
 }
