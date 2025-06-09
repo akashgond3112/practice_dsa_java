@@ -51,4 +51,41 @@ public class BasicCalculatorTwo {
 
         return result;
     }
+
+    public int calculateNew(String s) {
+
+        int currentNo = 0;
+        char currentChar;
+
+        char lastOperation = '+';
+        int lastNo = 0;
+
+        int result = 0;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+
+            currentChar = s.charAt(i);
+
+            if (Character.isDigit(currentChar)) {
+
+                currentNo = (currentNo * 10) + (currentChar - '0');
+            }
+
+            if (!Character.isDigit(currentChar) && currentChar != ' ' || i == s.length() - 1) {
+
+                if (lastOperation == '-' || lastOperation == '+') {
+                    result += lastNo;
+                    lastNo = (lastOperation == '+') ? currentNo : -currentNo;
+                } else if (lastOperation == '*') {
+                    lastNo = lastNo * currentNo;
+                } else if (lastOperation == '/') {
+                    lastNo = lastNo / currentNo;
+                }
+                lastOperation = currentChar;
+                currentNo = 0;
+            }
+        }
+
+        return result;
+    }
 }
