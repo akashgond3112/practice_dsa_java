@@ -1,21 +1,8 @@
 package main.revision.meta.medium;
 
-/**
- * @author agond
- * @date May 27, 2025
- * @time 6:44:11 PM
- */
+import main.revision.meta.TreeNode;
+
 public class LowestCommonAncestorOfBinaryTree {
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 

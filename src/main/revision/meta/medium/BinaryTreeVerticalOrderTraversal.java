@@ -7,32 +7,9 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TreeMap;
 
-/**
- * @author agond
- * @date May 27, 2025
- * @time 3:03:10 PM
- */
+import main.revision.meta.TreeNode;
+
 public class BinaryTreeVerticalOrderTraversal {
-
-    public static class TreeNode {
-
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static class Tuple {
 

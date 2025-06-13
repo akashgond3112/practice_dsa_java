@@ -10,31 +10,9 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author agond
- * @date May 29, 2025
- * @time 9:08:38 PM
- */
+import main.revision.meta.TreeNode;
+
 public class DiameterOfBinaryTree {
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public int diameterOfBinaryTree(TreeNode root) {
 
