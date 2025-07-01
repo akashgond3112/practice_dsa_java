@@ -10,11 +10,16 @@ public class TreeNode {
     public TreeNode left;
     public TreeNode right;
 
+    public TreeNode next;
+    public TreeNode random;
+
     TreeNode() {
     }
 
     TreeNode(int val) {
         this.val = val;
+        this.next = null;
+        this.random = null;
     }
 
     TreeNode(int val, TreeNode left, TreeNode right) {
