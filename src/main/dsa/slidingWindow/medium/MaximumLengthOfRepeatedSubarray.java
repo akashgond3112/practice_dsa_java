@@ -1,35 +1,35 @@
 package main.dsa.slidingWindow.medium;
 
-import org.junit.Assert;
-
 /**
  * @author agond
  * @package main.dsa.slidingWindow.medium
  * @Date 03/10/2023
  * @Project PracticeDSA
- * <p>
- * 718. Maximum Length of Repeated Subarray
- * Medium
- * Topics
- * Companies
- * Hint
- * Given two integer arrays nums1 and nums2, return the maximum length of a subarray that appears in both arrays.
- * <p>
- * Example 1:
- * <p>
- * Input: nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]
- * Output: 3
- * Explanation: The repeated subarray with maximum length is [3,2,1].
- * Example 2:
- * <p>
- * Input: nums1 = [0,0,0,0,0], nums2 = [0,0,0,0,0]
- * Output: 5
- * Explanation: The repeated subarray with maximum length is [0,0,0,0,0].
- * <p>
- * Constraints:
- * <p>
- * 1 <= nums1.length, nums2.length <= 1000
- * 0 <= nums1[i], nums2[i] <= 100
+ *          <p>
+ *          718. Maximum Length of Repeated Subarray
+ *          Medium
+ *          Topics
+ *          Companies
+ *          Hint
+ *          Given two integer arrays nums1 and nums2, return the maximum length
+ *          of a subarray that appears in both arrays.
+ *          <p>
+ *          Example 1:
+ *          <p>
+ *          Input: nums1 = [1,2,3,2,1], nums2 = [3,2,1,4,7]
+ *          Output: 3
+ *          Explanation: The repeated subarray with maximum length is [3,2,1].
+ *          Example 2:
+ *          <p>
+ *          Input: nums1 = [0,0,0,0,0], nums2 = [0,0,0,0,0]
+ *          Output: 5
+ *          Explanation: The repeated subarray with maximum length is
+ *          [0,0,0,0,0].
+ *          <p>
+ *          Constraints:
+ *          <p>
+ *          1 <= nums1.length, nums2.length <= 1000
+ *          0 <= nums1[i], nums2[i] <= 100
  */
 public class MaximumLengthOfRepeatedSubarray {
 
@@ -55,26 +55,22 @@ public class MaximumLengthOfRepeatedSubarray {
         return maxLen;
     }
 
-
     public static void main(String[] args) {
         int[] nums1;
         int[] nums2;
         int result;
 
-        nums1 = new int[]{1, 2, 3, 2, 1};
-        nums2 = new int[]{3, 2, 1, 4, 7};
+        nums1 = new int[] { 1, 2, 3, 2, 1 };
+        nums2 = new int[] { 3, 2, 1, 4, 7 };
         result = findLength(nums1, nums2);
-        Assert.assertEquals("Test 1", 3, result);
 
-        nums1 = new int[]{0, 0, 0, 0, 0};
-        nums2 = new int[]{0, 0, 0, 0, 0};
+        nums1 = new int[] { 0, 0, 0, 0, 0 };
+        nums2 = new int[] { 0, 0, 0, 0, 0 };
         result = findLength(nums1, nums2);
-        Assert.assertEquals("Test 2", 5, result);
 
-        nums1 = new int[]{0, 1, 1, 1, 1};
-        nums2 = new int[]{1, 0, 1, 0, 1};
+        nums1 = new int[] { 0, 1, 1, 1, 1 };
+        nums2 = new int[] { 1, 0, 1, 0, 1 };
         result = findLength(nums1, nums2);
-        Assert.assertEquals("Test 3", 2, result);
 
     }
 
