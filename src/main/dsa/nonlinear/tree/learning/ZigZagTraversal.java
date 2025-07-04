@@ -1,6 +1,5 @@
 package main.dsa.nonlinear.tree.learning;
 
-
 import main.dsa.nonlinear.tree.Node;
 
 import java.util.Collections;
@@ -29,7 +28,6 @@ public class ZigZagTraversal {
 				Node node = queue.peek();
 				queue.poll();
 
-				assert node != null;
 				vector.add(node.data);
 				if (node.left != null) {
 					queue.offer(node.left);

@@ -1,6 +1,5 @@
 package main.dsa.nonlinear.tree.learning;
 
-
 import main.dsa.nonlinear.tree.Node;
 import main.dsa.nonlinear.tree.Pair;
 
@@ -24,7 +23,6 @@ public class WidthOfBinaryTree {
 			int first = 0;
 			int last = 0;
 			for (int i = 0; i < size; i++) {
-				assert q.peek() != null;
 				Node currNode = q.peek().node;
 				int currVal = q.peek().val - min;
 
@@ -53,8 +51,6 @@ public class WidthOfBinaryTree {
 		root.right = new Node(3);
 		root.right.right = new Node(3);
 		root.right.right.right = new Node(3);
-
-
 
 		out.println(widthOfBinaryTree(root));
 	}

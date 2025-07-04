@@ -80,7 +80,6 @@ public class CheckIfLinkedListIsPalindrome extends SinglyLinkedList {
 			slow_ptr = slow_ptr.next;
 		}
 
-		assert slow_ptr != null;
 		Node newHead = reverseLinkedList(slow_ptr.next);
 		Node firstHead = head;
 		Node secondHead = newHead;

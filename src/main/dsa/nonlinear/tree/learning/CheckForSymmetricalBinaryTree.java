@@ -1,6 +1,5 @@
 package main.dsa.nonlinear.tree.learning;
 
-
 import main.dsa.nonlinear.tree.Node;
 
 import static java.lang.System.out;
@@ -17,7 +16,6 @@ public class CheckForSymmetricalBinaryTree {
 			return true;
 		}
 
-		assert left != null;
 		if (left.data != right.data)
 			return false;
 

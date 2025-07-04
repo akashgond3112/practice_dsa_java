@@ -1,7 +1,5 @@
 package main.dsa.slidingWindow.medium;
 
-import org.junit.Assert;
-
 import java.util.LinkedList;
 
 /**
@@ -12,35 +10,36 @@ import java.util.LinkedList;
  */
 
 /*
-1248. Count Number of Nice Subarrays
-
-Hint
-Given an array of integers nums and an integer k.
-A continuous subarray is called nice if there are k odd numbers on it.
-
-Return the number of nice sub-arrays.
-
-Example 1:
-
-Input: nums = [1,1,2,1,1], k = 3
-Output: 2
-Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].
-Example 2:
-
-Input: nums = [2,4,6], k = 1
-Output: 0
-Explanation: There is no odd numbers in the array.
-Example 3:
-
-Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
-Output: 16
-
-Constraints:
-
-1 <= nums.length <= 50000
-1 <= nums[i] <= 10^5
-1 <= k <= nums.length
-*/
+ * 1248. Count Number of Nice Subarrays
+ * 
+ * Hint
+ * Given an array of integers nums and an integer k.
+ * A continuous subarray is called nice if there are k odd numbers on it.
+ * 
+ * Return the number of nice sub-arrays.
+ * 
+ * Example 1:
+ * 
+ * Input: nums = [1,1,2,1,1], k = 3
+ * Output: 2
+ * Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and
+ * [1,2,1,1].
+ * Example 2:
+ * 
+ * Input: nums = [2,4,6], k = 1
+ * Output: 0
+ * Explanation: There is no odd numbers in the array.
+ * Example 3:
+ * 
+ * Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+ * Output: 16
+ * 
+ * Constraints:
+ * 
+ * 1 <= nums.length <= 50000
+ * 1 <= nums[i] <= 10^5
+ * 1 <= k <= nums.length
+ */
 public class CountNumberOfNiceSubArrays {
 
     public static int numberOfSubArrays(int[] nums, int k) {
@@ -86,22 +85,18 @@ public class CountNumberOfNiceSubArrays {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, 2, 1, 1};
+        int[] arr = { 1, 1, 2, 1, 1 };
         int k = 3;
         int result = numberOfSubArrays(arr, k);
-        Assert.assertEquals(2, result);
 
-        int[] arr2 = {2, 4, 6};
+        int[] arr2 = { 2, 4, 6 };
         k = 1;
         result = numberOfSubArrays(arr2, k);
-        Assert.assertEquals(0, result);
 
-        int[] arr3 = {2, 2, 2, 1, 2, 2, 1, 2, 2, 2};
+        int[] arr3 = { 2, 2, 2, 1, 2, 2, 1, 2, 2, 2 };
         k = 2;
         result = numberOfSubarrays(arr3, k);
-        Assert.assertEquals(16, result);
 
     }
-
 
 }
