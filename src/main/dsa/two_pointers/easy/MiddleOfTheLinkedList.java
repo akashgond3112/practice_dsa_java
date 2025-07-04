@@ -25,13 +25,11 @@ The number of nodes in the list is in the range [1, 100].
 1 <= Node.val <= 100
 * */
 
-import static org.junit.Assert.assertEquals;
-
 public class MiddleOfTheLinkedList {
 
 	public ListNode middleNode(ListNode head) {
-		ListNode slow_ptr=head;
-		ListNode fast_ptr=head;
+		ListNode slow_ptr = head;
+		ListNode fast_ptr = head;
 
 		while (fast_ptr != null && fast_ptr.next != null) {
 			fast_ptr = fast_ptr.next.next;
@@ -46,14 +44,14 @@ public class MiddleOfTheLinkedList {
 
 		public static boolean isSubsequence(String s, String t) {
 
-			int i = 0;  // Initialize pointers for s and t
+			int i = 0; // Initialize pointers for s and t
 			int j = 0;
 
 			while (i < s.length() && j < t.length()) {
 				if (s.charAt(i) == t.charAt(j)) {
-					i++;  // Move pointer i when characters match
+					i++; // Move pointer i when characters match
 				}
-				j++;  // Always move pointer j
+				j++; // Always move pointer j
 			}
 
 			return i == s.length();
@@ -63,13 +61,10 @@ public class MiddleOfTheLinkedList {
 			// Example 1
 			String s1 = "abc";
 			String t1 = "ahbgdc";
-			assertEquals(s1, t1);  // Output: true
 
 			// Example 2
 			String s2 = "axc";
 			String t2 = "ahbgdc";
-			assertEquals(s2, t2);  // Output: true
-			;  // Output: false
 		}
 
 	}

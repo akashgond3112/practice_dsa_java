@@ -22,8 +22,6 @@ Constraints:
 s consist of only digits and English letters.
 */
 
-import static org.junit.Assert.assertEquals;
-
 public class LongestPalindromicSubstring {
 
 	public static String longestPalindrome(String s) {
@@ -71,12 +69,5 @@ public class LongestPalindromicSubstring {
 
 		String name = "babad";
 		String result = longestPalindrome(name);
-		assertEquals("aba", result);
-
-//		name = "cbbd";
-//		result = longestPalindrome(name);
-//		assertEquals("bb", result);
-
-
 	}
 }

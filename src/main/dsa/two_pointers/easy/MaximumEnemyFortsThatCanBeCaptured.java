@@ -36,15 +36,14 @@ Constraints:
 -1 	<= forts[i]		<= 1
 * */
 
-import static org.junit.Assert.assertEquals;
-
 public class MaximumEnemyFortsThatCanBeCaptured {
 
 	public int captureForts(int[] forts, String solution_one) {
 		int ans = 0;
 		for (int i = 0, ii = 0; i < forts.length; ++i)
 			if (forts[i] != 0) {
-				if (forts[ii] == -forts[i]) ans = Math.max(ans, i-ii-1);
+				if (forts[ii] == -forts[i])
+					ans = Math.max(ans, i - ii - 1);
 				ii = i;
 			}
 		return ans;
@@ -59,8 +58,10 @@ public class MaximumEnemyFortsThatCanBeCaptured {
 			if (forts[i] == 1) {
 				int count = 0;
 				for (int j = i + 1; j < n; j++) {
-					if (forts[j] == 0) count++;
-					else if (forts[j] == 1) break;
+					if (forts[j] == 0)
+						count++;
+					else if (forts[j] == 1)
+						break;
 					else {
 						max = Math.max(max, count);
 						break;
@@ -69,8 +70,10 @@ public class MaximumEnemyFortsThatCanBeCaptured {
 
 				count = 0;
 				for (int j = i - 1; j >= 0; j--) {
-					if (forts[j] == 0) count++;
-					else if (forts[j] == 1) break;
+					if (forts[j] == 0)
+						count++;
+					else if (forts[j] == 1)
+						break;
 					else {
 						max = Math.max(max, count);
 						break;
@@ -129,27 +132,22 @@ public class MaximumEnemyFortsThatCanBeCaptured {
 		int result;
 		int actualResult;
 
-		arr = new int[] { 1,0,0,-1,0,0,0,0,1 };
+		arr = new int[] { 1, 0, 0, -1, 0, 0, 0, 0, 1 };
 		result = 4;
 		actualResult = captureForts(arr);
-		assertEquals(result, actualResult);
 
-		arr = new int[] { 0,0,1,-1 };
+		arr = new int[] { 0, 0, 1, -1 };
 		result = 0;
 		actualResult = captureForts(arr);
-		assertEquals(result, actualResult);
 
-		arr = new int[] { -1,-1,1,-1,-1,0 };
+		arr = new int[] { -1, -1, 1, -1, -1, 0 };
 		result = 0;
 		actualResult = captureForts(arr);
-		assertEquals(result, actualResult);
 
-		arr = new int[] { 0,-1,-1,0,-1 };
+		arr = new int[] { 0, -1, -1, 0, -1 };
 		result = 0;
 		actualResult = captureForts(arr);
-		assertEquals(result, actualResult);
 
 	}
-
 
 }

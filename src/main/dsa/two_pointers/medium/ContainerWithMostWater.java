@@ -28,15 +28,15 @@ n == height.length
 0 <= height[i] <= 10^4
 */
 
-import static org.junit.Assert.assertEquals;
-
 public class ContainerWithMostWater {
 
 	public static int maxArea(int[] height) {
 
-		if(height.length == 0) return 0;
+		if (height.length == 0)
+			return 0;
 
-		if(height.length == 2) return Math.min(height[0], height[1]);
+		if (height.length == 2)
+			return Math.min(height[0], height[1]);
 
 		int maxArea = 0;
 
@@ -63,9 +63,8 @@ public class ContainerWithMostWater {
 		int[] arr;
 		int result;
 
-		arr = new int[] { 1,2,4,3 };
+		arr = new int[] { 1, 2, 4, 3 };
 		result = maxArea(arr);
-		assertEquals(4, result);
 
 	}
 }

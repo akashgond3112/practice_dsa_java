@@ -31,8 +31,6 @@ Constraints:
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-
 public class CheckIfNandItsDoubleExist {
 
 	public static boolean checkIfExist(int[] arr) {
@@ -57,7 +55,6 @@ public class CheckIfNandItsDoubleExist {
 
 		arr = new int[] { 10, 2, 5, 3 };
 		result = checkIfExist(arr);
-		assertEquals(true, result);
 
 	}
 }

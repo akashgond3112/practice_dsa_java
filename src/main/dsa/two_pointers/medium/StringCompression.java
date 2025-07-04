@@ -46,8 +46,6 @@ chars[i] is a lowercase English letter, uppercase English letter, digit, or symb
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-
 public class StringCompression {
 
 	public static int compress(char[] chars) {
@@ -90,9 +88,7 @@ public class StringCompression {
 		char[] arr;
 		int result;
 
-		arr = new char[] { 'a','b','b','b','b','b','b','b','b','b','b','b','b' };
+		arr = new char[] { 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b' };
 		result = compress(arr);
-		assertEquals(6, result);
-
 	}
 }

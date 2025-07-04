@@ -43,25 +43,25 @@ Constraints:
 str1 and str2 consist of only lowercase English letters.
 */
 
-import static org.junit.Assert.assertEquals;
-
 public class MakeStringaSubsequenceUsingCyclicIncrements {
 
 	public static boolean canMakeSubsequence(String str1, String str2) {
 
-		if (str2.isEmpty()) return true;  // An empty str2 is always a subsequence
-		if (str1.length() < str2.length()) return false;  // str2 cannot be a subsequence if it is longer than str1
+		if (str2.isEmpty())
+			return true; // An empty str2 is always a subsequence
+		if (str1.length() < str2.length())
+			return false; // str2 cannot be a subsequence if it is longer than str1
 
 		int n = 0;
 		int m = 0;
 
-		while(n < str1.length() && m < str2.length()){
+		while (n < str1.length() && m < str2.length()) {
 
 			char ch1 = str1.charAt(n);
 			char ch2 = str2.charAt(m);
 
 			n++;
-			if(ch1 == ch2 || ch2 - ch1 == 1 || (ch1 == 'z' && ch2 == 'a')){
+			if (ch1 == ch2 || ch2 - ch1 == 1 || (ch1 == 'z' && ch2 == 'a')) {
 				m++;
 			}
 		}
