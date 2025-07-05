@@ -39,4 +39,9 @@ public class TreeNode {
         this.next = null;
         this.prev = null;
     }
+
+    public TreeNode(int val, TreeNode next) {
+        this.val = val;
+        this.next = next;
+    }
 }
