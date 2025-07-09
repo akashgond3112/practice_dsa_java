@@ -5,6 +5,9 @@
  */
 package main.revision.meta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNode {
     public int val;
     public int key;
@@ -17,7 +20,11 @@ public class TreeNode {
 
     public TreeNode random;
 
+    public List<TreeNode> neighbors;
+
     TreeNode() {
+        val = 0;
+        neighbors = new ArrayList<TreeNode>();
     }
 
     public TreeNode(int val) {
@@ -25,6 +32,7 @@ public class TreeNode {
         this.next = null;
         this.prev = null;
         this.random = null;
+        neighbors = new ArrayList<TreeNode>();
     }
 
     public TreeNode(int val, TreeNode left, TreeNode right) {
@@ -43,5 +51,10 @@ public class TreeNode {
     public TreeNode(int val, TreeNode next) {
         this.val = val;
         this.next = next;
+    }
+
+    public TreeNode(int _val, ArrayList<TreeNode> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
     }
 }
