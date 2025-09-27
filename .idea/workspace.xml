@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c45016e-0ee9-462c-b980-ce259e1891d2" name="Changes" comment="Commit : 24/03/2025">
-      <change afterPath="$PROJECT_DIR$/src/main/interview/intercom/AssignmentSystem.java" afterDir="false" />
+    <list default="true" id="5c45016e-0ee9-462c-b980-ce259e1891d2" name="Changes" comment="Add AssignmentSystem class to manage conversation assignments for customer support agents">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +30,12 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {}
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/akashgond3112/PracticeDsaJava.git",
-    "accountId": "7bc9b73c-d18d-4e9c-a6fe-fa0ad0fc0bd1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/akashgond3112/PracticeDsaJava.git&quot;,
+    &quot;accountId&quot;: &quot;7bc9b73c-d18d-4e9c-a6fe-fa0ad0fc0bd1&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/meta/easy/ClosestBinarySearchTreeValue.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/meta/medium/BinaryTreeRightSideView.java" root0="FORCE_HIGHLIGHTING" />
@@ -64,6 +64,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.AssignmentSystem.executor&quot;: &quot;Run&quot;,
     &quot;Application.BinaryTreeVerticalOrderTraversal.executor&quot;: &quot;Run&quot;,
     &quot;Application.CuttingRibbons$RibbonCutter.executor&quot;: &quot;Run&quot;,
     &quot;Application.CuttingRibbons.executor&quot;: &quot;Run&quot;,
@@ -113,7 +114,20 @@
       <recent name="main.meta.medium" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.KthSmallestElementInASortedMatrix">
+  <component name="RunManager" selected="Application.AssignmentSystem">
+    <configuration name="AssignmentSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.interview.intercom.AssignmentSystem" />
+      <module name="PracticeDsaJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.interview.intercom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BinaryTreeVerticalOrderTraversal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.meta.medium.BinaryTreeVerticalOrderTraversal" />
       <module name="PracticeDsaJava" />
@@ -155,19 +169,6 @@
     </configuration>
     <configuration name="CuttingRibbons$RibbonCutter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.meta.medium.CuttingRibbons$RibbonCutter" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuttingRibbons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.CuttingRibbons" />
       <module name="PracticeDsaJava" />
       <extension name="coverage">
         <pattern>
@@ -246,11 +247,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AssignmentSystem" />
         <item itemvalue="Application.KthSmallestElementInASortedMatrix" />
         <item itemvalue="Application.BinaryTreeVerticalOrderTraversal" />
         <item itemvalue="Application.MinimumRemoveToMakeValidParentheses" />
         <item itemvalue="Application.CuttingRibbons$RibbonCutter" />
-        <item itemvalue="Application.CuttingRibbons" />
       </list>
     </recent_temporary>
   </component>
@@ -384,15 +385,9 @@
       <workItem from="1743196992272" duration="35000" />
       <workItem from="1743237909300" duration="49000" />
       <workItem from="1743535874312" duration="38000" />
-      <workItem from="1755875663053" duration="180000" />
-    </task>
-    <task id="LOCAL-00123" summary="Commit : 02/03/2025">
-      <option name="closed" value="true" />
-      <created>1740907811921</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1740907811921</updated>
+      <workItem from="1755875663053" duration="808000" />
+      <workItem from="1756319278141" duration="18000" />
+      <workItem from="1756373114110" duration="320000" />
     </task>
     <task id="LOCAL-00124" summary="Commit : 02/03/2025">
       <option name="closed" value="true" />
@@ -778,14 +773,21 @@
       <option name="project" value="LOCAL" />
       <updated>1742847059149</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Add AssignmentSystem class to manage conversation assignments for customer support agents">
+      <option name="closed" value="true" />
+      <created>1755876132800</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1755876132801</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit : 20/02/2025" />
     <MESSAGE value="Commit : 21/02/2025" />
     <MESSAGE value="Commit : 22/02/2025" />
     <MESSAGE value="Commit : 23/02/2025" />
@@ -810,7 +812,8 @@
     <MESSAGE value="Commit : 18/03/2025" />
     <MESSAGE value="Commit : 19/03/2025" />
     <MESSAGE value="Commit : 24/03/2025" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit : 24/03/2025" />
+    <MESSAGE value="Add AssignmentSystem class to manage conversation assignments for customer support agents" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add AssignmentSystem class to manage conversation assignments for customer support agents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
