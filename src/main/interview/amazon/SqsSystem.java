@@ -6,6 +6,8 @@
 package main.interview.amazon;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SqsSystem {
     public static int getMaximumEvents(int[] payload) {
@@ -19,5 +21,13 @@ public class SqsSystem {
             }
         }
         return max;
+    }
+
+    public static int getMaximumEventsOptimal(int[] payload) {
+        Set<Integer> distinct = new HashSet<>();
+        for (int p : payload) {
+            distinct.add(p);
+        }
+        return distinct.size();
     }
 }
