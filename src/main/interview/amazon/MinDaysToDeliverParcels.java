@@ -61,4 +61,13 @@ public class MinDaysToDeliverParcels {
         return days;
     }
 
+    public static int minDaysToDeliverParcels(int[] parcels) {
+        Set<Integer> distinctParcels = new HashSet<>();
+        for (int p : parcels) {
+            if (p > 0) {
+                distinctParcels.add(p);
+            }
+        }
+        return distinctParcels.size();
+    }
 }
