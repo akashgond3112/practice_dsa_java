@@ -1,4 +1,4 @@
-package com.practice.meta;
+package main.revision.october.meta;
 
 public class ListNode {
     public int val;

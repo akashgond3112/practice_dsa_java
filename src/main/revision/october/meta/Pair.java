@@ -1,4 +1,4 @@
-package com.practice.meta;
+package main.revision.october.meta;
 
 public class Pair<K, V> {
     private final K key;
