@@ -18,6 +18,7 @@ public class DiameterOfBinaryTree {
             } else if (node.right != null && !map.containsKey(node.right)) {
                 st.push(node.right);
             } else {
+                st.pop();
                 int leftDepth = map.getOrDefault(node.left, 0);
                 int rightDepth = map.getOrDefault(node.right, 0);
 
