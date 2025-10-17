@@ -33,86 +33,85 @@ import java.util.PriorityQueue;
  */
 public class KClosestPointsToOrigin {
 
-/**
- * K Closest Points to Origin Solutions Using Different Heap Approaches
- */
-class Solutions {
     /**
-     * Approach: Using Min Heap
-     * Time Complexity: O(n log k)
-     * Space Complexity: O(k)
+     * K Closest Points to Origin Solutions Using Different Heap Approaches
      */
-    class SolutionUsingMinHeap {
-        public int[][] kClosest(int[][] points, int k) {
-            if (points == null || points.length == 0 || k <= 0) {
-                return new int[0][0];
-            }
-            
-            // Create min heap based on distance from origin
-            PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> 
-                (a[0] * a[0] + a[1] * a[1]) - (b[0] * b[0] + b[1] * b[1])
-            );
-            
-            // Add all points to min heap
-            for (int[] point : points) {
-                minHeap.offer(point);
-            }
-            
-            // Get k closest points
-            int[][] result = new int[k][2];
-            for (int i = 0; i < k; i++) {
-                result[i] = minHeap.poll();
-            }
-            
-            return result;
-        }
-    }
-
-    /**
-     * Approach: Using Max Heap
-     * Time Complexity: O(n log k)
-     * Space Complexity: O(k)
-     */
-    class SolutionUsingMaxHeap {
-        public int[][] kClosest(int[][] points, int k) {
-            if (points == null || points.length == 0 || k <= 0) {
-                return new int[0][0];
-            }
-            
-            // Create max heap of size k based on distance from origin
-            PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> 
-                (b[0] * b[0] + b[1] * b[1]) - (a[0] * a[0] + a[1] * a[1])
-            );
-            
-            // Process points
-            for (int[] point : points) {
-                maxHeap.offer(point);
-                // If heap size exceeds k, remove the farthest point
-                if (maxHeap.size() > k) {
-                    maxHeap.poll();
+    class Solutions {
+        /**
+         * Approach: Using Min Heap
+         * Time Complexity: O(n log k)
+         * Space Complexity: O(n)
+         */
+        class SolutionUsingMinHeap {
+            public int[][] kClosest(int[][] points, int k) {
+                if (points == null || points.length == 0 || k <= 0) {
+                    return new int[0][0];
                 }
+
+                // Create min heap based on distance from origin
+                PriorityQueue<int[]> minHeap = new PriorityQueue<>(
+                        (a, b) -> Integer.compare(getDistanceFromOrigin(a), getDistanceFromOrigin(b)));
+
+                // Add all points to min heap
+                for (int[] point : points) {
+                    minHeap.offer(point);
+                }
+
+                // Get k closest points
+                int[][] result = new int[k][2];
+                for (int i = 0; i < k; i++) {
+                    result[i] = minHeap.poll();
+                }
+
+                return result;
             }
-            
-            // Get k closest points
-            int[][] result = new int[k][2];
-            for (int i = k - 1; i >= 0; i--) {
-                result[i] = maxHeap.poll();
+        }
+
+        /**
+         * Approach: Using Max Heap
+         * Time Complexity: O(n log k)
+         * Space Complexity: O(k)
+         */
+        class SolutionUsingMaxHeap {
+            public int[][] kClosest(int[][] points, int k) {
+                if (points == null || points.length == 0 || k <= 0) {
+                    return new int[0][0];
+                }
+
+                // Create max heap of size k based on distance from origin
+                PriorityQueue<int[]> maxHeap = new PriorityQueue<>(
+                        (a, b) -> Integer.compare(getDistanceFromOrigin(b), getDistanceFromOrigin(a)));
+
+                // Process points
+                for (int[] point : points) {
+                    maxHeap.offer(point);
+                    // If heap size exceeds k, remove the farthest point
+                    if (maxHeap.size() > k) {
+                        maxHeap.poll();
+                    }
+                }
+
+                // Get k closest points
+                int[][] result = new int[k][2];
+                for (int i = k - 1; i >= 0; i--) {
+                    result[i] = maxHeap.poll();
+                }
+
+                return result;
             }
-            
-            return result;
+        }
+
+        /**
+         * Helper method to calculate distance from origin.
+         * Note: We don't need to calculate actual distance (sqrt),
+         * comparing squared distances is sufficient.
+         *
+         * @param point an array of two integers representing the x and y coordinates of a point
+         * @return the squared distance from the origin
+         */
+        private int getDistanceFromOrigin(int[] point) {
+            return point[0] * point[0] + point[1] * point[1];
         }
     }
-
-    /**
-     * Helper method to calculate distance from origin
-     * Note: We don't need to calculate actual distance (sqrt),
-     * comparing squared distances is sufficient
-     */
-    private int getDistanceFromOrigin(int[] point) {
-        return point[0] * point[0] + point[1] * point[1];
-    }
-}
-    
-
 
 }
