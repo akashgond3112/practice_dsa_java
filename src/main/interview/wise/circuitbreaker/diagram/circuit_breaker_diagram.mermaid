@@ -1,0 +1,32 @@
+stateDiagram-v2
+    [*] --> CLOSED: Initial State
+    
+    CLOSED --> OPEN: Error count ≥ Y\nin last X minutes
+    
+    OPEN --> HALF_OPEN: Cooloff period\n(Z minutes) expires
+    
+    HALF_OPEN --> CLOSED: 3 consecutive\nsuccessful requests
+    
+    HALF_OPEN --> OPEN: Any request fails
+    
+    OPEN --> OPEN: All requests\nfail fast
+    
+    CLOSED --> CLOSED: Requests succeed\nor client errors (4xx)
+    
+    note right of CLOSED
+        ✓ Requests allowed
+        ✓ Tracking errors in time window
+        ✓ Normal operation
+    end note
+    
+    note right of OPEN
+        ✗ All requests blocked
+        ✗ Fail fast immediately
+        ⏱ Waiting for cooloff period
+    end note
+    
+    note right of HALF_OPEN
+        ⚠ Limited testing mode
+        ⚠ Allowing probe requests
+        ⚠ Testing service recovery
+    end note

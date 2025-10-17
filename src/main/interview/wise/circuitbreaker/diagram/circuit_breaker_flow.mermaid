@@ -1,0 +1,54 @@
+flowchart TD
+    Start([API Request Received]) --> CheckState{Check Circuit<br/>Breaker State}
+    
+    CheckState -->|CLOSED| AllowReq[Allow Request]
+    CheckState -->|OPEN| CheckCooloff{Cooloff period<br/>expired?}
+    CheckState -->|HALF_OPEN| AllowTest[Allow Test Request]
+    
+    CheckCooloff -->|No| FailFast[❌ Fail Fast<br/>Throw Exception]
+    CheckCooloff -->|Yes| ToHalfOpen[Transition to<br/>HALF_OPEN]
+    ToHalfOpen --> AllowTest
+    
+    AllowReq --> MakeCall[Make API Call]
+    AllowTest --> MakeCall
+    
+    MakeCall --> CheckResponse{Check Response}
+    
+    CheckResponse -->|2xx Success| RecordSuccess[Record Success]
+    CheckResponse -->|4xx Client Error| RecordSuccess2[Record Success<br/>Don't count as failure]
+    CheckResponse -->|5xx Server Error| RecordFailure[Record Server Failure]
+    CheckResponse -->|Network Error| RecordFailure
+    
+    RecordSuccess --> UpdateState1{Current State?}
+    RecordSuccess2 --> End([Return Response])
+    
+    UpdateState1 -->|HALF_OPEN| CheckSuccessCount{Success count ≥ 3?}
+    UpdateState1 -->|CLOSED| End
+    
+    CheckSuccessCount -->|Yes| TransitionClosed[✓ Close Circuit<br/>Service Recovered]
+    CheckSuccessCount -->|No| IncCounter[Increment Counter]
+    IncCounter --> End
+    TransitionClosed --> End
+    
+    RecordFailure --> UpdateState2{Current State?}
+    
+    UpdateState2 -->|HALF_OPEN| TransitionOpen2[❌ Open Circuit<br/>Still Failing]
+    UpdateState2 -->|CLOSED| CountErrors[Count Errors in<br/>Time Window]
+    
+    CountErrors --> CheckThreshold{Error count ≥ Y<br/>in last X minutes?}
+    
+    CheckThreshold -->|Yes| TransitionOpen[❌ Open Circuit<br/>Start Cooloff Timer]
+    CheckThreshold -->|No| End
+    
+    TransitionOpen --> End
+    TransitionOpen2 --> End
+    FailFast --> End
+    
+    style FailFast fill:#ff6b6b
+    style TransitionOpen fill:#ff6b6b
+    style TransitionOpen2 fill:#ff6b6b
+    style TransitionClosed fill:#51cf66
+    style RecordSuccess fill:#51cf66
+    style AllowReq fill:#51cf66
+    style AllowTest fill:#ffd93d
+    style ToHalfOpen fill:#ffd93d
