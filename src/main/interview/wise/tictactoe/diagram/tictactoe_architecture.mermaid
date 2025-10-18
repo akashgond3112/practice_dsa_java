@@ -1,0 +1,56 @@
+graph TB
+    subgraph "Client Layer"
+        C1[Client 1<br/>Player X]
+        C2[Client 2<br/>Player O]
+        C3[Client 3<br/>Observer]
+    end
+    
+    subgraph "Server Cluster"
+        S1[Server 1<br/>Port 5001]
+        S2[Server 2<br/>Port 5002]
+        S3[Server 3<br/>Port 5003]
+        
+        subgraph "Server 1 State"
+            G1[Game States<br/>ConcurrentHashMap]
+            V1[Version: 5]
+        end
+        
+        subgraph "Server 2 State"
+            G2[Game States<br/>ConcurrentHashMap]
+            V2[Version: 5]
+        end
+        
+        subgraph "Server 3 State"
+            G3[Game States<br/>ConcurrentHashMap]
+            V3[Version: 5]
+        end
+    end
+    
+    C1 -->|Create Game| S1
+    C2 -->|Make Move| S2
+    C3 -->|Get State| S3
+    
+    S1 -.->|Replicate State| S2
+    S1 -.->|Replicate State| S3
+    S2 -.->|Replicate State| S1
+    S2 -.->|Replicate State| S3
+    S3 -.->|Replicate State| S1
+    S3 -.->|Replicate State| S2
+    
+    S1 -->|Heartbeat| S2
+    S2 -->|Heartbeat| S3
+    S3 -->|Heartbeat| S1
+    
+    G1 -.-> V1
+    G2 -.-> V2
+    G3 -.-> V3
+    
+    style S1 fill:#4ecdc4
+    style S2 fill:#4ecdc4
+    style S3 fill:#4ecdc4
+    style C1 fill:#95e1d3
+    style C2 fill:#95e1d3
+    style C3 fill:#95e1d3
+    style G1 fill:#f38181
+    style G2 fill:#f38181
+    style G3 fill:#f38181

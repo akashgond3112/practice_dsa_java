@@ -1,0 +1,57 @@
+flowchart TD
+    Start([Client Makes Move]) --> ValidateServer{Server Alive?}
+    
+    ValidateServer -->|No| TryReplica[Try Another Server]
+    ValidateServer -->|Yes| CheckGame{Game Exists<br/>Locally?}
+    
+    TryReplica --> ValidateServer
+    
+    CheckGame -->|No| Recover[Recover from Replicas]
+    CheckGame -->|Yes| ValidateMove{Valid Move?}
+    
+    Recover --> CheckReplicas{Check All<br/>Replicas}
+    CheckReplicas -->|Found| UseHighest[Use Highest Version]
+    CheckReplicas -->|Not Found| Error[❌ Game Not Found]
+    UseHighest --> ValidateMove
+    
+    ValidateMove -->|Invalid| Reject[❌ Reject Move<br/>Return Error]
+    ValidateMove -->|Valid| ApplyMove[Apply Move<br/>Increment Version]
+    
+    ApplyMove --> CheckWin{Check Win<br/>Condition}
+    
+    CheckWin --> Replicate[Replicate to All Servers]
+    
+    Replicate --> Loop{For Each<br/>Replica}
+    
+    Loop -->|More Replicas| CheckAlive{Replica<br/>Alive?}
+    Loop -->|Done| Success[✓ Return Success]
+    
+    CheckAlive -->|Yes| SendState[Send Game State<br/>with Version]
+    CheckAlive -->|No| Skip[Skip Dead Replica]
+    
+    SendState --> Merge[Replica: Merge State]
+    Skip --> Loop
+    
+    Merge --> CompareVersion{Incoming Version<br/>> Local Version?}
+    
+    CompareVersion -->|Yes| Accept[Accept New State]
+    CompareVersion -->|No| Ignore[Ignore Older State]
+    
+    Accept --> AckReplica[Send ACK]
+    Ignore --> AckReplica
+    
+    AckReplica --> Loop
+    
+    Success --> End([Response to Client])
+    Reject --> End
+    Error --> End
+    
+    style Start fill:#4ecdc4
+    style Success fill:#51cf66
+    style Error fill:#ff6b6b
+    style Reject fill:#ff6b6b
+    style ApplyMove fill:#ffd93b
+    style Replicate fill:#a8e6cf
+    style Merge fill:#a8e6cf
+    style Accept fill:#51cf66
+    style Recover fill:#ffd93d

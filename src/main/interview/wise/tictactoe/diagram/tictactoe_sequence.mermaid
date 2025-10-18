@@ -1,0 +1,77 @@
+sequenceDiagram
+    participant C1 as Client 1<br/>(Player X)
+    participant S1 as Server 1
+    participant S2 as Server 2
+    participant S3 as Server 3
+    participant C2 as Client 2<br/>(Player O)
+    
+    Note over S1,S3: Cluster Formation
+    S1->>S2: Join Cluster
+    S1->>S3: Join Cluster
+    S2-->>S1: ACK
+    S3-->>S1: ACK
+    
+    rect rgba(14, 13, 13, 1)
+        Note over C1,S1: Game Creation
+        C1->>S1: createGame()
+        S1->>S1: Create GameState<br/>version=0
+        S1-->>S2: Replicate State
+        S1-->>S3: Replicate State
+        S2-->>S1: ACK
+        S3-->>S1: ACK
+        S1-->>C1: Game ID: abc123
+    end
+    
+    rect rgba(105, 72, 72, 1)
+        Note over C1,S2: Move via Different Server
+        C1->>S2: makeMove(abc123, 0,0, X)
+        S2->>S2: Validate & Apply<br/>version=1
+        S2-->>S1: Replicate State v1
+        S2-->>S3: Replicate State v1
+        S1-->>S2: ACK
+        S3-->>S2: ACK
+        S2-->>C1: Success
+    end
+    
+    rect rgba(70, 41, 5, 1)
+        Note over C2,S3: Another Player Joins
+        C2->>S3: makeMove(abc123, 1,1, O)
+        S3->>S3: Validate & Apply<br/>version=2
+        S3-->>S1: Replicate State v2
+        S3-->>S2: Replicate State v2
+        S1-->>S3: ACK
+        S2-->>S3: ACK
+        S3-->>C2: Success
+    end
+    
+    rect rgba(49, 51, 141, 1)
+        Note over S1: Server 1 Crashes
+        S1-xS1: CRASH!
+        S2->>S1: Heartbeat
+        S1--xS2: No Response
+        S3->>S1: Heartbeat
+        S1--xS3: No Response
+        Note over S2,S3: S1 marked as dead
+    end
+    
+    rect rgba(23, 85, 136, 1)
+        Note over C1,S2: Continue via S2 (Fault Tolerance)
+        C1->>S2: makeMove(abc123, 0,1, X)
+        S2->>S2: Apply move<br/>version=3
+        S2-->>S3: Replicate State v3
+        S3-->>S2: ACK
+        S2-->>C1: Success
+    end
+    
+    rect rgba(19, 71, 19, 1)
+        Note over S1: Server 1 Recovers
+        S1->>S1: RECOVER
+        S1->>S2: Request State Sync
+        S2-->>S1: All Game States
+        S1->>S3: Request State Sync
+        S3-->>S1: All Game States
+        S1->>S1: Merge States<br/>(keep highest version)
+        Note over S1: Now has version=3
+    end
+    
+    Note over S1,S3: All servers synchronized ✓
