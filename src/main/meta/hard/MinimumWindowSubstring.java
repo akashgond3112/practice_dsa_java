@@ -4,26 +4,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 76. Minimum Window Substring Solved Hard Topics Companies Hint Given two strings s and t of lengths m and n
- * respectively, return the minimum window substring of s such that every character in t (including duplicates) is
- * included in the window. If there is no such substring, return the empty string "".
+ * 76. Minimum Window Substring Solved Hard Topics Companies Hint Given two
+ * strings s and t of lengths m and n
+ * respectively, return the minimum window substring of s such that every
+ * character in t (including duplicates) is
+ * included in the window. If there is no such substring, return the empty
+ * string "".
  *
  * The testcases will be generated such that the answer is unique.
  *
  * Example 1:
  *
- * Input: s = "ADOBECODEBANC", t = "ABC" Output: "BANC" Explanation: The minimum window substring "BANC" includes 'A',
+ * Input: s = "ADOBECODEBANC", t = "ABC" Output: "BANC" Explanation: The minimum
+ * window substring "BANC" includes 'A',
  * 'B', and 'C' from string t. Example 2:
  *
- * Input: s = "a", t = "a" Output: "a" Explanation: The entire string s is the minimum window. Example 3:
+ * Input: s = "a", t = "a" Output: "a" Explanation: The entire string s is the
+ * minimum window. Example 3:
  *
- * Input: s = "a", t = "aa" Output: "" Explanation: Both 'a's from t must be included in the window. Since the largest
+ * Input: s = "a", t = "aa" Output: "" Explanation: Both 'a's from t must be
+ * included in the window. Since the largest
  * window of s only has one 'a', return empty string.
  *
  *
  * Constraints:
  *
- * m == s.length n == t.length 1 <= m, n <= 105 s and t consist of uppercase and lowercase English letters.
+ * m == s.length n == t.length 1 <= m, n <= 105 s and t consist of uppercase and
+ * lowercase English letters.
  *
  *
  * Follow up: Could you find an algorithm that runs in O(m + n) time?
@@ -33,22 +40,25 @@ public class MinimumWindowSubstring {
 	/**
 	 * Brute Force solution for finding the minimum window substring.
 	 *
-	 * Problem: Given two strings s and t, find the minimum window substring of s that contains all characters of t.
+	 * Problem: Given two strings s and t, find the minimum window substring of s
+	 * that contains all characters of t.
 	 *
 	 * Time Complexity: O(n * m * n) where:
-	 *   - n is the length of string s
-	 *   - m is the length of string t
-	 *   - First n: we try each possible starting position in s
-	 *   - m: we count each character in t
-	 *   - Second n: in worst case, we might examine the entire remaining string for each starting position
+	 * - n is the length of string s
+	 * - m is the length of string t
+	 * - First n: we try each possible starting position in s
+	 * - m: we count each character in t
+	 * - Second n: in worst case, we might examine the entire remaining string for
+	 * each starting position
 	 *
-	 * Space Complexity: O(k) where k is the size of the character set (constant if only ASCII, but up to m in worst case)
+	 * Space Complexity: O(k) where k is the size of the character set (constant if
+	 * only ASCII, but up to m in worst case)
 	 */
 	static class BruteForce {
 		public String minWindow(String s, String t) {
 			// Track minimum window length and starting index
 			int min = Integer.MAX_VALUE;
-			int sIndex = -1;  // Will remain -1 if no valid window is found
+			int sIndex = -1; // Will remain -1 if no valid window is found
 			int n = s.length();
 			int m = t.length();
 
@@ -99,11 +109,11 @@ public class MinimumWindowSubstring {
 	 * Uses a more efficient approach with a single pass through the string.
 	 *
 	 * Time Complexity: O(n + m) where:
-	 *   - n is the length of string s (processed once in the sliding window)
-	 *   - m is the length of string t (processed once to build the frequency map)
+	 * - n is the length of string s (processed once in the sliding window)
+	 * - m is the length of string t (processed once to build the frequency map)
 	 *
 	 * Space Complexity: O(k) where k is the size of the character set
-	 *   (constant if only ASCII, but up to min(m,n) unique characters in worst case)
+	 * (constant if only ASCII, but up to min(m,n) unique characters in worst case)
 	 */
 	static class Optimal {
 		public String minWindow(String s, String t) {
@@ -125,7 +135,7 @@ public class MinimumWindowSubstring {
 
 			int left = 0, right = 0;
 			int required = map.size(); // Number of unique characters in t
-			int formed = 0;            // Number of unique characters matched in current window
+			int formed = 0; // Number of unique characters matched in current window
 			Map<Character, Integer> windowCounts = new HashMap<>();
 
 			int minLen = Integer.MAX_VALUE;
@@ -133,8 +143,10 @@ public class MinimumWindowSubstring {
 
 			// Sliding window approach
 			// Time Complexity: O(n)
-			// Note: While there are nested loops, each element of s is processed at most twice
-			// (once when expanding the window with right pointer, once when contracting with left pointer)
+			// Note: While there are nested loops, each element of s is processed at most
+			// twice
+			// (once when expanding the window with right pointer, once when contracting
+			// with left pointer)
 			while (right < n) {
 				// Expand the window by adding s[right]
 				char ch = s.charAt(right);
