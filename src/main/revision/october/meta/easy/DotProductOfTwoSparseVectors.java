@@ -12,8 +12,8 @@ public class DotProductOfTwoSparseVectors {
         nonZeroes = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
-            if (i != 0) {
-                nonZeroes.add(new Pair(i, nums[i]));
+            if (nums[i] != 0) {
+                nonZeroes.add(new Pair<Integer, Integer>(i, nums[i]));
             }
         }
     }
