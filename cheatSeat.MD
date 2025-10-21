@@ -1,0 +1,9 @@
+- When a question asks for the top/k-th smallest/largest element, think of using a **Heap (Priority Queue)**. Use a Max Heap for the k-smallest and a Min Heap for the k-largest.
+- For problems involving finding an optimal subarray or substring (e.g., longest, shortest, or with a specific sum), consider the **Sliding Window** technique.
+- If the input array is sorted, think about using the **Two Pointers** or **Binary Search** approach.
+- When dealing with trees or graphs, common traversal methods are **Breadth-First Search (BFS)** and **Depth-First Search (DFS)**. BFS is often used for the shortest path in unweighted graphs.
+- For problems asking for the "number of ways" or an "optimal" (min/max) value, it might be a **Dynamic Programming** problem. Look for overlapping subproblems and an optimal substructure.
+- If the problem involves dependencies or a specific order of tasks (e.g., course prerequisites), it might be solvable with a **Topological Sort**.
+- For string problems related to prefixes or searching for words in a dictionary, a **Trie** is a very efficient data structure.
+- To merge overlapping intervals, sort them by their start time and then iterate, merging as you go.
+- If you see constraints like `N <= 20`, it might hint at a solution with exponential complexity, possibly involving recursion with backtracking or bitmasking.
