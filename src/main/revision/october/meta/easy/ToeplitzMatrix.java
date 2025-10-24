@@ -2,41 +2,87 @@ package main.revision.october.meta.easy;
 
 public class ToeplitzMatrix {
 
-    public boolean isToeplitzMatrix(int[][] matrix) {
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+    public class Solution {
+        public boolean isToeplitzMatrix(int[][] matrix) {
+            int rows = matrix.length;
+            int cols = matrix[0].length;
 
-        for (int i = 1; i < rows; i++) {
-            if (!checkDiagonalEquality(matrix, i, 0)) {
-                return false;
+            for (int i = 1; i < rows; i++) {
+                if (!checkDiagonalEquality(matrix, i, 0)) {
+                    return false;
+                }
             }
+
+            for (int i = 0; i < cols; i++) {
+                if (!checkDiagonalEquality(matrix, 0, i)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        for (int i = 0; i < cols; i++) {
-            if (!checkDiagonalEquality(matrix, 0, i)) {
-                return false;
-            }
-        }
+        private boolean checkDiagonalEquality(int[][] matrix, int row, int col) {
 
-        return true;
+            int val = matrix[row][col];
+
+            int numRows = matrix.length;
+            int numCols = matrix[0].length;
+
+            while (row < numRows && col < numCols) {
+
+                if (matrix[row][col] != val) {
+                    return false;
+                }
+                row++;
+                col++;
+            }
+
+            return true;
+        }
     }
 
-    private boolean checkDiagonalEquality(int[][] matrix, int row, int col) {
+    // Revised on 21/10/2025
+    public class SolutionRevisionThirdDay {
 
-        int val = matrix[row][col];
+        public boolean isToeplitzMatrix(int[][] matrix) {
+            int rows = matrix.length;
+            int cols = matrix[0].length;
 
-        int numRows = matrix.length;
-        int numCols = matrix[0].length;
+            for (int i = 0; i < rows; i++) {
 
-        while (row < numRows && col < numCols) {
-
-            if (matrix[row][col] != val) {
-                return false;
+                if (!checkDiagonally(matrix, i, 0)) {
+                    return false;
+                }
             }
-            row++;
-            col++;
+
+            for (int i = 0; i < cols; i++) {
+
+                if (!checkDiagonally(matrix, 0, i)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        return true;
+        private boolean checkDiagonally(int[][] matrix, int i, int j) {
+
+            int val = matrix[i][j];
+
+            int rows = matrix.length;
+            int cols = matrix[0].length;
+
+            while (i < rows && j < cols) {
+                if (matrix[i][j] != val) {
+                    return false;
+                }
+                i++;
+                j++;
+            }
+
+            return true;
+        }
     }
+
 }
