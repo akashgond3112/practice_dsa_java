@@ -32,4 +32,24 @@ public class RemoveAllAdjacentDuplicatesInString {
 
         return stack.toString();
     }
+
+    // Revision on 26/10/2025
+    public String removeDuplicatesRevisionSeventhdDay(String s) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : s.toCharArray()) {
+
+            int len = sb.length();
+
+            if (!sb.isEmpty() && sb.charAt(len - 1) == c) {
+                sb.deleteCharAt(len - 1);
+            } else {
+                sb.append(c);
+            }
+
+        }
+
+        return sb.toString();
+    }
 }
