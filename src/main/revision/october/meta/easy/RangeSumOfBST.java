@@ -50,4 +50,28 @@ public class RangeSumOfBST {
 
         return sum;
     }
+
+    // Revised on 27.10.2025
+    public int rangeSumBST_Rev_3(TreeNode root, int low, int high) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int sum = 0;
+
+        if (root.val < low) {
+            sum += rangeSumBST_Rev_3(root.left, low, high);
+        }
+
+        if (root.val > high) {
+            sum += rangeSumBST_Rev_3(root.right, low, high);
+        }
+
+        if (root.val <= low && root.val > high) {
+            sum += root.val;
+        }
+
+        return sum;
+    }
 }
