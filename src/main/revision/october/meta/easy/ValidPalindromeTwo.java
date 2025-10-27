@@ -33,13 +33,32 @@ public class ValidPalindromeTwo {
         return true;
     }
 
-    // Revised on 08.10.2025
-    public boolean validPalindrome_Rev_1(String s) {
+    // Revised on 12.10.2025
+    public boolean validPalindromeRevisionSeventhDay(String s) {
 
         int left = 0;
         int right = s.length() - 1;
 
         while (left < right) {
+            if (s.charAt(left) == s.charAt(right)) {
+                left++;
+                right--;
+            } else {
+                return isValidPalindrome(s, left + 1, right) || isValidPalindrome(s, left, right - 1);
+            }
+        }
+
+        return true;
+    }
+
+    // Revised on 26.10.2025
+    public boolean validPalindromeRevisionFourteenDay(String s) {
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+
             if (s.charAt(left) == s.charAt(right)) {
                 left++;
                 right--;
