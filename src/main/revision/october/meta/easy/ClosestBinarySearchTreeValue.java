@@ -38,4 +38,34 @@ public class ClosestBinarySearchTreeValue {
         }
     }
 
+    // revised on 29/10/2025
+    public class SolutionUsingThirdDay {
+
+        public int closestValue(TreeNode root, double target) {
+
+            double minDifference = Double.MAX_VALUE;
+            int closestValue = root.val;
+            TreeNode node = root;
+
+            while (root != null) {
+
+                double currentDifference = Math.abs(node.val - target);
+
+                if (currentDifference < minDifference || (minDifference == currentDifference &&
+                        node.val < closestValue)) {
+                    minDifference = currentDifference;
+                    closestValue = node.val;
+                }
+
+                if (node.val > target) {
+                    node = node.left;
+                } else {
+                    node = node.right;
+                }
+            }
+
+            return closestValue;
+        }
+    }
+
 }
