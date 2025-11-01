@@ -15,42 +15,42 @@ public class CopyListWithRandomPointer {
             return null;
 
         // Phase 1: Create and interweave copy nodes
-        TreeNode temp = head;
-        while (temp != null) {
-            TreeNode next = temp.next;
-            TreeNode copyNode = new TreeNode(temp.val);
+        TreeNode current = head;
+        while (current != null) {
+            TreeNode next = current.next;
+            TreeNode copyNode = new TreeNode(current.val);
 
             // Insert copy node between current and next
             copyNode.next = next;
-            temp.next = copyNode;
-            temp = next;
+            current.next = copyNode;
+            current = next;
         }
 
         // Phase 2: Set random pointers for copy nodes
-        temp = head;
-        while (temp != null) {
-            TreeNode copyNode = temp.next;
-            if (temp.random != null) {
-                copyNode.random = temp.random.next; // Point to copy of random node
+        current = head;
+        while (current != null) {
+            TreeNode copyNode = current.next;
+            if (current.random != null) {
+                copyNode.random = current.random.next; // Point to copy of random node
             } else {
                 copyNode.random = null;
             }
-            temp = temp.next.next;
+            current = current.next.next;
         }
 
         // Phase 3: Separate original and copy lists
         TreeNode dummy = new TreeNode(-1); // Dummy node to build copy list
         TreeNode result = dummy;
-        temp = head;
+        current = head;
 
-        while (temp != null) {
+        while (current != null) {
             // Extract copy node
-            result.next = temp.next;
+            result.next = current.next;
             result = result.next;
 
             // Restore original list connections
-            temp.next = temp.next.next;
-            temp = temp.next;
+            current.next = current.next.next;
+            current = current.next;
         }
 
         return dummy.next; // Return head of copy list
