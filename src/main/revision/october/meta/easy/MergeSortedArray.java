@@ -72,7 +72,8 @@ public class MergeSortedArray {
 
     /**
      * Swaps elements between two arrays or within the same array.
-     * If both arrays are the same, swaps elements at indices i and j within the array.
+     * If both arrays are the same, swaps elements at indices i and j within the
+     * array.
      * If arrays are different, swaps a[i] with b[j] if a[i] > b[j].
      *
      * @param a the first array
@@ -96,30 +97,65 @@ public class MergeSortedArray {
         }
     }
 
-    public void mergeBest(int[] a, int m, int[] b, int n) {
-        int length = n + m;
-        int gap = (length / 2) + (length % 2);
+    public class Solution {
+        public void mergeBest(int[] a, int m, int[] b, int n) {
+            int length = n + m;
+            int gap = (length / 2) + (length % 2);
 
-        while (gap > 0) {
+            while (gap > 0) {
 
-            int left = 0, right = left + gap;
+                int left = 0, right = left + gap;
 
-            while (right < length) {
+                while (right < length) {
 
-                if (left < n && right >= n) {
-                    swap(a, b, left, right - n);
-                } else if (left >= n) {
-                    swap(b, b, left - n, right - n);
-                } else {
-                    swap(a, a, left, right);
+                    if (left < n && right >= n) {
+                        swap(a, b, left, right - n);
+                    } else if (left >= n) {
+                        swap(b, b, left - n, right - n);
+                    } else {
+                        swap(a, a, left, right);
+                    }
+                    left++;
+                    right++;
                 }
-                left++;
-                right++;
+                if (gap == 1)
+                    break;
+                gap = (gap / 2) + (gap % 2);
             }
-            if (gap == 1)
-                break;
-            gap = (gap / 2) + (gap % 2);
-        }
 
+        }
     }
+
+    // revised on 04/11/2025
+    public class SolutionRevisionFourteenDay {
+        public void mergeBest(int[] a, int m, int[] b, int n) {
+
+            int length = n + m;
+            int gap = (length / 2) + (length % 2);
+
+            while (gap > 0) {
+
+                int left = 0;
+                int right = left + gap;
+
+                while (left < right) {
+
+                    if (left < n && right >= n) {
+                        swap(a, b, left, right - n);
+                    } else if (left <= n) {
+                        swap(a, b, left - n, right - n);
+                    } else {
+                        swap(a, b, left, right);
+                    }
+                }
+
+                if (gap == 1) {
+                    break;
+                }
+
+                gap = (gap / 2) + (gap % 2);
+            }
+        }
+    }
+
 }
