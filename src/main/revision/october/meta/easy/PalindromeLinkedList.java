@@ -46,4 +46,49 @@ public class PalindromeLinkedList {
             return next;
         }
     }
+
+    // revised on 05/11/2025
+    class SolutionrevisedOnthirdDay {
+        public boolean isPalindrome(ListNode head) {
+
+            ListNode fast = head;
+            ListNode slow = head;
+
+            while (fast != null && slow != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+
+            if (fast != null) {
+                slow = slow.next;
+            }
+
+            slow = reverLinkedList(slow);
+            fast = head;
+
+            while (slow != null) {
+
+                if (slow.val != fast.val) {
+                    return false;
+                }
+
+                slow = slow.next;
+                fast = fast.next;
+            }
+
+            return true;
+        }
+
+        private ListNode reverLinkedList(ListNode slow) {
+
+            if (slow == null || slow.next == null) {
+                return slow;
+            }
+
+            ListNode next = reverLinkedList(slow.next);
+            slow.next.next = slow;
+            slow.next = null;
+            return next;
+        }
+    }
 }
