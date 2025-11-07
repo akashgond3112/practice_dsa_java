@@ -28,4 +28,30 @@ public class ContinuousSubarraySum {
             return false;
         }
     }
+
+    // revised on 06/11/2025
+    class SolutionRevisionOnThirdDay {
+        public boolean checkSubarraySum(int[] nums, int k) {
+
+            Map<Integer, Integer> map = new HashMap<>();
+            map.put(0, -1);
+
+            int currentSum = 0;
+
+            for (int i = 0; i < nums.length; i++) {
+                currentSum += nums[i];
+                int remainder = currentSum % k;
+
+                if (map.containsKey(remainder)) {
+                    if (i - map.get(remainder) >= 2) {
+                        return true;
+                    }
+                } else {
+                    map.put(remainder, i);
+                }
+            }
+
+            return false;
+        }
+    }
 }
