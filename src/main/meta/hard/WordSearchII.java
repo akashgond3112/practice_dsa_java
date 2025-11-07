@@ -9,12 +9,17 @@ import java.util.Set;
 
 /**
  * 212. Word Search II
- * Given an m x n board of characters and a list of strings words, return all words on the board.
+ * Given an m x n board of characters and a list of strings words, return all
+ * words on the board.
  *
- * Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+ * Each word must be constructed from letters of sequentially adjacent cells,
+ * where adjacent cells are horizontally or vertically neighboring. The same
+ * letter cell may not be used more than once in a word.
  *
  * Example 1:
- * Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+ * Input: board =
+ * [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]],
+ * words = ["oath","pea","eat","rain"]
  * Output: ["eat","oath"]
  * Example 2:
  * Input: board = [["a","b"],["c","d"]], words = ["abcb"]
@@ -28,13 +33,15 @@ import java.util.Set;
  * 1 <= words.length <= 3 * 104
  * 1 <= words[i].length <= 10
  * words[i] consists of lowercase English letters.
- * All the strings of words are unique.*/
+ * All the strings of words are unique.
+ */
 public class WordSearchII {
 
 	/**
 	 * Time complexity: O(m∗n∗4^t +s)
 	 * Space complexity: O(t) Where m is the number of
-	 * rows, n is the number of columns, t is the maximum length of any word in the array w o r d s words and s is
+	 * rows, n is the number of columns, t is the maximum length of any word in the
+	 * array w o r d s words and s is
 	 * the sum of the lengths of all the words.
 	 */
 	public static class SolutionUsingBackTracking {
@@ -73,31 +80,33 @@ public class WordSearchII {
 		}
 	}
 
-	public static class TrieNode {
-		Map<Character, TrieNode> children;
-		boolean isWord;
-
-		public TrieNode() {
-			children = new HashMap<>();
-			isWord = false;
-		}
-
-		public void addWord(String word) {
-			TrieNode cur = this;
-			for (char c : word.toCharArray()) {
-				cur.children.putIfAbsent(c, new TrieNode());
-				cur = cur.children.get(c);
-			}
-			cur.isWord = true;
-		}
-	}
-
 	/**
 	 * Time complexity: O(m∗n∗4∗3^t−1 +s) Space complexity: O(s) Where m is the
-	 * number of rows, n is the number of columns, t is the maximum length of any word in the array words
+	 * number of rows, n is the number of columns, t is the maximum length of any
+	 * word in the array words
 	 * and s is the sum of the lengths of all the words.
 	 */
 	public static class SolutionUsingBackTrackingAndHashSet {
+
+		public static class TrieNode {
+			Map<Character, TrieNode> children;
+			boolean isWord;
+
+			public TrieNode() {
+				children = new HashMap<>();
+				isWord = false;
+			}
+
+			public void addWord(String word) {
+				TrieNode cur = this;
+				for (char c : word.toCharArray()) {
+					cur.children.putIfAbsent(c, new TrieNode());
+					cur = cur.children.get(c);
+				}
+				cur.isWord = true;
+			}
+		}
+
 		private Set<String> res;
 		private boolean[][] visit;
 
@@ -141,7 +150,6 @@ public class WordSearchII {
 		}
 	}
 
-
 	public static class TrieNodeUsingArray {
 		TrieNodeUsingArray[] children = new TrieNodeUsingArray[26];
 		int idx = -1;
@@ -164,7 +172,8 @@ public class WordSearchII {
 
 	/**
 	 * Time complexity: O(m∗n∗4∗3^t−1 +s) Space complexity: O(s) Where m is the
-	 * number of rows, n is the number of columns, t is the maximum length of any word in the array words
+	 * number of rows, n is the number of columns, t is the maximum length of any
+	 * word in the array words
 	 * and s is the sum of the lengths of all the words.
 	 */
 	public static class SolutionUsingBackTrackingAndTrie {
@@ -186,7 +195,8 @@ public class WordSearchII {
 		}
 
 		private void dfs(char[][] board, TrieNodeUsingArray node, int r, int c, String[] words) {
-			if (r < 0 || c < 0 || r >= board.length || c >= board[0].length || board[r][c] == '*' || node.children[board[r][c] - 'a'] == null) {
+			if (r < 0 || c < 0 || r >= board.length || c >= board[0].length || board[r][c] == '*'
+					|| node.children[board[r][c] - 'a'] == null) {
 				return;
 			}
 
