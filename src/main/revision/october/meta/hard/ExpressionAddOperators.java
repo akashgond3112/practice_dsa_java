@@ -102,4 +102,40 @@ public class ExpressionAddOperators {
             }
         }
     }
+
+    // Revision on 03/11/2025
+    private void dfsRevisionFourteenDay(List<String> result, String num, int target, int index, String expr,
+            long evaluated, long lastNumber) {
+
+        if (index == num.length()) {
+
+            if (evaluated == target) {
+                result.add(expr);
+            }
+
+            return;
+        }
+
+        for (int i = index; i < num.length(); i++) {
+
+            if (i > index && num.charAt(i) == '0') {
+                break;
+            }
+
+            String current = num.substring(index, i + 1);
+            long currentNum = Long.parseLong(current);
+
+            if (i == 0) {
+                dfs(result, num, target, index + 1, current, currentNum, currentNum);
+            } else {
+                dfs(result, num, target, index + 1, (expr + '+' + current), currentNum, currentNum);
+
+                dfs(result, num, target, index + 1, (expr + '-' + current), currentNum, -currentNum);
+
+                dfs(result, num, target, index + 1, (expr + '*' + current),
+                        (evaluated - lastNumber + (lastNumber * currentNum)),
+                        (lastNumber * currentNum));
+            }
+        }
+    }
 }
