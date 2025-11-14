@@ -14,33 +14,102 @@ public class BasicCalculator {
         }
     }
 
-    public int calculate(String s) {
+    public class Solution {
+        public int calculate(String s) {
 
-        int output = 0;
-        int currentNumber = 0;
-        int sign = 1;
-        Deque<CalculatorState> st = new ArrayDeque<>();
+            int output = 0;
+            int currentNumber = 0;
+            int sign = 1;
+            Deque<CalculatorState> st = new ArrayDeque<>();
 
-        for (char currentCharacter : s.toCharArray()) {
+            for (char currentCharacter : s.toCharArray()) {
 
-            if (Character.isDigit(currentCharacter)) {
-                currentNumber = currentNumber * 10 + (currentCharacter - '0');
-            } else if (currentCharacter == '+' || currentCharacter == '-') {
-                output += currentNumber * sign;
-                currentNumber = 0;
-                sign = currentCharacter == '+' ? 1 : -1;
-            } else if (currentCharacter == '(') {
-                st.push(new CalculatorState(output, sign));
-                output = 0;
-                sign = 1;
-            } else if (currentCharacter == ')') {
-                output += currentNumber * sign;
-                currentNumber = 0;
-                CalculatorState prev = st.pop();
-                output = prev.output + (output * prev.sign);
+                if (Character.isDigit(currentCharacter)) {
+                    currentNumber = currentNumber * 10 + (currentCharacter - '0');
+                } else if (currentCharacter == '+' || currentCharacter == '-') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    sign = currentCharacter == '+' ? 1 : -1;
+                } else if (currentCharacter == '(') {
+                    st.push(new CalculatorState(output, sign));
+                    output = 0;
+                    sign = 1;
+                } else if (currentCharacter == ')') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    CalculatorState prev = st.pop();
+                    output = prev.output + (output * prev.sign);
+                }
             }
-        }
 
-        return output + (currentNumber * sign);
+            return output + (currentNumber * sign);
+        }
     }
+
+    // Revised on 27/10/2025
+    public class SolutionRevisionThirdDay {
+        public int calculate(String s) {
+
+            int output = 0;
+            int currentNumber = 0;
+            int sign = 1;
+            Deque<CalculatorState> st = new ArrayDeque<>();
+
+            for (char currentCharacter : s.toCharArray()) {
+
+                if (Character.isDigit(currentCharacter)) {
+                    currentNumber = currentNumber * 10 + (currentCharacter - '0');
+                } else if (currentCharacter == '+' || currentCharacter == '-') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    sign = currentCharacter == '+' ? 1 : -1;
+                } else if (currentCharacter == '(') {
+                    st.push(new CalculatorState(output, sign));
+                    output = 0;
+                    sign = 1;
+                } else if (currentCharacter == ')') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    CalculatorState prev = st.pop();
+                    output = prev.output + (output * prev.sign);
+                }
+            }
+
+            return output + (currentNumber * sign);
+        }
+    }
+
+    // Revised on 02/11/2025
+    public class SolutionRevisionSeventhDay {
+        public int calculate(String s) {
+
+            int output = 0;
+            int currentNumber = 0;
+            int sign = 1;
+            Deque<CalculatorState> st = new ArrayDeque<>();
+
+            for (char currentCharacter : s.toCharArray()) {
+
+                if (Character.isDigit(currentCharacter)) {
+                    currentNumber = currentNumber * 10 + (currentCharacter - '0');
+                } else if (currentCharacter == '+' || currentCharacter == '-') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    sign = currentCharacter == '+' ? 1 : -1;
+                } else if (currentCharacter == '(') {
+                    st.push(new CalculatorState(output, sign));
+                    output = 0;
+                    sign = 1;
+                } else if (currentCharacter == ')') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    CalculatorState prev = st.poll();
+                    output = prev.output + (output * prev.sign);
+                }
+            }
+
+            return output + (currentNumber * sign);
+        }
+    }
+
 }
