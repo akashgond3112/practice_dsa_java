@@ -36,4 +36,63 @@ public class BinaryTreeMaximumPathSum {
             return root.val + Math.max(leftMax, rightMax);
         }
     }
+
+    // Revision on 25/10/2025
+    class SolutionRevisionThirdDay {
+        private int maxPath;
+
+        public int maxPathSum(TreeNode root) {
+            maxPath = Integer.MIN_VALUE;
+            dfs(root);
+            return maxPath;
+        }
+
+        private int dfs(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+
+            // Recursively get the max path sum from left and right subtrees
+            // If a subtree path sum is negative, we don't include it (hence Math.max(...,
+            // 0))
+            int leftMax = Math.max(0, dfs(node.left));
+            int rightMax = Math.max(0, dfs(node.right));
+
+            // Update the global maximum path sum.
+            // This path can "split" at the current node.
+            maxPath = Math.max(maxPath, node.val + leftMax + rightMax);
+
+            // Return the max path sum that can extend upwards to the parent.
+            // A path cannot split, so we take the current node's value plus the larger of
+            // the two sub-paths.
+            return node.val + Math.max(leftMax, rightMax);
+        }
+    }
+
+    // Revision on 25/10/2025
+    class SolutionRevisionSeventhDay {
+
+        private int maxPath;
+
+        public int maxPathSum(TreeNode root) {
+
+            maxPath = Integer.MIN_VALUE;
+            dfs(root);
+            return maxPath;
+        }
+
+        private int dfs(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+
+            int leftMax = Math.max(0, dfs(node.left));
+            int rightMax = Math.max(0, dfs(node.right));
+
+            maxPath = Math.max(maxPath, node.val + leftMax + rightMax);
+
+            return (node.val + leftMax + rightMax);
+        }
+
+    }
 }
