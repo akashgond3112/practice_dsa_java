@@ -176,4 +176,148 @@ public class AlienDictionary {
             return sb.toString();
         }
     }
+
+    // revised on 29/10/2025
+    public class SolutionRevisionSeventhDay {
+
+        public String foreignDictionary(String[] words) {
+
+            Map<Character, Set<Character>> adj = new HashMap<>();
+            Map<Character, Integer> inDegree = new HashMap<>();
+
+            for (String word : words) {
+                for (char c : word.toCharArray()) {
+                    adj.put(c, new HashSet<>());
+                    inDegree.put(c, 0);
+                }
+            }
+
+            for (int i = 0; i < words.length; i++) {
+
+                String w1 = words[i];
+                String w2 = words[i + 1];
+
+                int minLen = Math.min(w1.length(), w2.length());
+
+                if (w1.length() > w2.length() && w1.startsWith(w2)) {
+                    return "";
+                }
+
+                for (int j = 0; j < minLen; j++) {
+
+                    char c1 = w1.charAt(j);
+                    char c2 = w2.charAt(j);
+
+                    if (c1 != c2) {
+                        if (adj.get(c1).add(c2)) {
+                            inDegree.put(c2, inDegree.get(c2) + 1);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            Queue<Character> q = new LinkedList<>();
+
+            for (char c : inDegree.keySet()) {
+
+                if (inDegree.get(c) == 0) {
+                    q.offer(c);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            while (!q.isEmpty()) {
+                char c = q.poll();
+
+                sb.append(c);
+
+                for (char neighbour : adj.get(c)) {
+                    q.offer(neighbour);
+                }
+            }
+
+            if (sb.length() != inDegree.size()) {
+                return ""; // A cycle was detected.
+            }
+
+            return sb.toString();
+        }
+    }
+
+    // revised on 11/11/2025
+    public class SolutionRevisionFourteenDay {
+
+        public String foreignDictionary(String[] words) {
+
+            Map<Character, Set<Character>> adj = new HashMap<>();
+            Map<Character, Integer> inDegree = new HashMap<>();
+
+            for (String word : words) {
+                for (char c : word.toCharArray()) {
+                    adj.put(c, new HashSet<>());
+                    inDegree.put(c, 0);
+                }
+            }
+
+            for (int i = 0; i < words.length; i++) {
+
+                String w1 = words[i];
+                String w2 = words[i + 1];
+
+                int min = Math.min(w1.length(), w2.length());
+
+                if (w1.length() > w2.length() && w1.startsWith(w2)) {
+                    return "";
+                }
+
+                for (int j = 0; j < min; j++) {
+
+                    char c1 = w1.charAt(j);
+                    char c2 = w2.charAt(j);
+
+                    if (c1 != c2) {
+
+                        if (adj.get(c1).add(c2)) {
+
+                            inDegree.put(c2, inDegree.get(c2) + 1);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            Queue<Character> q = new LinkedList<>();
+
+            for (char c : inDegree.keySet()) {
+                if (inDegree.get(c) == 0) {
+                    q.offer(c);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            while (!q.isEmpty()) {
+
+                char c = q.poll();
+                sb.append(c);
+
+                for (char nei : adj.get(c)) {
+
+                    inDegree.put(nei, inDegree.get(nei) - 1);
+
+                    if (inDegree.get(nei) == 0) {
+                        q.offer(nei);
+                    }
+                }
+            }
+
+            if (sb.length() != inDegree.size()) {
+                return "";
+            }
+
+            return sb.toString();
+        }
+    }
 }
