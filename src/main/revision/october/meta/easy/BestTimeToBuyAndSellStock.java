@@ -35,4 +35,22 @@ public class BestTimeToBuyAndSellStock {
             return max;
         }
     }
+
+    // revised on 11/12/2025
+    class SolutionrevisionOnSeventhDay {
+        public int maxProfit(int[] prices) {
+            int min = prices[0];
+            int max = 0;
+            int n = prices.length;
+
+            for (int i = 1; i < n; i++) {
+
+                int cost = prices[i] - min;
+                max = Math.max(max, cost);
+                min = Math.min(min, prices[i]);
+            }
+
+            return max;
+        }
+    }
 }
