@@ -52,4 +52,23 @@ public class RemoveAllAdjacentDuplicatesInString {
 
         return sb.toString();
     }
+
+    // Revision on 11/9/2025
+    public String removeDuplicatesRevisionFourteenDay(String s) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : s.toCharArray()) {
+
+            int len = sb.length();
+
+            if (!sb.isEmpty() && sb.charAt(len - 1) == c) {
+                sb.deleteCharAt(len - 1);
+            } else {
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
 }
