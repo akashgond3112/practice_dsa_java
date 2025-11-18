@@ -26,7 +26,7 @@ public class StrobogrammaticNumber {
 
             while (left < right) {
 
-                if (map.containsKey(s.charAt(left)) && map.get(s.charAt(left)) != (s.charAt(right))) {
+                if (!map.containsKey(s.charAt(left)) && map.get(s.charAt(left)) != (s.charAt(right))) {
                     return false;
                 }
 
@@ -51,9 +51,34 @@ public class StrobogrammaticNumber {
 
             while (left < right) {
 
-                if (map.containsKey(s.charAt(left)) && map.get(s.charAt(left)) != (s.charAt(right))) {
+                if (!map.containsKey(s.charAt(left)) && map.get(s.charAt(left)) != (s.charAt(right))) {
                     return false;
                 }
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+    }
+
+    // revised on 11/10/2025
+    public class SolutionRevisedOnSeventhDay {
+        public boolean isStrobogrammatic(String s) {
+
+            if (s.length() == 1) {
+                return "0".equals(s) || "1".equals(s) || "8".equals(s);
+            }
+
+            int left = 0;
+            int right = s.length() - 1;
+
+            while (left < right) {
+
+                if (!map.containsKey(s.charAt(left)) && map.get(s.charAt(left)) != s.charAt(right)) {
+                    return false;
+                }
+
                 left++;
                 right--;
             }
