@@ -27,6 +27,7 @@ public class SquaresOfASortedArray {
         return res;
     }
 
+    // Revised on 10/22/2025
     public int[] sortedSquaresRevisionThirdDay(int[] nums) {
 
         int[] res = new int[nums.length];
@@ -52,6 +53,7 @@ public class SquaresOfASortedArray {
         return res;
     }
 
+    // Revised on 10/28/2025
     public int[] sortedSquaresRevisionSeventhDay(int[] nums) {
 
         int[] res = new int[nums.length];
@@ -70,6 +72,32 @@ public class SquaresOfASortedArray {
                 head++;
             } else {
                 res[j] = nums[tail];
+                tail--;
+            }
+        }
+
+        return res;
+    }
+
+    // Revised on 11/11/2025
+    public int[] sortedSquaresRevisionFourteenDay(int[] nums) {
+
+        int res[] = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] *= nums[i];
+        }
+
+        int head = 0;
+        int tail = nums.length;
+
+        for (int i = nums.length - 1; i > 0; i--) {
+
+            if (nums[head] > nums[tail]) {
+                res[i] = nums[head];
+                head++;
+            } else {
+                res[i] = nums[tail];
                 tail--;
             }
         }
