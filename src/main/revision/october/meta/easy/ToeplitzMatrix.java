@@ -128,4 +128,48 @@ public class ToeplitzMatrix {
         }
     }
 
+    // Revised on 11/10/2025
+    public class SolutionRevisionFourteenDay {
+
+        public boolean isToeplitzMatrix(int[][] matrix) {
+
+            int rows = matrix.length;
+            int cols = matrix[0].length;
+
+            for (int i = 0; i < rows; i++) {
+
+                if (!checkDiagonally(matrix, i, 0)) {
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < cols; i++) {
+
+                if (!checkDiagonally(matrix, 0, i)) {
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
+        private boolean checkDiagonally(int[][] matrix, int i, int j) {
+
+            int rows = matrix.length;
+            int cols = matrix[0].length;
+
+            int val = matrix[i][j];
+
+            if (i < rows && j < cols) {
+
+                if (matrix[i][j] != val) {
+                    return false;
+                }
+                i++;
+                j++;
+            }
+            return true;
+        }
+    }
+
 }
