@@ -134,7 +134,7 @@ public class BasicCalculatorII {
      * @return the result of evaluating the expression
      */
     // Revision on 26/10/2025
-    public int calculateOptimisedRevisionFourteenDay(String s) {
+    public int calculateOptimisedRevisionDaySeventh(String s) {
 
         int currentNumber = 0;
         char currentCharacter;
@@ -166,6 +166,47 @@ public class BasicCalculatorII {
                 currentNumber = 0;
                 operator = currentCharacter;
             }
+        }
+
+        return result + lastNumber;
+    }
+
+    // Revision on 11/9/2025
+    public int calculateOptimisedRevisionDayFourteen(String s) {
+
+        int currentNumber = 0;
+        int lastNumber = 0;
+        int result = 0;
+
+        char currentChar;
+        char operator = '+';
+
+        for (int i = 0; i < s.length(); i++) {
+
+            currentChar = s.charAt(i);
+
+            if (Character.isDigit(currentChar)) {
+                currentNumber = currentNumber * 10 + currentChar - '0';
+            }
+
+            if (!Character.isDigit(currentChar) && currentChar != ' ') {
+
+                if (operator == '+') {
+                    result += lastNumber;
+                    lastNumber = currentNumber;
+                } else if (operator == '-') {
+                    result -= lastNumber;
+                    lastNumber = -currentNumber;
+                } else if (operator == '*') {
+                    lastNumber *= currentNumber;
+                } else if (operator == '/') {
+                    lastNumber /= currentNumber;
+                }
+
+                currentNumber = 0;
+                operator = currentChar;
+            }
+
         }
 
         return result + lastNumber;
