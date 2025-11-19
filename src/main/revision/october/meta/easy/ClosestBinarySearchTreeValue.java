@@ -69,7 +69,7 @@ public class ClosestBinarySearchTreeValue {
     }
 
     // revised on 04/11/2025
-    public class SolutionRevisionOnFourteenDay {
+    public class SolutionRevisionOnSeventhDay {
 
         public int closestValue(TreeNode root, double target) {
 
@@ -92,6 +92,34 @@ public class ClosestBinarySearchTreeValue {
                     node = node.left;
                 } else {
                     node = node.right;
+                }
+            }
+
+            return closetValue;
+        }
+    }
+
+    // revised on 04/11/2025
+    public class SolutionRevisionOnFourteenDay {
+
+        public int closestValue(TreeNode root, double target) {
+            double minDifference = Double.MAX_VALUE;
+            int closetValue = root.val;
+            TreeNode node = root;
+
+            while (root != null) {
+
+                double curDiff = Math.abs(root.val - target);
+
+                if (curDiff < minDifference || (minDifference == curDiff && node.val < closetValue)) {
+                    minDifference = curDiff;
+                    closetValue = root.val;
+                }
+
+                if (node.val > target) {
+                    node = node.right;
+                } else {
+                    node = node.left;
                 }
             }
 
