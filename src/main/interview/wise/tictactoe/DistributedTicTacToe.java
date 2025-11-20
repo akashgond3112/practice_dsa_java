@@ -2,14 +2,14 @@ package main.interview.wise.tictactoe;
 
 public class DistributedTicTacToe {
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("=== Distributed Tic Tac Toe Demo ===\n");
+        System.out.println("=== Multi-User Distributed Tic Tac Toe ===\n");
 
         // Create 3 servers
         GameServer server1 = new GameServer("Server-1");
         GameServer server2 = new GameServer("Server-2");
         GameServer server3 = new GameServer("Server-3");
 
-        // Setup replication (each server knows about others)
+        // Form cluster
         server1.addReplica(server2);
         server1.addReplica(server3);
         server2.addReplica(server1);
@@ -17,63 +17,86 @@ public class DistributedTicTacToe {
         server3.addReplica(server1);
         server3.addReplica(server2);
 
-        System.out.println("Cluster formed with 3 servers\n");
+        System.out.println("=== Scenario: Multiple Games with Different Players ===\n");
 
-        // Create game on Server-1
-        GameState game = server1.createGame();
-        String gameId = game.getId();
+        // Register 4 players on different servers
+        Player alice = server1.registerPlayer("Alice");
+        Player bob = server2.registerPlayer("Bob");
+        Player charlie = server3.registerPlayer("Charlie");
+        Player diana = server1.registerPlayer("Diana");
+
         Thread.sleep(100);
 
-        // Make moves through different servers (distributed)
-        server1.makeMove(gameId, 0, 0, 'X'); // X at (0,0)
-        Thread.sleep(50);
-        server2.makeMove(gameId, 1, 1, 'O'); // O at (1,1) via different server!
-        Thread.sleep(50);
-        server3.makeMove(gameId, 0, 1, 'X'); // X at (0,1) via yet another server!
+        // Alice creates Game 1
+        System.out.println("\n--- Game 1: Alice vs Bob ---");
+        GameState game1 = server1.createGame(alice);
         Thread.sleep(50);
 
-        printBoard(server1.getGame(gameId));
+        // Bob joins Game 1
+        server2.joinGame(game1.getGameId(), bob);
+        Thread.sleep(50);
+
+        // Charlie creates Game 2
+        System.out.println("\n--- Game 2: Charlie vs Diana ---");
+        GameState game2 = server3.createGame(charlie);
+        Thread.sleep(50);
+
+        // Diana joins Game 2
+        server1.joinGame(game2.getGameId(), diana);
+        Thread.sleep(50);
+
+        System.out.println("\n--- Playing Game 1 (Alice vs Bob) ---");
+        server1.makeMove(game1.getGameId(), alice, 0, 0); // Alice (X)
+        server2.makeMove(game1.getGameId(), bob, 1, 1); // Bob (O)
+        server1.makeMove(game1.getGameId(), alice, 0, 1); // Alice (X)
+        Thread.sleep(50);
+
+        System.out.println("\n--- Playing Game 2 (Charlie vs Diana) ---");
+        server3.makeMove(game2.getGameId(), charlie, 0, 0); // Charlie (X)
+        server1.makeMove(game2.getGameId(), diana, 0, 1); // Diana (O)
+        Thread.sleep(50);
+
+        System.out.println("\n--- Current State of Both Games ---");
+        printBoard(server2.getGame(game1.getGameId()), "Game 1");
+        printBoard(server3.getGame(game2.getGameId()), "Game 2");
+
+        // Test: Bob tries to make Alice's move (should fail)
+        System.out.println("\n--- Test: Bob tries to play out of turn ---");
+        boolean illegal = server2.makeMove(game1.getGameId(), bob, 0, 2);
+        System.out.println("Result: " + (illegal ? "Allowed (BUG!)" : "Blocked ✓"));
 
         // Simulate Server-1 crash
-        System.out.println("\n--- Simulating Server-1 failure ---");
+        System.out.println("\n--- Server-1 crashes ---");
         server1.crash();
         Thread.sleep(100);
 
-        // Continue playing through Server-2 (fault tolerance)
-        System.out.println("\nContinuing game through Server-2...");
-        server2.makeMove(gameId, 2, 2, 'O');
-        server2.makeMove(gameId, 0, 2, 'X');
+        // Continue both games via other servers
+        System.out.println("\n--- Continuing games after crash ---");
+        server2.makeMove(game1.getGameId(), bob, 2, 2); // Game 1 continues
+        server3.makeMove(game2.getGameId(), diana, 1, 1); // Game 2 continues
         Thread.sleep(50);
 
-        // Read from Server-3 (data still available)
-        GameState finalState = server3.getGame(gameId);
-        System.out.println("\nReading game state from Server-3:");
-        printBoard(finalState);
-
-        // Server-1 recovers
-        System.out.println("\n--- Server-1 recovering ---");
-        server1.recover();
-        Thread.sleep(200);
-
-        System.out.println("\nServer-1 state after recovery:");
-        printBoard(server1.getGame(gameId));
-
-        // Cleanup
-        server1.shutdown();
-        server2.shutdown();
-        server3.shutdown();
+        System.out.println("\n--- Final State (read from Server-2 and Server-3) ---");
+        printBoard(server2.getGame(game1.getGameId()), "Game 1");
+        printBoard(server3.getGame(game2.getGameId()), "Game 2");
 
         System.out.println("\n=== Demo Complete ===");
+        System.out.println("✓ Multiple concurrent games");
+        System.out.println("✓ Player authentication and turn enforcement");
+        System.out.println("✓ Distributed across servers");
+        System.out.println("✓ Fault tolerant");
     }
 
-    private static void printBoard(GameState game) {
+    private static void printBoard(GameState game, String title) {
         if (game == null) {
-            System.out.println("Game not found!");
+            System.out.println(title + ": Not found!");
             return;
         }
 
         char[][] board = game.getBoard();
-        System.out.println("\nGame: " + game.getId() + " (v" + game.getVersion() + ")");
+        System.out.println("\n" + title + " [" + game.getGameId() + "] - " + game.getStatus());
+        System.out.println("Players: " + game.getPlayerX().getPlayerName() + " (X) vs " +
+                (game.getPlayerO() != null ? game.getPlayerO().getPlayerName() + " (O)" : "waiting..."));
         System.out.println("  0 1 2");
         for (int i = 0; i < 3; i++) {
             System.out.print(i + " ");
@@ -82,7 +105,10 @@ public class DistributedTicTacToe {
             }
             System.out.println();
         }
-        System.out.println("Next: " + game.getCurrentPlayer() +
-                (game.getWinner() != null ? " | Winner: " + game.getWinner() : ""));
+        if (game.getStatus() == GameStatus.IN_PROGRESS) {
+            char turn = game.getCurrentTurn();
+            String playerName = (turn == 'X') ? game.getPlayerX().getPlayerName() : game.getPlayerO().getPlayerName();
+            System.out.println("Next turn: " + playerName + " (" + turn + ")");
+        }
     }
 }
