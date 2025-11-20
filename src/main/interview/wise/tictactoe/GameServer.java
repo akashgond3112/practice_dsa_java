@@ -6,60 +6,103 @@ import java.util.concurrent.*;
 class GameServer {
     private final String serverId;
     private final ConcurrentHashMap<String, GameState> games = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Player> activePlayers = new ConcurrentHashMap<>();
     private final List<GameServer> replicas = new CopyOnWriteArrayList<>();
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private volatile boolean isAlive = true;
 
     public GameServer(String serverId) {
         this.serverId = serverId;
-        // Heartbeat to simulate health check
-        scheduler.scheduleAtFixedRate(() -> {
-            if (!isAlive)
-                return;
-            System.out.println("[" + serverId + "] Heartbeat - Active games: " + games.size());
-        }, 5, 5, TimeUnit.SECONDS);
     }
 
-    // Register peer servers for replication
     public void addReplica(GameServer replica) {
         if (!replicas.contains(replica)) {
             replicas.add(replica);
         }
     }
 
-    // Create new game and replicate
-    public GameState createGame() {
-        String gameId = UUID.randomUUID().toString().substring(0, 8);
-        GameState game = new GameState(gameId);
+    // Player registration
+    public Player registerPlayer(String playerName) {
+        String playerId = UUID.randomUUID().toString().substring(0, 8);
+        Player player = new Player(playerId, playerName);
+        activePlayers.put(playerId, player);
+        System.out.println("[" + serverId + "] Player registered: " + playerName + " (ID: " + playerId + ")");
+        return player;
+    }
+
+    // Create new game
+    public GameState createGame(Player creator) {
+        if (!activePlayers.containsKey(creator.getPlayerId())) {
+            System.out.println("Player not registered");
+            return null;
+        }
+
+        String gameId = "game-" + UUID.randomUUID().toString().substring(0, 6);
+        GameState game = new GameState(gameId, creator);
         games.put(gameId, game);
 
-        // Async replication to replicas
         replicateToAll(game);
 
-        System.out.println("[" + serverId + "] Created game: " + gameId);
+        System.out.println("[" + serverId + "] Game created: " + gameId +
+                " by " + creator.getPlayerName() + " (waiting for opponent)");
         return game;
     }
 
-    // Make move with automatic replication
-    public boolean makeMove(String gameId, int row, int col, char player) {
+    // Join existing game
+    public boolean joinGame(String gameId, Player player) {
+        if (!activePlayers.containsKey(player.getPlayerId())) {
+            System.out.println("Player not registered");
+            return false;
+        }
+
         GameState game = games.get(gameId);
         if (game == null) {
-            // Try to recover from replicas
             game = recoverFromReplicas(gameId);
             if (game == null)
                 return false;
         }
 
-        boolean success = game.makeMove(row, col, player);
+        boolean joined = game.joinGame(player);
+        if (joined) {
+            replicateToAll(game);
+        }
+        return joined;
+    }
+
+    // Make move
+    public boolean makeMove(String gameId, Player player, int row, int col) {
+        if (!activePlayers.containsKey(player.getPlayerId())) {
+            System.out.println("Player not registered");
+            return false;
+        }
+
+        GameState game = games.get(gameId);
+        if (game == null) {
+            game = recoverFromReplicas(gameId);
+            if (game == null)
+                return false;
+        }
+
+        boolean success = game.makeMove(player, row, col);
         if (success) {
-            System.out.println("[" + serverId + "] Move made in game " + gameId +
-                    " at (" + row + "," + col + ") by " + player);
+            System.out.println("[" + serverId + "] " + player.getPlayerName() +
+                    " moved at (" + row + "," + col + ") in game " + gameId);
             replicateToAll(game);
         }
         return success;
     }
 
-    // Get game state (read-only)
+    // List available games to join
+    public List<GameState> listAvailableGames() {
+        List<GameState> available = new ArrayList<>();
+        for (GameState game : games.values()) {
+            if (game.getStatus() == GameStatus.WAITING_FOR_PLAYERS) {
+                available.add(game.copy());
+            }
+        }
+        return available;
+    }
+
+    // Get game state
     public GameState getGame(String gameId) {
         GameState game = games.get(gameId);
         if (game == null) {
@@ -68,7 +111,7 @@ class GameServer {
         return game != null ? game.copy() : null;
     }
 
-    // Replicate state to all peer servers
+    // Replication
     private void replicateToAll(GameState game) {
         for (GameServer replica : replicas) {
             if (replica.isAlive) {
@@ -77,50 +120,37 @@ class GameServer {
         }
     }
 
-    // Receive replicated state from peer
     void receiveReplication(GameState game) {
-        GameState existing = games.get(game.getId());
-        // Use version number to ensure we keep latest state
+        GameState existing = games.get(game.getGameId());
         if (existing == null || game.getVersion() > existing.getVersion()) {
-            games.put(game.getId(), game);
-            System.out.println("[" + serverId + "] Replicated game " +
-                    game.getId() + " (version " + game.getVersion() + ")");
+            games.put(game.getGameId(), game);
         }
     }
 
-    // Fault tolerance: recover game from replicas
     private GameState recoverFromReplicas(String gameId) {
-        System.out.println("[" + serverId + "] Attempting recovery of game " + gameId);
         GameState latest = null;
-
         for (GameServer replica : replicas) {
             if (!replica.isAlive)
                 continue;
-
             GameState game = replica.games.get(gameId);
             if (game != null && (latest == null || game.getVersion() > latest.getVersion())) {
                 latest = game;
             }
         }
-
         if (latest != null) {
             games.put(gameId, latest.copy());
-            System.out.println("[" + serverId + "] Recovered game " + gameId + " from replica");
         }
         return latest;
     }
 
-    // Simulate server failure
     public void crash() {
         isAlive = false;
         System.out.println("[" + serverId + "] CRASHED!");
     }
 
-    // Simulate server recovery
     public void recover() {
         isAlive = true;
         System.out.println("[" + serverId + "] RECOVERED!");
-        // Sync state from replicas
         for (GameServer replica : replicas) {
             if (replica.isAlive) {
                 for (Map.Entry<String, GameState> entry : replica.games.entrySet()) {
@@ -130,15 +160,7 @@ class GameServer {
         }
     }
 
-    public void shutdown() {
-        scheduler.shutdown();
-    }
-
     public String getServerId() {
         return serverId;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
     }
 }
