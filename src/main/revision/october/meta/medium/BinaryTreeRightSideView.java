@@ -55,15 +55,16 @@ public class BinaryTreeRightSideView {
                 int lastVal = 0;
 
                 for (int i = 0; i < levelSize; i++) {
+
                     TreeNode node = q.poll();
-                    lastVal += node.val;
+                    lastVal = node.val;
 
                     if (node.left != null) {
                         q.offer(node.left);
-                    } else if (node.right != null) {
+                    }
+                    if (node.right != null) {
                         q.offer(node.right);
                     }
-
                     res.add(lastVal);
                 }
             }
@@ -93,16 +94,56 @@ public class BinaryTreeRightSideView {
                 for (int i = 0; i < levelSize; i++) {
 
                     TreeNode node = q.poll();
-                    lastVal += node.val;
+                    lastVal = node.val;
 
                     if (node.left != null) {
                         q.offer(node.left);
-                    } else if (node.right != null) {
+                    }
+                    if (node.right != null) {
                         q.offer(node.right);
                     }
-
-                    res.add(lastVal);
                 }
+                res.add(lastVal);
+            }
+
+            return res;
+        }
+    }
+
+    // Revised on 11/14/2025
+    class SolutionRevisionDayFourteen {
+        public List<Integer> rightSideView(TreeNode root) {
+
+            List<Integer> res = new ArrayList<>();
+
+            if (root == null) {
+                return res;
+            }
+
+            Queue<TreeNode> q = new LinkedList<>();
+            q.offer(root);
+
+            while (!q.isEmpty()) {
+
+                int levelSize = q.size();
+                int lastVal = 0;
+
+                for (int i = 0; i < levelSize; i++) {
+
+                    TreeNode node = q.poll();
+
+                    lastVal = node.val;
+
+                    if (node.left != null) {
+                        q.offer(node.left);
+                    }
+
+                    if (node.right != null) {
+                        q.offer(node.right);
+                    }
+                }
+
+                res.add(lastVal);
             }
 
             return res;
