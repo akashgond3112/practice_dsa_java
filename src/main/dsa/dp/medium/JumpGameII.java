@@ -51,8 +51,6 @@ public class JumpGameII {
 		return dp[n - 1]; // The value at dp[n-1] gives the minimum jumps to reach the last index
 	}
 
-
-
 	public static int jumpUsingMemo(int[] nums, int ind, int[] dp) {
 		if (nums.length <= 1)
 			return 0;  // If we are already at the last index or there's only one element
@@ -75,7 +73,6 @@ public class JumpGameII {
 		dp[ind] = re;
 		return dp[ind];
 	}
-
 
 	/**
 	 * Will get time limit exceeded
