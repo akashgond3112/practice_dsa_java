@@ -16,14 +16,19 @@ import java.util.Queue;
  * Topics
  * Companies
  * Hint
- * Given a list of accounts where each element accounts[i] is a list of strings, where the first element accounts[i][0] is a name,
+ * Given a list of accounts where each element accounts[i] is a list of strings,
+ * where the first element accounts[i][0] is a name,
  * and the rest of the elements are emails representing emails of the account.
  * <p>
- * Now, we would like to merge these accounts. Two accounts definitely belong to the same person if there is some common email to both accounts.
- * Note that even if two accounts have the same name, they may belong to different people as people could have the same name.
- * A person can have any number of accounts initially, but all of their accounts definitely have the same name.
+ * Now, we would like to merge these accounts. Two accounts definitely belong to
+ * the same person if there is some common email to both accounts.
+ * Note that even if two accounts have the same name, they may belong to
+ * different people as people could have the same name.
+ * A person can have any number of accounts initially, but all of their accounts
+ * definitely have the same name.
  * <p>
- * After merging the accounts, return the accounts in the following format: the first element of each account is the name, and the rest of the elements
+ * After merging the accounts, return the accounts in the following format: the
+ * first element of each account is the name, and the rest of the elements
  * are emails in sorted order.
  * The accounts themselves can be returned in any order.
  * <p>
@@ -40,10 +45,14 @@ import java.util.Queue;
  * ["John","johnnybravo@mail.com"]]
  * <p>
  * Explanation:
- * The first and second John's are the same person as they have the common email "johnsmith@mail.com".
- * The third John and Mary are different people as none of their email addresses are used by other accounts.
- * We could return these lists in any order, for example the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'],
- * ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
+ * The first and second John's are the same person as they have the common email
+ * "johnsmith@mail.com".
+ * The third John and Mary are different people as none of their email addresses
+ * are used by other accounts.
+ * We could return these lists in any order, for example the answer [['Mary',
+ * 'mary@mail.com'], ['John', 'johnnybravo@mail.com'],
+ * ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']]
+ * would still be accepted.
  * <p>
  *
  * Constraints:
@@ -59,11 +68,14 @@ import java.util.Queue;
  * Depth-First Search
  * Breadth-First Search
  * Union Find
- * Sorting*/
+ * Sorting
+ */
 public class AccountsMerge {
 
 	/**
-	 * Time & Space Complexity Time complexity: O((n∗m)log(n∗m)) Space complexity: O(n∗m) Where n is the number of
+	 * Time & Space Complexity
+	 * Time complexity: O((n∗m)log(n∗m))
+	 * Space complexity: O(n∗m) Where n is the number of
 	 * accounts and m is the number of emails.
 	 */
 	public static class SolutionUsingDFS {
@@ -143,6 +155,12 @@ public class AccountsMerge {
 		}
 	}
 
+	/**
+	 * Time & Space Complexity
+	 * Time complexity: O((n∗m)log(n∗m))
+	 * Space complexity: O(n∗m)
+	 * Where n is the number of accounts and m is the number of emails.
+	 */
 	public static class SolutionUsingBFS {
 		private Map<String, Integer> emailIdx = new HashMap<>(); // email -> id
 		private List<String> emails = new ArrayList<>(); // set of emails of all accounts
@@ -227,6 +245,12 @@ public class AccountsMerge {
 		}
 	}
 
+	/**
+	 * Time & Space Complexity
+	 * Time complexity: O((n∗m)log(n∗m))
+	 * Space complexity: O(n∗m)
+	 * Where n is the number of accounts and m is the number of emails.
+	 */
 	public static class SolutionUsingDisjointSet {
 		static List<List<String>> accountsMerge(List<List<String>> accounts) {
 			// code here
