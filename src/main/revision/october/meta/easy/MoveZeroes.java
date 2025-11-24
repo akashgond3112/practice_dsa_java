@@ -38,7 +38,7 @@ public class MoveZeroes {
     }
 
     // revised on 11/9/2025
-    class SolutionRevisionFourteenDay {
+    class SolutionRevisionSeventhDay {
         public void moveZeroes(int[] nums) {
 
             int left = 0;
@@ -52,6 +52,24 @@ public class MoveZeroes {
                     }
                     left++;
                 }
+            }
+        }
+    }
+
+    // revised on 11/23/2025
+    class SolutionRevisionFourteenDay {
+        public void moveZeroes(int[] nums) {
+
+            int left = 0;
+
+            for (int right = 0; right < nums.length; right++) {
+
+                if (left != right) {
+                    int temp = nums[right];
+                    nums[right] = nums[left];
+                    nums[left] = temp;
+                }
+                left++;
             }
         }
     }
