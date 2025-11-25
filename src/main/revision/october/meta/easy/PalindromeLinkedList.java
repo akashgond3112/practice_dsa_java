@@ -127,11 +127,55 @@ public class PalindromeLinkedList {
 
         private ListNode reverseLinkedList(ListNode slow) {
 
-            if (slow == null && slow.next != null) {
+            if (slow == null && slow.next == null) {
                 return slow;
             }
 
             ListNode next = reverseLinkedList(slow);
+            slow.next.next = slow;
+            slow.next = null;
+            return next;
+        }
+    }
+
+    // revised on 11/11/2025
+    class SolutionrevisedOnFourteenDay {
+        public boolean isPalindrome(ListNode head) {
+
+            ListNode fast = head;
+            ListNode slow = head;
+
+            while (fast != null && slow != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+
+            if (fast != null) {
+                slow = slow.next;
+            }
+
+            slow = reverseLinkedList(slow);
+
+            while (slow != null) {
+
+                if (slow.val != fast.val) {
+                    return false;
+                }
+
+                slow = slow.next;
+                fast = fast.next;
+            }
+
+            return true;
+        }
+
+        private ListNode reverseLinkedList(ListNode slow) {
+
+            if (slow == null || slow.next == null) {
+                return slow;
+            }
+
+            ListNode next = reverseLinkedList(slow.next);
             slow.next.next = slow;
             slow.next = null;
             return next;
