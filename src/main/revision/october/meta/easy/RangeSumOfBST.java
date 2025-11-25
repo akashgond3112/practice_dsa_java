@@ -6,72 +6,72 @@ public class RangeSumOfBST {
 
     public int rangeSumBST(TreeNode root, int low, int high) {
 
-        if (root == null)
-            return 0;
-
-        int sum = 0;
-
-        if (root.val > low) {
-            sum += rangeSumBST(root.left, low, high);
+        int total = 0;
+        if (root == null) {
+            return total;
         }
 
         if (root.val >= low && root.val <= high) {
-            sum += root.val;
+            total += root.val;
         }
 
-        if (root.val < high) {
-            sum += rangeSumBST(root.right, low, high);
+        total += rangeSumBST(root.left, low, high);
+        total += rangeSumBST(root.right, low, high);
 
-        }
-
-        return sum;
+        return total;
     }
 
     // Revised on 08.10.2025
     public int rangeSumBST_Rev_1(TreeNode root, int low, int high) {
 
+        int total = 0;
         if (root == null) {
-            return 0;
+            return total;
         }
 
-        int sum = 0;
-
-        if (root.val < low) {
-            sum += rangeSumBST_Rev_1(root.left, low, high);
+        if (root.val >= low && root.val <= high) {
+            total += root.val;
         }
 
-        if (root.val > high) {
-            sum += rangeSumBST_Rev_1(root.right, low, high);
-        }
+        total += rangeSumBST(root.left, low, high);
+        total += rangeSumBST(root.right, low, high);
 
-        if (root.val <= low && root.val >= high) {
-            sum += root.val;
-        }
-
-        return sum;
+        return total;
     }
 
     // Revised on 27.10.2025
     public int rangeSumBST_Rev_3(TreeNode root, int low, int high) {
 
+        int total = 0;
         if (root == null) {
-            return 0;
+            return total;
         }
 
-        int sum = 0;
-
-        if (root.val < low) {
-            sum += rangeSumBST_Rev_3(root.left, low, high);
+        if (root.val >= low && root.val <= high) {
+            total += root.val;
         }
 
-        if (root.val > high) {
-            sum += rangeSumBST_Rev_3(root.right, low, high);
+        total += rangeSumBST(root.left, low, high);
+        total += rangeSumBST(root.right, low, high);
+
+        return total;
+    }
+
+    // Revised on 27.10.2025
+    public int rangeSumBST_Rev_4(TreeNode root, int low, int high) {
+
+        int total = 0;
+        if (root == null) {
+            return total;
         }
 
-        if (root.val <= low && root.val > high) {
-            sum += root.val;
+        if (root.val >= low && root.val <= high) {
+            total += root.val;
         }
 
-        return sum;
+        total += rangeSumBST(root.left, low, high);
+        total += rangeSumBST(root.right, low, high);
+
+        return total;
     }
 }
