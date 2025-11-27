@@ -153,4 +153,55 @@ public class CopyListWithRandomPointer {
             return dummy.next;
         }
     }
+
+    // revised on 04/11/2025
+    class SolutionRevisonFourteenDay {
+        public Node copyRandomList(Node head) {
+
+            if (head == null) {
+                return null;
+            }
+
+            // step 1
+            Node current = head;
+            while (current != null) {
+
+                Node next = current.next;
+                Node copyNode = new Node(current.val);
+
+                copyNode.next = next;
+                current.next = copyNode;
+                current = next;
+            }
+
+            // step 2
+            current = head;
+            while (current != null) {
+                Node copyNode = current.next;
+
+                if (current.random != null) {
+                    copyNode.random = current.random;
+                } else {
+                    copyNode.random = null;
+                }
+
+                current = current.next;
+            }
+
+            Node dummy = new Node(-1);
+            Node result = dummy;
+            current = head;
+
+            while (current != null) {
+
+                result.next = current.next;
+                result = result.next;
+
+                current.next = current.next.next;
+                current = current.next;
+            }
+
+            return dummy.next;
+        }
+    }
 }
