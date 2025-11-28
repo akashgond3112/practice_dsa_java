@@ -75,19 +75,32 @@ public class ExclusiveTimeOfFunctions {
 	 */
 	static class Solution {
 		/**
+		 * Pair class to store function ID and its start timestamp.
+		 */
+		static class Pair {
+			int functionId;
+			int startTime;
+
+			Pair(int functionId, int startTime) {
+				this.functionId = functionId;
+				this.startTime = startTime;
+			}
+		}
+
+		/**
 		 * Calculates the exclusive execution time for each function based on logs.
 		 *
 		 * Example log format: "function_id:start/end:timestamp"
 		 * e.g., "0:start:0", "0:end:5"
 		 *
 		 * Algorithm:
-		 * 1. Uses a stack to track nested function calls
+		 * 1. Uses a stack to track nested function calls with their start times
 		 * 2. For each start event:
 		 *    - If stack not empty, add elapsed time to current running function
-		 *    - Push new function to stack
+		 *    - Push new Pair(functionId, startTime) to stack
 		 * 3. For each end event:
-		 *    - Pop function from stack
-		 *    - Add complete interval to function's total time
+		 *    - Pop function from stack and calculate its execution time
+		 *    - Update the start time for the resumed function (if any)
 		 *
 		 * Example:
 		 * Input: n = 2, logs = ["0:start:0","1:start:2","1:end:5","0:end:6"]
@@ -107,11 +120,8 @@ public class ExclusiveTimeOfFunctions {
 			// Array to store cumulative execution time for each function
 			int[] result = new int[n];
 
-			// Stack to keep track of currently executing functions
-			Stack<Integer> callStack = new Stack<>();
-
-			// Track the start time of the current executing function
-			int lastTimeStamp = 0;
+			// Stack to keep track of currently executing functions with their start times
+			Stack<Pair> callStack = new Stack<>();
 
 			for (String log : logs) {
 				// Parse log entry into components
@@ -120,20 +130,24 @@ public class ExclusiveTimeOfFunctions {
 				boolean isStarted = split[1].equals("start"); // "start" or "end"
 				int currentTimeStamp = Integer.parseInt(split[2]);
 
-				if (!isStarted)
-					currentTimeStamp += 1;
-
-				if (!callStack.isEmpty()) {
-					int prevFuncId = callStack.peek();
-					result[prevFuncId] += currentTimeStamp - lastTimeStamp;
-				}
-
 				if (isStarted) {
-					callStack.push(funcId);
+					// If there's a function currently running, update its execution time
+					if (!callStack.isEmpty()) {
+						Pair current = callStack.peek();
+						result[current.functionId] += currentTimeStamp - current.startTime;
+					}
+					// Push new function with its start time
+					callStack.push(new Pair(funcId, currentTimeStamp));
 				} else {
-					callStack.pop();
+					// Function ends - pop from stack and add its execution time
+					Pair completed = callStack.pop();
+					result[completed.functionId] += currentTimeStamp - completed.startTime + 1;
+
+					// If there's a resumed function, update its start time to after current timestamp
+					if (!callStack.isEmpty()) {
+						callStack.peek().startTime = currentTimeStamp + 1;
+					}
 				}
-				lastTimeStamp = currentTimeStamp;
 			}
 
 			return result;
