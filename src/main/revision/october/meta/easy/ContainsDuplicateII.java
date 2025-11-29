@@ -50,4 +50,28 @@ public class ContainsDuplicateII {
             return false;
         }
     }
+
+    // revised on 11/29/2025
+    class SolutionRevisionSeventhDay {
+        public boolean containsNearbyDuplicate(int[] nums, int k) {
+
+            int start = 0;
+            int end = 0;
+
+            HashSet<Integer> set = new HashSet<>();
+
+            while (end < nums.length) {
+
+                if (!set.add(nums[end])) {
+                    return true;
+                }
+
+                if (set.size() >= k) {
+                    set.remove(nums[start++]);
+                }
+                end++;
+            }
+            return false;
+        }
+    }
 }
