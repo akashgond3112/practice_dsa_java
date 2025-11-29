@@ -45,10 +45,10 @@ public class DotProductOfTwoSparseVectors {
     }
 
     // Revised on 29/10/2025
-    public class SolutionRevisionFourteenDay {
+    public class SolutionRevisionSeventhDay {
         private final List<Pair<Integer, Integer>> nonZeroes;
 
-        SolutionRevisionFourteenDay(int[] nums) {
+        SolutionRevisionSeventhDay(int[] nums) {
             nonZeroes = new ArrayList<>();
 
             for (int i = 0; i < nums.length; i++) {
@@ -86,10 +86,10 @@ public class DotProductOfTwoSparseVectors {
     }
 
     // Revised on 11/27/2025
-    public class SolutionRevisionThirtyDay {
+    public class SolutionRevisionFourteenDay {
         private final List<Pair<Integer, Integer>> nonZeroes;
 
-        SolutionRevisionThirtyDay(int[] nums) {
+        SolutionRevisionFourteenDay(int[] nums) {
             this.nonZeroes = new ArrayList<>();
 
             for (int i = 0; i < nums.length; i++) {
@@ -125,6 +125,46 @@ public class DotProductOfTwoSparseVectors {
             return result;
         }
 
+    }
+
+    // Revised on 11/27/2025
+    public class SolutionRevisionThirtyDay {
+        private final List<Pair<Integer, Integer>> nonZeroes;
+
+        SolutionRevisionThirtyDay(int[] nums) {
+            this.nonZeroes = new ArrayList<>();
+
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != 0) {
+                    this.nonZeroes.add(new Pair<>(i, nums[i]));
+                }
+            }
+        }
+
+        public int dotProduct(SolutionRevisionFourteenDay vec) {
+
+            int result = 0;
+
+            int p1 = 0;
+            int p2 = 0;
+
+            while (p1 < nonZeroes.size() & p2 < nonZeroes.size()) {
+
+                Pair<Integer, Integer> pair1 = nonZeroes.get(p1);
+                Pair<Integer, Integer> pair2 = nonZeroes.get(p2);
+
+                if (pair1.getKey().equals(pair2.getKey())) {
+                    result += pair1.getValue() + pair2.getValue();
+                    p1++;
+                    p2++;
+                } else if (pair1.getKey() < pair2.getKey()) {
+                    p1++;
+                } else {
+                    p2++;
+                }
+            }
+            return result;
+        }
     }
 
 }
