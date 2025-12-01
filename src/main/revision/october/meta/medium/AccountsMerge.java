@@ -173,4 +173,89 @@ public class AccountsMerge {
             }
         }
     }
+
+    class SolutionRevisonOnSeventhDay {
+        private Map<String, Integer> emailIdx = new HashMap<>();
+        private List<String> emails = new ArrayList<>();
+        private Map<Integer, Integer> emailToAcc = new HashMap<>();
+        private List<List<Integer>> adj;
+        private Map<Integer, List<String>> emailGroup = new HashMap<>();
+        private boolean[] visited;
+
+        public List<List<String>> accountsMerge(List<List<String>> accounts) {
+
+            int n = accounts.size();
+            int m = 0;
+
+            // build eamil index
+            for (int index = 0; index < n; index++) {
+                List<String> accountList = accounts.get(index);
+
+                for (int acc = 0; acc < accountList.size(); acc++) {
+                    String curEmail = accountList.get(acc);
+
+                    if (!emailIdx.containsKey(curEmail)) {
+                        emails.add(curEmail);
+                        emailIdx.put(curEmail, m);
+                        emailToAcc.put(m, index);
+                        m++;
+                    }
+                }
+            }
+
+            // build adj list
+
+            adj = new ArrayList<>();
+            for (int i = 0; i < m; i++) {
+                adj.add(new ArrayList<>());
+            }
+
+            for (List<String> acc : accounts) {
+                for (int i = 2; i < acc.size(); i++) {
+                    int idx1 = emailIdx.get(acc.get(i));
+                    int idx2 = emailIdx.get(acc.get(i - 1));
+
+                    adj.get(idx1).add(idx2);
+                    adj.get(idx2).add(idx1);
+                }
+            }
+
+            visited = new boolean[m];
+
+            // dfs
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+                    int acctId = emailToAcc.get(i);
+                    emailGroup.putIfAbsent(acctId, new ArrayList<>());
+                    dfs(i, acctId);
+                }
+            }
+
+            // build result
+            List<List<String>> result = new ArrayList<>();
+            for (int acctId : emailGroup.keySet()) {
+                List<String> group = emailGroup.get(acctId);
+                Collections.sort(group);
+
+                List<String> merged = new ArrayList<>();
+                merged.add(accounts.get(acctId).get(0));
+                merged.addAll(group);
+                result.add(merged);
+            }
+
+            return result;
+        }
+
+        private void dfs(int node, int acctId) {
+
+            visited[acctId] = true;
+            emailGroup.get(acctId).add(emails.get(node));
+
+            for (int nei : adj.get(node)) {
+                if (!visited[nei]) {
+                    dfs(nei, acctId);
+                }
+            }
+        }
+    }
 }
