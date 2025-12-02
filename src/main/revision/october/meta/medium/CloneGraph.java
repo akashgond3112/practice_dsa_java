@@ -65,4 +65,34 @@ public class CloneGraph {
             return map.get(node);
         }
     }
+
+    // revised on 11/24/2025
+    class SolutionRevisiononSeventhDay {
+        public Node cloneGraph(Node node) {
+
+            if (node == null) {
+                return null;
+            }
+
+            Map<Node, Node> map = new HashMap<>();
+            Queue<Node> q = new LinkedList<>();
+            q.add(node);
+
+            while (!q.isEmpty()) {
+
+                Node cur = q.poll();
+
+                for (Node nei : cur.neighbors) {
+                    if (!map.containsKey(nei)) {
+                        map.put(nei, new Node(nei.val));
+                        q.add(nei);
+                    }
+
+                    map.get(nei).neighbors.add(map.get(nei));
+                }
+            }
+
+            return map.get(node);
+        }
+    }
 }
