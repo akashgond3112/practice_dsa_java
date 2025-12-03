@@ -92,4 +92,30 @@ public class DiameterOfBinaryTree {
 
         return diameter;
     }
+
+    // Revision on 12/2/2025
+    public int diameterOfBinaryTreeRevisionThirtyDay(TreeNode root) {
+
+        Map<TreeNode, Integer> map = new HashMap<>();
+        Stack<TreeNode> st = new Stack<>();
+        int diameter = 0;
+
+        while (!st.isEmpty()) {
+            TreeNode node = st.pop();
+
+            if (node.left != null && !map.containsKey(node)) {
+                st.push(node.left);
+            } else if (node.right != null & !map.containsKey(node.right)) {
+                st.push(node.right);
+            } else {
+                int leftdepth = map.getOrDefault(node.left, 0);
+                int rightdepth = map.getOrDefault(node.right, 0);
+
+                map.put(node, 1 + Math.max(leftdepth, rightdepth));
+                diameter = Math.max(diameter, leftdepth + rightdepth);
+            }
+        }
+
+        return diameter;
+    }
 }
