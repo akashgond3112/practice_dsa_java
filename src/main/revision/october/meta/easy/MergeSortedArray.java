@@ -99,6 +99,9 @@ public class MergeSortedArray {
 
     public class Solution {
         public void mergeBest(int[] a, int m, int[] b, int n) {
+            // 'length' is the total number of elements to merge.
+            // 'gap' is initialized to half of the total length (rounded up), following
+            // Shell sort's gap sequence.
             int length = n + m;
             int gap = (length / 2) + (length % 2);
 
@@ -108,12 +111,13 @@ public class MergeSortedArray {
 
                 while (right < length) {
 
-                    if (left < n && right >= n) {
-                        swap(a, b, left, right - n);
-                    } else if (left >= n) {
-                        swap(b, b, left - n, right - n);
-                    } else {
+                    // Map left and right indices to the correct array and position
+                    if (left < m && right < m) {
                         swap(a, a, left, right);
+                    } else if (left < m && right >= m) {
+                        swap(a, b, left, right - m);
+                    } else if (left >= m && right >= m) {
+                        swap(b, b, left - m, right - m);
                     }
                     left++;
                     right++;
@@ -127,26 +131,65 @@ public class MergeSortedArray {
     }
 
     // revised on 04/11/2025
-    public class SolutionRevisionFourteenDay {
-        public void mergeBest(int[] a, int m, int[] b, int n) {
-
-            int length = n + m;
-            int gap = (length / 2) + (length % 2);
+    public class SolutionRevisedOnFourteenDay {
+        public void mergeWithGap(int[] nums1, int m, int[] nums2, int n) {
+            int len = m + n;
+            int gap = (len / 2) + (len % 2);
 
             while (gap > 0) {
+                int left = 0;
+                int right = left + gap;
+                while (right < len) {
+                    // case 1: left in nums1, right in nums1
+                    if (left < m && right < m) {
+                        swap(nums1, nums1, left, right);
+                    }
+                    // case 2: left in nums1, right in nums2
+                    else if (left < m && right >= m) {
+                        swap(nums1, nums2, left, right - m);
+                    }
+                    // case 3: left in nums2, right in nums2
+                    else if (left >= m && right >= m) {
+                        swap(nums2, nums2, left - m, right - m);
+                    }
+                    left++;
+                    right++;
+                }
+                if (gap == 1) {
+                    break;
+                }
+                gap = (gap / 2) + (gap % 2);
+            }
 
+            // copy elements from nums2 to nums1
+            for (int i = 0; i < n; i++) {
+                nums1[m + i] = nums2[i];
+            }
+        }
+    }
+
+    // revised on 12/3/2025
+    public class SolutionRevisedOnThirtyDay {
+        public void mergeWithGap(int[] nums1, int m, int[] nums2, int n) {
+
+            int len = m + n;
+            int gap = (len / 2) + (len % 2);
+
+            while (gap > 0) {
                 int left = 0;
                 int right = left + gap;
 
-                while (left < right) {
+                while (right < left) {
 
-                    if (left < n && right >= n) {
-                        swap(a, b, left, right - n);
-                    } else if (left <= n) {
-                        swap(a, b, left - n, right - n);
+                    if (left < m && right < m) {
+                        swap(nums1, nums1, left, right);
+                    } else if (left < m && right >= m) {
+                        swap(nums1, nums2, left, right - m);
                     } else {
-                        swap(a, b, left, right);
+                        swap(nums2, nums2, left - m, right - m);
                     }
+                    left++;
+                    right++;
                 }
 
                 if (gap == 1) {
@@ -154,8 +197,13 @@ public class MergeSortedArray {
                 }
 
                 gap = (gap / 2) + (gap % 2);
+
+            }
+
+            // copy elements from nums2 to nums1
+            for (int i = 0; i < n; i++) {
+                nums1[m + i] = nums2[i];
             }
         }
     }
-
 }
