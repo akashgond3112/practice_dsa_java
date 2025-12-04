@@ -10,9 +10,11 @@ import java.util.Map;
  * Medium
  * Topics
  * Companies
- * Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+ * Given a string s and a dictionary of strings wordDict, return true if s can
+ * be segmented into a space-separated sequence of one or more dictionary words.
  *
- * Note that the same word in the dictionary may be reused multiple times in the segmentation.
+ * Note that the same word in the dictionary may be reused multiple times in the
+ * segmentation.
  *
  * Example 1:
  *
@@ -23,7 +25,8 @@ import java.util.Map;
  *
  * Input: s = "applepenapple", wordDict = ["apple","pen"]
  * Output: true
- * Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+ * Explanation: Return true because "applepenapple" can be segmented as "apple
+ * pen apple".
  * Note that you are allowed to reuse a dictionary word.
  * Example 3:
  *
@@ -37,7 +40,34 @@ import java.util.Map;
  * 1 <= wordDict.length <= 1000
  * 1 <= wordDict[i].length <= 20
  * s and wordDict[i] consist of only lowercase English letters.
- * All the strings of wordDict are unique.*/
+ * All the strings of wordDict are unique.
+ * The best solution among the ones provided is `SolutionUsingDpBottomUp`.
+ * 
+ * Here's a comparison:
+ * 
+ * 1. **`SolutionRecursion`** and **`SolutionUsingHashSet`**: These are
+ * brute-force recursive solutions. They have exponential time complexity (e.g.,
+ * `O(2^n)`) because they recompute results for the same substrings multiple
+ * times. They will likely time out for larger inputs.
+ * 
+ * 2. **`SolutionUsingDpTopDown`**: This is a significant improvement. It uses
+ * memoization (a top-down dynamic programming approach) to store the results of
+ * subproblems, avoiding redundant calculations. Its time complexity is `O(n * m
+ * * t)`, where `n` is the string length, `m` is the dictionary size, and `t` is
+ * the max word length.
+ * 
+ * 3. **`SolutionUsingDpBottomUp`**: This is generally considered the best and
+ * most optimal solution.
+ * **Performance**: It has the same time complexity as the top-down DP solution,
+ * `O(n * m * t)`, but often performs slightly better in practice by avoiding
+ * the overhead of recursion calls.
+ * **Space**: It uses an array of size `n+1`, which is efficient.
+ * **Clarity**: The iterative approach can be easier to understand and debug
+ * than recursion for some developers.
+ * 
+ * Therefore, `SolutionUsingDpBottomUp` is the most efficient and robust choice.
+ * 
+ */
 public class WordBreak {
 
 	/**
