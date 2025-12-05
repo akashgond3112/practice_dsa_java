@@ -39,4 +39,39 @@ public class SymmetricTree {
 
         }
     }
+
+    // revised on 12/2/2025
+    class SolutionRevisedOnThirdDay {
+        public boolean isSymmetric(TreeNode root) {
+            if (root == null)
+                return false;
+
+            Queue<TreeNode> left = new LinkedList<>();
+            Queue<TreeNode> right = new LinkedList<>();
+
+            left.add(root.left);
+            right.add(root.right);
+
+            while (!left.isEmpty() && !right.isEmpty()) {
+
+                TreeNode cL = left.poll();
+                TreeNode cR = right.poll();
+
+                if (cL == null || cR == null) {
+                    return false;
+                }
+
+                if (cL.val != cR.val)
+                    return false;
+
+                left.add(cL.left);
+                left.add(cL.right);
+
+                right.add(cR.right);
+                right.add(cR.left);
+            }
+
+            return true;
+        }
+    }
 }
