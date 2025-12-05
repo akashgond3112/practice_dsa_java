@@ -17,7 +17,7 @@ public class AddStrings {
             }
 
             if (j >= 0) {
-                sum += num1.charAt(j--) - '0';
+                sum += num2.charAt(j--) - '0';
             }
 
             sum += carry;
