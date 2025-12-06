@@ -50,4 +50,28 @@ public class ValidPalindrome {
 
         return true;
     }
+
+    // Revised on 11/30/2025
+    private boolean isValidPalindromeRev_4(String s, int left, int right) {
+
+        while (left < right) {
+
+            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+            }
+
+            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+            }
+
+            if (Character.isLowerCase(s.charAt(left)) != Character.isLowerCase(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 }
