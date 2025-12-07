@@ -90,4 +90,18 @@ public class MovingAverageFromDataStream {
 
         return windowSum * 1.0 / size;
     }
+
+    // Revision 12/7/2025
+    double nextIntRevisionThirtyDay(int val) {
+
+        q.offer(val);
+
+        windowSum += val;
+
+        if (q.size() > size) {
+            windowSum -= q.poll();
+        }
+
+        return windowSum * 1.0 / size;
+    }
 }
