@@ -30,8 +30,8 @@ public class PalindromePermutation {
         }
     }
 
-    // revised on 12/1/2025
-    public class SolutionRevisedOnThirdDay {
+    // revised on 12/7/2025
+    public class SolutionRevisedOnSeventhDay {
 
         public boolean canPermutePalindrome(String str) {
 
@@ -59,4 +59,5 @@ public class PalindromePermutation {
             return true;
         }
     }
+
 }
