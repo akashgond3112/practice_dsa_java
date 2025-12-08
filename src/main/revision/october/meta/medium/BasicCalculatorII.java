@@ -211,4 +211,42 @@ public class BasicCalculatorII {
 
         return result + lastNumber;
     }
+
+    // revision on 12/8/2025
+    public int calculateOptimisedRevisionDayThirty(String s) {
+
+        int currentNumber = 0;
+        char currentCharacter;
+        char operator = '+';
+        int result = 0;
+        int lastNumber = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            currentCharacter = s.charAt(i);
+
+            if (Character.isDigit(currentCharacter)) {
+                currentNumber = currentNumber * 10 + currentCharacter - '0';
+            }
+
+            if (!Character.isDigit(currentCharacter) && currentCharacter != ' ') {
+
+                if (operator == '+') {
+                    result += lastNumber;
+                    lastNumber = currentNumber;
+                } else if (operator == '-') {
+                    result += lastNumber;
+                    lastNumber = -currentNumber;
+                } else if (operator == '*') {
+                    lastNumber *= currentNumber;
+                } else if (operator == '/') {
+                    lastNumber /= currentNumber;
+                }
+
+                currentNumber = 0;
+                operator = currentCharacter;
+            }
+        }
+
+        return result + currentNumber;
+    }
 }
