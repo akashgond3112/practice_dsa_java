@@ -103,4 +103,63 @@ public class KClosestPointsToOrigin {
             return res;
         }
     }
+
+    // Revised on 25/10/2025
+    class SolutionRevisionDayFourteen {
+        public int[][] kClosest(int[][] points, int k) {
+            if (points == null || points.length == 0 || k <= 0) {
+                return new int[0][0];
+            }
+
+            PriorityQueue<int[]> pq = new PriorityQueue<>(
+                    (a, b) -> Integer.compare(getDistanceFromOrigin(b), getDistanceFromOrigin(a)));
+
+            for (int[] point : points) {
+                pq.offer(point);
+
+                if (pq.size() > k) {
+                    pq.poll();
+                }
+            }
+
+            int[][] res = new int[k][2];
+            int i = 0;
+            while (!pq.isEmpty()) {
+                res[i++] = pq.poll();
+            }
+
+            return res;
+        }
+    }
+
+    // Revised on 12/7/2025
+    class SolutionRevisionDayThirty {
+        public int[][] kClosest(int[][] points, int k) {
+
+            if (points == null || points.length == 0 || k <= 0) {
+                return new int[0][0];
+            }
+
+            PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> Integer.compare(getDistanceFromOrigin(b),
+                    getDistanceFromOrigin(a)));
+
+            for (int[] point : points) {
+
+                q.offer(point);
+
+                if (q.size() > k) {
+                    q.poll();
+                }
+            }
+
+            int[][] res = new int[k][k];
+            int i = 0;
+            while (!q.isEmpty()) {
+                res[i++] = q.poll();
+            }
+
+            return res;
+
+        }
+    }
 }
