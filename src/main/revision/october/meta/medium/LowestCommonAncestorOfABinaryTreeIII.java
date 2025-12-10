@@ -63,6 +63,20 @@ public class LowestCommonAncestorOfABinaryTreeIII {
         return p_start;
     }
 
+    // Revision 11/30/2025
+    public Node lowestCommonAncestor_rev_5(Node p, Node q) {
+
+        Node q_start = p;
+        Node p_start = q;
+
+        while (p_start != q_start) {
+
+            p_start = p_start.parent != null ? q : p_start.parent;
+            q_start = q_start.parent != null ? p : q_start.parent;
+        }
+        return p_start;
+    }
+
     public Node lowestCommonAncestorWithoutParent(List<Node> lists, Node p, Node q) {
 
         Map<Node, Node> childToParent = new HashMap<>();
