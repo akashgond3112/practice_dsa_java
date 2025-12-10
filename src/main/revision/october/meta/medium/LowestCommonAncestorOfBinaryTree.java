@@ -41,4 +41,23 @@ public class LowestCommonAncestorOfBinaryTree {
             return root;
         }
     }
+
+    // Date 11/27/2025
+    public TreeNode lowestCommonAncestorRevOnThirtyDay(TreeNode root, TreeNode p, TreeNode q) {
+
+        if (root == null || p == null || q == null) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestorRevOnThirtyDay(root.left, p, q);
+        TreeNode right = lowestCommonAncestorRevOnThirtyDay(root.right, q, p);
+
+        if (left == null) {
+            return right;
+        } else if (right == null) {
+            return left;
+        } else {
+            return root;
+        }
+    }
 }
