@@ -104,4 +104,30 @@ public class SquaresOfASortedArray {
 
         return res;
     }
+
+    // Revised on 12/10/2025
+    public int[] sortedSquaresRevisionThirtyDay(int[] nums) {
+
+        int res[] = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] *= nums[i];
+        }
+
+        int head = 0;
+        int tail = nums.length;
+
+        for (int i = nums.length - 1; i > 0; i--) {
+
+            if (nums[head] > nums[tail]) {
+                res[i] = nums[head];
+                head++;
+            } else {
+                res[i] = nums[tail];
+                tail--;
+            }
+        }
+
+        return res;
+    }
 }
