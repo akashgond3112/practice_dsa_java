@@ -47,7 +47,8 @@ import java.util.Set;
 public class ThreeSum {
 
 	/**
-	 * Time complexity: O(n^2 ) Space complexity: O(1) or O(n) depending on the sorting
+	 * Time complexity: O(n^2 ) 
+	 * Space complexity: O(1) or O(n) depending on the sorting
 	 * algorithm.
 	 */
 	public static List<List<Integer>> tripletOptimal(int n, int[] arr) {
@@ -60,7 +61,7 @@ public class ThreeSum {
 			int j = i + 1;
 			int k = n - 1;
 			while (j < k) {
-				int sum = arr[i] + arr[j] + arr[k];
+				int sum = arr[i] + arr[j] + arr[k]; 
 				if (sum < 0) {
 					j++;
 				} else if (sum > 0) {
@@ -83,7 +84,8 @@ public class ThreeSum {
 	}
 
 	/**
-	 * Time complexity: O(n^2 ) Space complexity: O(m)
+	 * Time complexity: O(n^2 ) 
+	 * Space complexity: O(m)
 	 * Where m is the number of triplets and n is
 	 * the length of the given array.
 	 */
@@ -106,7 +108,8 @@ public class ThreeSum {
 	}
 
 	/**
-	 * Time complexity: O(n^3 ) Space complexity: O(m)
+	 * Time complexity: O(n^3 ) 
+	 * Space complexity: O(m)
 	 * Where m is the number of triplets and n is
 	 * the length of the given array.
 	 */
