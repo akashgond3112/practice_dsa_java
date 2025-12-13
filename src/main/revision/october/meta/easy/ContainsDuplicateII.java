@@ -14,13 +14,14 @@ public class ContainsDuplicateII {
 
             while (endIndex < nums.length) {
 
+                if (set.size() > k) {
+                    set.remove(nums[startIndex++]);
+                }
+
                 if (!set.add(nums[endIndex])) {
                     return true;
                 }
 
-                if (set.size() >= k) {
-                    set.remove(nums[startIndex++]);
-                }
                 endIndex++;
             }
             return false;
@@ -38,13 +39,14 @@ public class ContainsDuplicateII {
 
             while (endIndex < nums.length) {
 
+                if (set.size() > k) {
+                    set.remove(nums[startIndex++]);
+                }
+
                 if (!set.add(nums[endIndex])) {
                     return true;
                 }
 
-                if (set.size() >= k) {
-                    set.remove(nums[startIndex++]);
-                }
                 endIndex++;
             }
             return false;
@@ -61,14 +63,14 @@ public class ContainsDuplicateII {
             HashSet<Integer> set = new HashSet<>();
 
             while (end < nums.length) {
+                if (set.size() > k) {
+                    set.remove(nums[start++]);
+                }
 
                 if (!set.add(nums[end])) {
                     return true;
                 }
 
-                if (set.size() >= k) {
-                    set.remove(nums[start++]);
-                }
                 end++;
             }
             return false;
