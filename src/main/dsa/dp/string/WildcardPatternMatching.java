@@ -66,7 +66,8 @@ public class WildcardPatternMatching {
 
 		// Fill the dp table
 		for (int i1 = 1; i1 <= i; i1++) {
-			// If text is empty but pattern is not, it only matches if the pattern is all '*'
+			// If text is empty but pattern is not, it only matches if the pattern is all
+			// '*'
 			curr[0] = pattern.charAt(i1 - 1) == '*' ? prev[0] : 0;
 
 			for (int j1 = 1; j1 <= j; j1++) {
@@ -96,7 +97,8 @@ public class WildcardPatternMatching {
 			dp[0][j1] = 0;
 		}
 
-		// If text is empty but pattern is not, it only matches if the pattern is all '*'
+		// If text is empty but pattern is not, it only matches if the pattern is all
+		// '*'
 		for (int i1 = 1; i1 <= i; i1++) {
 			dp[i1][0] = pattern.charAt(i1 - 1) == '*' ? dp[i1 - 1][0] : 0;
 		}
@@ -144,7 +146,8 @@ public class WildcardPatternMatching {
 		if (pattern.charAt(i) == text.charAt(j) || pattern.charAt(i) == '?') {
 			match = wildcardMatchingUsingMemo(pattern, text, i - 1, j - 1, dp);
 		} else if (pattern.charAt(i) == '*') {
-			// '*' can match zero characters (move in pattern) or one character (move in text)
+			// '*' can match zero characters (move in pattern) or one character (move in
+			// text)
 			match = (wildcardMatchingUsingMemo(pattern, text, i - 1, j, dp) || wildcardMatchingUsingMemo(pattern, text,
 					i, j - 1, dp));
 		} else {
@@ -155,7 +158,6 @@ public class WildcardPatternMatching {
 		dp[i][j] = match ? 1 : 0;
 		return match;
 	}
-
 
 	public static boolean wildcardMatching(String pattern, String text, int i, int j) {
 		// Base cases
@@ -177,7 +179,8 @@ public class WildcardPatternMatching {
 		if (pattern.charAt(i) == text.charAt(j) || pattern.charAt(i) == '?') {
 			return wildcardMatching(pattern, text, i - 1, j - 1);
 		} else if (pattern.charAt(i) == '*') {
-			// '*' can match zero characters (move in pattern) or one character (move in text)
+			// '*' can match zero characters (move in pattern) or one character (move in
+			// text)
 			return (wildcardMatching(pattern, text, i - 1, j) || wildcardMatching(pattern, text, i, j - 1));
 		} else {
 			return false; // Characters do not match and it's not a wildcard
