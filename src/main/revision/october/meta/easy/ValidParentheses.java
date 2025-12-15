@@ -87,4 +87,36 @@ public class ValidParentheses {
             return st.isEmpty();
         }
     }
+
+    // Revised on 12/15/2025
+    class SolutionRevisionThirtyDay {
+        public boolean isValid(String s) {
+            Stack<Character> st = new Stack<>();
+
+            for (char c : s.toCharArray()) {
+                if (c == '(' || c == '{' || c == '[') {
+                    st.push(c);
+                } else {
+                    if (st.isEmpty()) {
+                        return false;
+                    }
+                    char ch = st.pop();
+
+                    if (c == ')' || ch != '(') {
+                        return false;
+                    }
+
+                    if (c == '}' || ch != '{') {
+                        return false;
+                    }
+
+                    if (c == ']' || ch != '[') {
+                        return false;
+                    }
+                }
+            }
+
+            return st.isEmpty();
+        }
+    }
 }
