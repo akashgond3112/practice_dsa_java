@@ -110,7 +110,7 @@ public class DiagonalTraverse {
     }
 
     // revised on 11/28/2025
-    class SolutionRevisonFourteenDay {
+    class SolutionRevisonSeventhDay {
         public int[] findDiagonalOrder(int[][] mat) {
 
             int row = mat.length;
@@ -154,6 +154,55 @@ public class DiagonalTraverse {
 
             return result;
 
+        }
+    }
+
+    // revised on 12/12/2025
+    class SolutionRevisonFourteenDay {
+        public int[] findDiagonalOrder(int[][] mat) {
+
+            int row = mat.length;
+            int col = mat[0].length;
+
+            int[] result = new int[row * col];
+
+            int curRow = 0;
+            int curCol = 0;
+            boolean dir = true;
+            int curCell = 0;
+
+            while (curCell < row * col) {
+
+                result[curCell] = mat[curRow][curCol];
+                curCell++;
+
+                if (dir) {
+
+                    if (curCol == col - 1) {
+                        curRow++;
+                        dir = false;
+                    } else if (row == 0) {
+                        curCol++;
+                        dir = false;
+                    } else {
+                        curRow--;
+                        curCol++;
+                    }
+                } else {
+                    if (curRow == row - 1) {
+                        curCol++;
+                        dir = true;
+                    } else if (col == 0) {
+                        curRow++;
+                        dir = true;
+                    } else {
+                        curCol--;
+                        curRow++;
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }
