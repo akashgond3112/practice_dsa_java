@@ -26,32 +26,43 @@ The special case of an empty nums array is handled separately - in this case, th
 */
 public class MissingRanges {
 
+    // Yeh class missing ranges ko dhoondhne ke liye hai
     public class Solution {
         public static List<List<Integer>> missingRanges(int[] arr, int lower, int upper) {
 
+            // Array ki length n mein store karte hain
             int n = arr.length;
+            // Result ko store karne ke liye ek list banate hain
             List<List<Integer>> res = new ArrayList<>();
 
+            // Agar array khali hai, toh pura range missing hai
             if (n == 0) {
                 res.add(Arrays.asList(lower, upper));
                 return res;
             }
 
+            // Agar lower bound array ke first element se chhota hai
             if (lower < arr[0]) {
                 res.add(Arrays.asList(lower, arr[0] - 1));
             }
 
+            // Array ke consecutive elements ke beech missing ranges dhoondhte hain
             for (int i = 0; i < n - 1; i++) {
+                // Agar consecutive elements ka difference 1 ya usse kam hai, toh skip karte
+                // hain
                 if (arr[i + 1] - arr[i] <= 1)
                     continue;
 
+                // Missing range ko result mein add karte hain
                 res.add(Arrays.asList(arr[i] + 1, arr[i + 1] - 1));
             }
 
+            // Agar upper bound array ke last element se bada hai
             if (upper > arr[n - 1]) {
                 res.add(Arrays.asList(arr[n - 1] + 1, upper));
             }
 
+            // Final result return karte hain
             return res;
         }
     }
@@ -81,6 +92,40 @@ public class MissingRanges {
 
             if (upper > arr[n - 1]) {
                 res.add(Arrays.asList(arr[n - 1] + 1, upper));
+            }
+
+            return res;
+        }
+    }
+
+    // revised on 12/19/2025
+    public class SolutionRevisedOnSeventhDay {
+        public static List<List<Integer>> missingRanges(int[] arr, int lower, int upper) {
+
+            int n = arr.length;
+
+            List<List<Integer>> res = new ArrayList<>();
+
+            if (n == 0) {
+                res.add(Arrays.asList(lower, upper));
+                return res;
+            }
+
+            if (lower < arr[0]) {
+                res.add(Arrays.asList(lower, arr[0]));
+            }
+
+            for (int i = 0; i < n - 1; i++) {
+
+                if (arr[i + 1] - arr[i] <= 1) {
+                    continue;
+                }
+
+                res.add(Arrays.asList(arr[i] + 1, arr[i + 1] - 1));
+            }
+
+            if (upper > arr[n - 1]) {
+                res.add(Arrays.asList(arr[n - 1], upper));
             }
 
             return res;
