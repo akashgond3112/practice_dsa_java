@@ -19,20 +19,22 @@ public class RomanToInteger {
     public class Solution {
         public int romanToInt(String s) {
             if (s == null || s.isEmpty()) {
+                // Agar input string null ya empty hai, toh 0 return karo
                 return 0;
             }
 
-            int result = 0;
+            int result = 0; // Final result ko store karne ke liye variable
             for (int i = 0; i < s.length(); i++) {
-                int currentVal = ROMAN_VALUES.get(s.charAt(i));
-                // Check if there is a next character and if its value is greater
+                int currentVal = ROMAN_VALUES.get(s.charAt(i)); // Current Roman character ka value nikalte hain
+
+                // Check karte hain agar next character ka value zyada hai
                 if (i < s.length() - 1 && currentVal < ROMAN_VALUES.get(s.charAt(i + 1))) {
-                    result -= currentVal;
+                    result -= currentVal; // Agar condition true hai, toh current value ko minus karte hain
                 } else {
-                    result += currentVal;
+                    result += currentVal; // Nahi toh current value ko add karte hain
                 }
             }
-            return result;
+            return result; // Final result return karte hain
         }
     }
 
@@ -60,4 +62,27 @@ public class RomanToInteger {
         }
     }
 
+    // revised on 12/21/2025
+    public class SolutionRevisedOnSeventhDay {
+        public int romanToInt(String s) {
+
+            if (s == null || s.isEmpty()) {
+                return 0;
+            }
+
+            int result = 0;
+
+            for (int i = 0; i < s.length() - 1; i++) {
+                int curVal = ROMAN_VALUES.get(s.charAt(i));
+
+                if (i < s.length() - 1 && curVal < ROMAN_VALUES.get(s.charAt(i + 1))) {
+                    result -= curVal;
+                } else {
+                    result += curVal;
+                }
+            }
+
+            return result;
+        }
+    }
 }
