@@ -64,12 +64,36 @@ public class MoveZeroes {
 
             for (int right = 0; right < nums.length; right++) {
 
-                if (left != right) {
-                    int temp = nums[right];
-                    nums[right] = nums[left];
-                    nums[left] = temp;
+                if (nums[right] != 0) {
+                    if (left != right) {
+                        int temp = nums[right];
+                        nums[right] = nums[left];
+                        nums[left] = temp;
+                    }
+                    left++;
                 }
-                left++;
+
+            }
+        }
+    }
+
+    // revised on 12/22/2025
+    class SolutionRevisionThirtyDay {
+        public void moveZeroes(int[] nums) {
+
+            int left = 0;
+
+            for (int right = 0; right < nums.length; right++) {
+
+                if (nums[right] != 0) {
+                    if (left != right) {
+                        int temp = nums[right];
+                        nums[right] = nums[left];
+                        nums[left] = temp;
+                    }
+                    left++;
+                }
+
             }
         }
     }
