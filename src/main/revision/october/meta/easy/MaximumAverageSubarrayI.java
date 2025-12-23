@@ -63,4 +63,31 @@ public class MaximumAverageSubarrayI {
             return (double) maxSum / k;
         }
     }
+
+    // revised on 12/23/2025
+    class SolutionRevisedOnSeventhDay {
+        public double findMaxAverage(int[] nums, int k) {
+            int sum = 0;
+            for (int num : nums) {
+                sum += num;
+            }
+
+            int maxSum = sum;
+            int start = 0;
+            int end = k;
+
+            while (end <= nums.length) {
+
+                sum -= nums[start];
+                start++;
+
+                sum += nums[end];
+                end--;
+
+                maxSum = Math.max(sum, maxSum);
+            }
+
+            return (double) maxSum / k;
+        }
+    }
 }
