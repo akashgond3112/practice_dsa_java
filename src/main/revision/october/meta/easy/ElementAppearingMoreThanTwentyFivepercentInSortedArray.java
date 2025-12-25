@@ -25,4 +25,22 @@ public class ElementAppearingMoreThanTwentyFivepercentInSortedArray {
             return -1; // Should not be reached given the problem constraints
         }
     }
+
+    // revised on 12/25/2025
+    class SolutionRevisedOnThirdDay {
+        public int findSpecialInteger(int[] arr) {
+
+            int n = arr.length;
+            int quarter = n / 4;
+
+            for (int i = 0; i < n - quarter; i++) {
+
+                if (arr[i] == arr[i + quarter]) {
+                    return arr[i];
+                }
+            }
+
+            return -1;
+        }
+    }
 }
