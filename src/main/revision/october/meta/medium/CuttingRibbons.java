@@ -126,4 +126,41 @@ public class CuttingRibbons {
             return count >= k;
         }
     }
+
+    // revision on 12/28/2025
+    public static class SolutionRevisedOnFourteenDay {
+
+        public static int getMaxLength(int[] nums, int k) {
+
+            int left = 1;
+            int right = 0;
+
+            for (int num : nums) {
+                right += num;
+            }
+
+            while (left <= right) {
+
+                int mid = (right - left) + left / 2;
+
+                if (cutRibbons(nums, k, mid)) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+
+            return right;
+        }
+
+        private static boolean cutRibbons(int[] nums, int k, int mid) {
+            int count = 0;
+
+            for (int num : nums) {
+                count += num / mid;
+            }
+
+            return count >= k;
+        }
+    }
 }
