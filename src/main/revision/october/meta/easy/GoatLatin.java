@@ -79,4 +79,40 @@ public class GoatLatin {
             return result.toString();
         }
     }
+
+    // revised on 1/1/2026
+    class SolutionRevisedOnSeventhDay {
+        public String toGoatLatin(String sentence) {
+
+            if (sentence == null || sentence.isEmpty()) {
+                return "";
+            }
+
+            String[] words = sentence.split(" ");
+            StringBuilder result = new StringBuilder();
+            String vowels = "aeiouAEIOU";
+
+            for (int i = 0; i < words.length; i++) {
+                String word = words[i];
+
+                if (vowels.indexOf(word.charAt(0)) != -1) {
+                    result.append(word);
+                } else {
+                    result.append(word.substring(1)).append(word.charAt(0));
+                }
+
+                result.append("ma");
+
+                for (int j = 0; j <= 1; j++) {
+                    result.append("a");
+                }
+
+                if (i < words.length - 1) {
+                    result.append(" ");
+                }
+            }
+
+            return result.toString();
+        }
+    }
 }
