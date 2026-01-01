@@ -6,35 +6,39 @@ public class MaximumSwap {
 
     class Solution {
         public int maximumSwap(int num) {
+            // Step 1: Number ko string mein convert karke uske characters ka array banate
+            // hain
             char[] digits = String.valueOf(num).toCharArray();
 
-            // Store the rightmost index of each digit (0-9)
+            // Step 2: Ek array banate hain jo har digit (0-9) ka rightmost index store
+            // karega
             int[] rightMost = new int[10];
-            Arrays.fill(rightMost, -1);
+            Arrays.fill(rightMost, -1); // Initially sabhi indexes ko -1 se fill karte hain
 
-            // Fill the rightmost positions
+            // Step 3: Har digit ka rightmost position array mein store karte hain
             for (int i = 0; i < digits.length; i++) {
-                rightMost[digits[i] - '0'] = i;
+                rightMost[digits[i] - '0'] = i; // Digit ko integer mein convert karke uska index store karte hain
             }
 
-            // Try to find the first position where we can make a beneficial swap
+            // Step 4: Pehla position dhundhte hain jahan swap karna beneficial ho
             for (int i = 0; i < digits.length; i++) {
-                // Look for a larger digit that appears later in the number
+                // Current digit se badi digit ko dhundhte hain jo baad mein aaye
                 for (int j = 9; j > digits[i] - '0'; j--) {
-                    // Check if this larger digit exists and appears after current position
+                    // Agar badi digit exist karti hai aur current position ke baad aati hai
                     if (rightMost[j] > i) {
-                        // Swap the digits
+                        // Step 5: Digits ko swap karte hain
                         char temp = digits[i];
                         digits[i] = digits[rightMost[j]];
                         digits[rightMost[j]] = temp;
 
-                        // Convert back to integer and return
+                        // Step 6: Array ko wapas integer mein convert karke return karte hain
                         return Integer.parseInt(new String(digits));
                     }
                 }
             }
 
-            // No beneficial swap found
+            // Step 7: Agar koi beneficial swap nahi mila to original number return karte
+            // hain
             return num;
         }
     }
@@ -87,6 +91,38 @@ public class MaximumSwap {
 
                     if (rightMost[j] > i) {
                         char temp = digits[j];
+                        digits[i] = digits[rightMost[j]];
+                        digits[rightMost[j]] = temp;
+
+                        return Integer.parseInt(new String(digits));
+                    }
+                }
+            }
+
+            return num;
+        }
+    }
+
+    // revised on 12/5/2025
+    class SolutionRevisonOnFourteenDay {
+        public int maximumSwap(int num) {
+
+            char[] digits = String.valueOf(num).toCharArray();
+
+            int[] rightMost = new int[10];
+            Arrays.fill(rightMost, -1);
+
+            for (int i = 0; i < digits.length; i++) {
+                rightMost[digits[i] - '0'] = i;
+            }
+
+            for (int i = 0; i < digits.length; i++) {
+
+                for (int j = 9; j > digits[i] - '0'; j--) {
+
+                    if (rightMost[j] > i) {
+
+                        char temp = digits[i];
                         digits[i] = digits[rightMost[j]];
                         digits[rightMost[j]] = temp;
 
