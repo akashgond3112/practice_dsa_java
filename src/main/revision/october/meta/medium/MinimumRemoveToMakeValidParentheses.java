@@ -128,4 +128,37 @@ class MinimumRemoveToMakeValidParentheses {
             return s;
         }
     }
+
+    // Revised on 11/24/2025
+    public class SolutionRevisionThirtyDay {
+        static String minRemoveToMakeValidParenthesisOptimal(String s) {
+
+            int count = 0;
+
+            for (int i = 0; i < s.length(); i++) {
+
+                if (s.charAt(i) == '(') {
+                    count++;
+                } else if (s.charAt(i) == ')') {
+
+                    if (count == 0) {
+                        s = s.substring(0, i) + '#' + s.substring(i + 1);
+                    } else {
+                        count--;
+                    }
+                }
+            }
+
+            String ans = "";
+
+            for (int i = 0; i < s.length(); i++) {
+
+                if (s.charAt(i) != '#') {
+                    ans = ans + s.charAt(i);
+                }
+            }
+
+            return ans;
+        }
+    }
 }
