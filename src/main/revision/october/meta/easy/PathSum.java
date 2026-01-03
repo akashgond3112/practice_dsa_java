@@ -79,4 +79,18 @@ public class PathSum {
             return hasPathSum(root.left, target - root.val) || hasPathSum(root.right, target - root.val);
         }
     }
+
+    // revised on 1/3/2026
+    class SolutionRevisedOnDayFourteen {
+        public boolean hasPathSum(TreeNode root, int target) {
+            if (root == null)
+                return false;
+
+            if (root.left == null && root.right == null)
+                return target == root.val;
+
+            return hasPathSum(root.left, target - root.val) ||
+                    hasPathSum(root.right, target - root.val);
+        }
+    }
 }
