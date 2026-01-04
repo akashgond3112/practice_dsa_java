@@ -139,4 +139,60 @@ public class NestedListWeightSum {
         }
     }
 
+    // Revise on 11/16/2025
+    static class SolutionRevisionFourteenDay {
+
+        public int depthSum(List<NestedInteger> nestedList) {
+
+            if (nestedList == null || nestedList.isEmpty()) {
+                return 0;
+            }
+
+            return dfs(nestedList, 1);
+        }
+
+        private int dfs(List<NestedInteger> nestedList, int depth) {
+
+            int depthSum = 0;
+
+            for (NestedInteger item : nestedList) {
+
+                if (item.isInteger()) {
+                    depthSum += item.getInteger() * depth;
+                } else {
+                    depthSum += dfs(item.getList(), depth++);
+                }
+            }
+            return depthSum;
+        }
+    }
+
+    // Revise on 11/16/2025
+    static class SolutionRevisionThirtyDay {
+
+        public int depthSum(List<NestedInteger> nestedList) {
+
+            if (nestedList == null || nestedList.isEmpty()) {
+                return 0;
+            }
+
+            return dfs(nestedList, 1);
+        }
+
+        private int dfs(List<NestedInteger> nestedList, int depth) {
+
+            int depthSum = 0;
+
+            for (NestedInteger item : nestedList) {
+
+                if (item.isInteger()) {
+                    depthSum += item.getInteger() * depth;
+                } else {
+                    depthSum += dfs(item.getList(), depth++);
+                }
+            }
+            return depthSum;
+        }
+
+    }
 }
