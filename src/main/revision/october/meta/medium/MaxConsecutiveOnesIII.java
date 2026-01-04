@@ -92,4 +92,33 @@ public class MaxConsecutiveOnesIII {
             return maxOnes;
         }
     }
+
+    // revision on 12/21/2025
+    class SolutionRevisedOnFourteenDay {
+        public int longestOnes(int[] nums, int k) {
+
+            int zerosCount = 0;
+            int start = 0;
+            int maxOnes = 0;
+
+            for (int end = 0; end < nums.length; end++) {
+
+                if (nums[end] == 0) {
+                    zerosCount++;
+                }
+
+                while (zerosCount > k) {
+
+                    if (nums[start] == 0) {
+                        zerosCount--;
+                    }
+                    start++;
+                }
+
+                maxOnes = Math.max(maxOnes, end - start + 1);
+            }
+
+            return maxOnes;
+        }
+    }
 }
