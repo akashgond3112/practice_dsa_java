@@ -88,4 +88,30 @@ public class PalindromeNumber {
             return true;
         }
     }
+
+    // revised on 1/5/2026
+    public class SolutionRevisedOnDayFourteen {
+        public boolean isPalindrome(int x) {
+            if (x < 0)
+                return false;
+
+            long div = 0;
+
+            while (x >= 10 * div) {
+                div *= 10;
+            }
+
+            while (x != 0) {
+
+                if ((x / 10) != (x % 10)) {
+                    return false;
+                }
+
+                x = (int) (x % div) / 10;
+                div = div / 100;
+            }
+
+            return true;
+        }
+    }
 }
