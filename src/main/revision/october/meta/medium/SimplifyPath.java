@@ -142,4 +142,100 @@ public class SimplifyPath {
         }
     }
 
+    // Revise on 11/10/2025
+    public class SolutionRevisionDayFourteen {
+        public String simplifyPath(String path) {
+
+            Deque<String> dq = new ArrayDeque<>();
+
+            int n = path.length();
+
+            for (int i = 0; i < n; i++) {
+
+                char c = path.charAt(i);
+
+                if (c == '/') {
+                    continue;
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                while (i < n && c != '/') {
+                    sb.append(c);
+                }
+
+                String dir = sb.toString();
+
+                if (dir.equals(".")) {
+                    continue;
+                } else if (dir.equals("..")) {
+                    if (!dq.isEmpty()) {
+                        dq.remove();
+                    }
+                } else {
+                    dq.add(dir);
+                }
+            }
+
+            if (dq.isEmpty())
+                return "/";
+
+            StringBuilder res = new StringBuilder();
+
+            while (!dq.isEmpty()) {
+                res.append("/").append(dq.pop());
+            }
+
+            return res.toString();
+        }
+    }
+
+    // Revise on 12/9/2025
+    class SolutionThirtyDay {
+        public String simplifyPath(String path) {
+
+            Deque<String> dq = new ArrayDeque<>();
+
+            int n = path.length();
+
+            for (int i = 0; i < n; i++) {
+
+                char c = path.charAt(i);
+
+                if (c == '/') {
+                    continue;
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                while (i < n && c != '/') {
+                    sb.append(c);
+                }
+
+                String dir = sb.toString();
+
+                if (dir.equals(".")) {
+                    continue;
+                } else if (dir.equals("..")) {
+                    if (!dq.isEmpty()) {
+                        dq.pop();
+                    }
+                } else {
+                    dq.add(dir);
+                }
+            }
+
+            if (dq.isEmpty()) {
+                return "/";
+            }
+
+            StringBuilder res = new StringBuilder();
+
+            while (!dq.isEmpty()) {
+                res.append("/").append(dq.pop());
+            }
+
+            return res.toString();
+        }
+    }
 }
