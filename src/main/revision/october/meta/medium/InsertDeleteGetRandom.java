@@ -177,4 +177,56 @@ public class InsertDeleteGetRandom {
             return values.get(rnd.nextInt(values.size()));
         }
     }
+
+    // revised on 1/9/2026
+    class RandomizedSetRevisedOnFourteenDay {
+
+        public Map<Integer, Integer> map;
+        public List<Integer> values;
+        public Random rnd;
+
+        public RandomizedSetRevisedOnFourteenDay() {
+            map = new HashMap<>();
+            values = new ArrayList<>();
+            rnd = new Random();
+        }
+
+        public boolean insert(int val) {
+
+            if (map.containsKey(val)) {
+                return false;
+            }
+
+            values.add(val);
+            map.put(val, values.size());
+            return true;
+        }
+
+        public boolean remove(int val) {
+
+            if (!map.containsKey(val)) {
+                return false;
+            }
+
+            int index = map.get(val);
+            int lastElement = values.getLast();
+
+            values.set(index, lastElement);
+            map.put(lastElement, index);
+
+            values.removeLast();
+            map.remove(val);
+
+            return true;
+        }
+
+        public int getRandom() {
+
+            if (values.isEmpty()) {
+                throw new IllegalStateException("");
+            }
+            return values.get(rnd.nextInt(values.size()));
+        }
+    }
+
 }
