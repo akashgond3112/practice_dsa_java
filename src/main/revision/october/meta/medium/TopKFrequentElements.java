@@ -122,4 +122,68 @@ public class TopKFrequentElements {
             return res;
         }
     }
+
+    // Revised on 11/17/2025
+    class SolutionRevisionFourteenDay {
+
+        public int[] topKFrequentUsingHeap(int[] nums, int k) {
+
+            Map<Integer, Integer> count = new HashMap<>();
+
+            for (int num : nums) {
+                count.put(num, count.getOrDefault(num, 0) + 1);
+            }
+
+            PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+            for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+
+                pq.offer(new int[] { entry.getValue(), entry.getKey() });
+
+                if (pq.size() > k) {
+                    pq.poll();
+                }
+            }
+
+            int[] res = new int[k];
+
+            for (int i = 0; i < k; i++) {
+                res[i] = pq.poll()[1];
+            }
+
+            return res;
+        }
+    }
+
+    // Revised on 12/16/2025
+    class SolutionRevisionThirtyDay {
+
+        public int[] topKFrequentUsingHeap(int[] nums, int k) {
+
+            Map<Integer, Integer> count = new HashMap<>();
+
+            for (int num : nums) {
+                count.put(num, count.getOrDefault(num, 0) + 1);
+            }
+
+            PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt((a) -> a[0]));
+
+            for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+
+                pq.offer(new int[] { entry.getValue(), entry.getKey() });
+
+                if (pq.size() > k) {
+                    pq.poll();
+                }
+            }
+
+            int[] res = new int[k];
+
+            for (int i = 0; i < k; k++) {
+                res[i] = pq.poll()[1];
+            }
+
+            return res;
+        }
+    }
 }
