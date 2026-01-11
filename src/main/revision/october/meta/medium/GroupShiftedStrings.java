@@ -33,10 +33,42 @@ public class GroupShiftedStrings {
 
     class Solution {
 
+        // Method to group strings based on their shifting sequence
+        public ArrayList<ArrayList<String>> groupShiftedString(String[] arr) {
+            Map<String, List<String>> map = new HashMap<>();
+
+            // Har string ke liye uska key calculate karte hain aur map mein group karte
+            // hain
+            for (String str : arr) {
+
+                String key = getKey(str);
+
+                // Agar key pehle se map mein nahi hai, toh naya group banate hain
+                if (!map.containsKey(key)) {
+                    List<String> list = new ArrayList<>();
+                    list.add(str);
+                    map.put(key, list);
+                } else {
+                    // Agar key pehle se hai, toh us group mein string add karte hain
+                    map.get(key).add(str);
+                }
+            }
+
+            // Map ke values ko result list mein convert karte hain
+            ArrayList<ArrayList<String>> res = new ArrayList<>();
+            for (List<String> group : map.values()) {
+                res.add(new ArrayList<>(group));
+            }
+            return res;
+        }
+
+        // Method to generate a unique key for each string based on the shifting
+        // sequence
         private static String getKey(String s) {
 
             StringBuilder key = new StringBuilder();
 
+            // Har character ke beech ka difference calculate karte hain
             for (int i = 1; i < s.length(); i++) {
 
                 char c = s.charAt(i);
@@ -44,37 +76,16 @@ public class GroupShiftedStrings {
 
                 int diff = c - prev;
 
+                // Agar difference negative ho, toh usse 26 add karke normalize karte hain
                 if (diff < 0) {
                     diff += 26;
                 }
 
+                // Difference ko '#' ke saath append karte hain taaki unique key ban sake
                 key.append(diff).append("#");
             }
 
             return key.toString();
-        }
-
-        public ArrayList<ArrayList<String>> groupShiftedString(String[] arr) {
-            Map<String, List<String>> map = new HashMap<>();
-
-            for (String str : arr) {
-
-                String key = getKey(str);
-
-                if (!map.containsKey(key)) {
-                    List<String> list = new ArrayList<>();
-                    list.add(str);
-                    map.put(key, list);
-                } else {
-                    map.get(key).add(str);
-                }
-            }
-
-            ArrayList<ArrayList<String>> res = new ArrayList<>();
-            for (List<String> group : map.values()) {
-                res.add(new ArrayList<>(group));
-            }
-            return res;
         }
     }
 
@@ -216,6 +227,57 @@ public class GroupShiftedStrings {
                 char c = s.charAt(i);
                 int pc = s.charAt(i - 1);
                 int diff = c - pc;
+
+                if (diff < 0) {
+                    diff += 26;
+                }
+
+                key.append(diff).append('#');
+            }
+
+            return key.toString();
+        }
+    }
+
+    // revised on 1/11/2026
+    class SolutionRevisedOnDayThirty {
+
+        public ArrayList<ArrayList<String>> groupShiftedString(String[] arr) {
+
+            Map<String, List<String>> map = new HashMap<>();
+
+            for (String word : arr) {
+
+                String key = getKey(word);
+
+                if (!map.containsKey(key)) {
+                    List<String> tmp = new ArrayList<>();
+                    tmp.add(word);
+                    map.put(key, tmp);
+                } else {
+                    map.get(key).add(word);
+                }
+            }
+
+            ArrayList<ArrayList<String>> result = new ArrayList<>();
+
+            for (List<String> value : map.values()) {
+                result.add(new ArrayList<>(value));
+            }
+
+            return result;
+        }
+
+        private static String getKey(String s) {
+
+            StringBuilder key = new StringBuilder();
+
+            for (int i = 1; i < s.length(); i++) {
+
+                char curChar = s.charAt(i);
+                char prevChar = s.charAt(i - 1);
+
+                int diff = curChar - prevChar;
 
                 if (diff < 0) {
                     diff += 26;
