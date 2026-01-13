@@ -230,4 +230,59 @@ public class SearchATwoDMatrix {
             return false;
         }
     }
+
+    // revised on 1/13/2026
+    class SolutionRevisedOnDayThirty {
+        public boolean searchMatrix(int[][] matrix, int target) {
+            int rowIndx = searchPotentialRow(matrix, target);
+
+            if (rowIndx != -1) {
+                return binarySearchOverRow(rowIndx, matrix, target);
+            }
+
+            return false;
+        }
+
+        private int searchPotentialRow(int[][] matrix, int target) {
+            int low = 0;
+
+            int high = matrix.length - 1;
+
+            while (low <= high) {
+
+                int mid = low + (high - low) / 2;
+
+                if (matrix[mid][0] == target) {
+                    return mid;
+                } else if (matrix[mid][0] > target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            return -1;
+        }
+
+        private boolean binarySearchOverRow(int rowIndx, int[][] matrix, int target) {
+            int low = 0;
+
+            int high = matrix[rowIndx].length - 1;
+
+            while (low <= high) {
+
+                int mid = low + (high - low) / 2;
+
+                if (matrix[rowIndx][mid] == target) {
+                    return true;
+                } else if (matrix[rowIndx][mid] > target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            return false;
+        }
+    }
 }
