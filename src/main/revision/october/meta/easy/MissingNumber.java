@@ -66,4 +66,22 @@ public class MissingNumber {
             return xor;
         }
     }
+
+    // revised on 1/13/2026
+    class SolutionRevisedOnDayFourteen {
+        public int missingNumber(int[] nums) {
+
+            int xor = 0;
+
+            for (int i = 0; i < nums.length; i++) {
+                xor = xor ^ i;
+            }
+
+            for (int num : nums) {
+                xor = xor ^ num;
+            }
+
+            return xor;
+        }
+    }
 }
