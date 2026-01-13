@@ -100,4 +100,34 @@ public class RandomPickIndex {
             return result;
         }
     }
+
+    // revised on 1/13/2026
+    class SolutionRevisedOnDayFourteen {
+        private final int[] nums;
+        private final Random rnd;
+
+        public SolutionRevisedOnDayFourteen(int[] nums) {
+            this.nums = nums;
+            this.rnd = new Random();
+        }
+
+        public int pick(int target) {
+            int result = -1;
+            int count = 0;
+            int i = 0;
+
+            for (int num : nums) {
+                if (num == target) {
+                    count++;
+                }
+
+                if (rnd.nextInt(count) == 0) {
+                    result = i;
+                }
+                i++;
+            }
+
+            return result;
+        }
+    }
 }
