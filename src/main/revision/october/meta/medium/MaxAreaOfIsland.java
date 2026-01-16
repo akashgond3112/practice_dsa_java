@@ -141,4 +141,51 @@ public class MaxAreaOfIsland {
                     + dfs(r, c - 1, visited, grid);
         }
     }
+
+    // revised on 1/14/2026
+    class SolutionRevisedOnDayFourteen {
+        class Solution {
+            public int maxAreaOfIsland(int[][] grid) {
+
+                int result = 0;
+
+                if (grid == null || grid.length == 0) {
+                    return result;
+                }
+
+                int rows = grid.length;
+                int cols = grid[0].length;
+
+                boolean[][] visited = new boolean[rows][cols];
+
+                for (int row = 0; row < rows; row++) {
+                    for (int col = 0; col < cols; col++) {
+                        result = Math.max(result, dfs(row, col, visited, grid));
+                    }
+                }
+
+                return result;
+            }
+
+            private int dfs(int r, int c, boolean[][] visited, int[][] grid) {
+
+                if (r < 0 ||
+                        c < 0 ||
+                        r >= grid.length ||
+                        c >= grid.length ||
+                        visited[r][c] ||
+                        grid[r][c] == '0') {
+                    return 0;
+                }
+
+                visited[r][c] = true;
+
+                return 1 +
+                        dfs(r + 1, c, visited, grid) +
+                        dfs(r - 1, c, visited, grid) +
+                        dfs(r, c + 1, visited, grid) +
+                        dfs(r, c - 1, visited, grid);
+            }
+        }
+    }
 }
