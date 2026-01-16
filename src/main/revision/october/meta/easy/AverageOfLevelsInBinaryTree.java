@@ -121,4 +121,41 @@ public class AverageOfLevelsInBinaryTree {
         }
     }
 
+    // revised on 1/16/2026
+    class SolutionRevisedOnDayFourteen {
+        public List<Double> averageOfLevels(TreeNode root) {
+
+            List<Double> result = new ArrayList<>();
+
+            if (root == null) {
+                return result;
+            }
+
+            Queue<TreeNode> q = new LinkedList<>();
+            q.offer(root);
+
+            while (!q.isEmpty()) {
+                int level = q.size();
+                double sum = 0.0;
+
+                for (int i = 0; i < level; i++) {
+                    TreeNode cur = q.poll();
+                    sum += cur.val;
+
+                    if (cur.left != null) {
+                        q.offer(cur.left);
+                    }
+
+                    if (cur.right != null) {
+                        q.offer(cur.right);
+                    }
+                }
+
+                result.add(sum / level);
+            }
+
+            return result;
+        }
+    }
+
 }
