@@ -67,7 +67,7 @@ public class MonotonicArray {
             boolean isInc = true;
             boolean isDec = true;
 
-            for (int i = 0; i < nums.length; i++) {
+            for (int i = 1; i < nums.length; i++) {
 
                 if (nums[i] > nums[i - 1]) {
                     isDec = false;
@@ -92,7 +92,32 @@ public class MonotonicArray {
             boolean isInc = true;
             boolean isDec = true;
 
-            for (int i = 0; i < nums.length; i++) {
+            for (int i = 1; i < nums.length; i++) {
+
+                if (nums[i] > nums[i - 1]) {
+                    isDec = false;
+                }
+
+                if (nums[i] < nums[i - 1]) {
+                    isInc = false;
+                }
+
+                if (!isDec && !isInc) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    // revised on 1/17/2026
+    class SolutionRevisedOnDayThirty {
+        public boolean isMonotonic(int[] nums) {
+            boolean isInc = true;
+            boolean isDec = true;
+
+            for (int i = 1; i < nums.length; i++) {
 
                 if (nums[i] > nums[i - 1]) {
                     isDec = false;
