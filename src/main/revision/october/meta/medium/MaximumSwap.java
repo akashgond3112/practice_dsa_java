@@ -7,7 +7,7 @@ public class MaximumSwap {
     class Solution {
         public int maximumSwap(int num) {
             // Step 1: Number ko string mein convert karke uske characters ka array banate
-            // hain
+            // hain digits = ['2', '7', '3', '6']
             char[] digits = String.valueOf(num).toCharArray();
 
             // Step 2: Ek array banate hain jo har digit (0-9) ka rightmost index store
@@ -16,6 +16,7 @@ public class MaximumSwap {
             Arrays.fill(rightMost, -1); // Initially sabhi indexes ko -1 se fill karte hain
 
             // Step 3: Har digit ka rightmost position array mein store karte hain
+            // [-1, -1, 0, 2, -1, -1, 3, 1, -1, -1]
             for (int i = 0; i < digits.length; i++) {
                 rightMost[digits[i] - '0'] = i; // Digit ko integer mein convert karke uska index store karte hain
             }
@@ -122,6 +123,36 @@ public class MaximumSwap {
 
                     if (rightMost[j] > i) {
 
+                        char temp = digits[i];
+                        digits[i] = digits[rightMost[j]];
+                        digits[rightMost[j]] = temp;
+
+                        return Integer.parseInt(new String(digits));
+                    }
+                }
+            }
+
+            return num;
+        }
+    }
+
+    // revised on 1/17/2026
+    class SolutionRevisedOnDayThirty {
+        public int maximumSwap(int num) {
+
+            char[] digits = String.valueOf(num).toCharArray();
+
+            int[] rightMost = new int[10];
+            Arrays.fill(rightMost, -1);
+
+            for (int i = 0; i < digits.length; i++) {
+                rightMost[digits[i] - '0'] = i;
+            }
+
+            for (int i = 0; i < digits.length; i++) {
+                for (int j = 9; j > digits[i] - '0'; j--) {
+
+                    if (rightMost[j] > i) {
                         char temp = digits[i];
                         digits[i] = digits[rightMost[j]];
                         digits[rightMost[j]] = temp;
