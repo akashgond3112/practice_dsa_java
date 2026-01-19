@@ -162,4 +162,42 @@ public class ExclusiveTimeOfFunctions {
             return result;
         }
     }
+
+    // revised on 1/19/2026
+    class SolutionRevisedOnDayThirty {
+        public int[] exclusiveTime(int n, List<String> logs) {
+
+            int[] result = new int[n];
+
+            Stack<Pair> st = new Stack<>();
+
+            for (String log : logs) {
+
+                String[] split = log.split(":");
+                int functionId = Integer.parseInt(split[0]);
+                boolean isStarted = Boolean.valueOf(split[1]);
+                int currentTimeStamp = Integer.parseInt(split[2]);
+
+                if (isStarted) {
+
+                    if (!st.isEmpty()) {
+                        Pair current = st.peek();
+                        result[functionId] += currentTimeStamp - current.startTime;
+                    }
+
+                    st.push(new Pair(functionId, currentTimeStamp));
+                } else {
+
+                    Pair cur = st.pop();
+                    result[cur.functionId] += currentTimeStamp - cur.startTime + 1;
+
+                    if (!st.isEmpty()) {
+                        st.peek().startTime += currentTimeStamp + 1;
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
 }
