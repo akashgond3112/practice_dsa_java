@@ -92,4 +92,35 @@ public class PalindromePermutation {
             return true;
         }
     }
+
+    // revised on 1/19/2026
+    class SolutionRevisedOnDayThirty {
+
+        public boolean canPermutePalindrome(String str) {
+            if (str == null || str.isEmpty()) {
+                return false;
+            }
+
+            char[] count = new char[256];
+
+            for (char c : str.toCharArray()) {
+                count[c]++;
+            }
+
+            int oddCount = 0;
+            for (int charCount : count) {
+
+                if (charCount % 2 != 0) {
+                    oddCount++;
+                }
+
+                if (oddCount > 0) {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+    }
 }
