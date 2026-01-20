@@ -170,7 +170,7 @@ public class NumberOfIslands {
                 return;
             }
 
-            grid[row][col] == '0';
+            grid[row][col] = '0';
 
             for (int[] dir : directions) {
                 dfs(grid, row + dir[0], col + dir[1]);
