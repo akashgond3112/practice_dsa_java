@@ -214,4 +214,55 @@ public class MinimumWindowSubstring {
 
         return min == Integer.MAX_VALUE ? "" : s.substring(start, start + min);
     }
+
+    // Revision on 12/8/2025
+    public String minWindowDayThirty(String s, String t) {
+
+        if (t.length() > s.length()) {
+            return "";
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int required = map.size();
+        int formed = 0;
+        int left = 0;
+        int minLength = Integer.MAX_VALUE;
+        int start = 0;
+
+        Map<Character, Integer> windowCounts = new HashMap<>();
+
+        for (int right = 0; right < s.length(); right++) {
+
+            char c = s.charAt(right);
+            windowCounts.put(c, windowCounts.getOrDefault(c, 0) + 1);
+
+            if (map.containsKey(c) && windowCounts.get(c).intValue() == map.get(c).intValue()) {
+                formed++;
+            }
+
+            while (left <= right && formed == required) {
+
+                char cur = s.charAt(left);
+
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    start = left;
+                }
+
+                windowCounts.put(cur, windowCounts.get(cur) - 1);
+
+                if (map.containsKey(cur) && windowCounts.get(cur) < map.get(cur)) {
+                    formed--;
+                }
+
+                left++;
+            }
+        }
+
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
+    }
 }
