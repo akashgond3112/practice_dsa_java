@@ -357,4 +357,75 @@ public class MaximumSumOfThreeNonOverlappingSubarrays {
             }
         }
     }
+
+    // revised on 1/24/2026
+    class SolutionRevisedOnDayThirty {
+
+        int[] prefixSum;
+        int[][] memo = new int[20001][3];
+
+        public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
+
+            int n = nums.length;
+            prefixSum = new int[n + 1];
+
+            for (int i = 0; i < memo.length; i++) {
+                Arrays.fill(memo[i], -1);
+            }
+
+            prefixSum[0] = 0;
+            for (int i = 0; i < n; i++) {
+                prefixSum[i + 1] = prefixSum[i] + nums[i];
+            }
+
+            findMaxSum(nums, 0, 0, k);
+
+            int[] path = new int[3];
+            findMaxSumPath(nums, 0, 0, k, path, 0);
+
+            return path;
+        }
+
+        private int findMaxSum(int[] nums, int position, int count, int k) {
+
+            if (count == 3) {
+                return 0;
+            }
+
+            if (position > nums.length - k) {
+                return 0;
+            }
+
+            if (memo[position][count] != -1) {
+                return memo[position][count];
+            }
+
+            int dontStart = findMaxSum(nums, position + 1, count, k);
+            int start = findMaxSum(nums, position + 1, count + 1, k) + prefixSum[position + k] - prefixSum[position];
+
+            memo[position][count] = Math.max(start, dontStart);
+            return memo[position][count];
+
+        }
+
+        private void findMaxSumPath(int[] nums, int position, int count, int k, int[] path, int pathIdx) {
+            if (count == 3) {
+                return;
+            }
+
+            if (position > nums.length - k) {
+                return;
+            }
+
+            int dontStart = findMaxSum(nums, position + 1, count, k);
+            int start = findMaxSum(nums, position + 1, count + 1, k) + prefixSum[position + k] - prefixSum[position];
+
+            if (start > dontStart) {
+                path[pathIdx] = position;
+                findMaxSumPath(nums, position + 1, count + 1, k, path, pathIdx + 1);
+            } else {
+                findMaxSumPath(nums, position + 1, count, k, path, pathIdx);
+            }
+        }
+    }
 }
