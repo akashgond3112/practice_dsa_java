@@ -173,4 +173,27 @@ public class WordBreak {
             return dp[0];
         }
     }
+
+    // revised on 1/24/2026
+    class SolutionRevisedOnDayThirty {
+        public boolean wordBreak(String s, List<String> wordDict) {
+            boolean[] dp = new boolean[s.length() + 1];
+            dp[s.length() - 1] = true;
+
+            for (int i = 0; i < s.length() - 1; i++) {
+
+                for (String word : wordDict) {
+
+                    if (i + word.length() <= s.length() && s.startsWith(word, i)) {
+                        dp[i] = dp[i + word.length()];
+                    }
+
+                    if (dp[i])
+                        break;
+                }
+            }
+
+            return dp[0];
+        }
+    }
 }
