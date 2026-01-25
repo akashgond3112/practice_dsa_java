@@ -181,4 +181,47 @@ public class IslandPerimeter {
             return perimeter;
         }
     }
+
+    // revised on 1/25/2026
+    class SolutionRevisedOnDayThirty {
+        public int islandPerimeter(int[][] grid) {
+
+            if (grid == null || grid.length == 0 || grid[0].length == 0) {
+                return 0;
+            }
+
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[0].length; j++) {
+                    if (grid[i][j] == 1)
+                        return dfs(grid, i, j);
+                }
+            }
+            return 0;
+        }
+
+        private int dfs(int[][] grid, int r, int c) {
+
+            if (r < 0 ||
+                    c < 0 ||
+                    r >= grid.length ||
+                    c >= grid[0].length ||
+                    grid[r][c] == 0)
+                return 1;
+
+            if (grid[r][c] == -1) {
+                return 0;
+            }
+
+            grid[r][c] = -1;
+
+            int perimiter = 0;
+
+            perimiter += dfs(grid, r + 1, c);
+            perimiter += dfs(grid, r - 1, c);
+            perimiter += dfs(grid, r, c + 1);
+            perimiter += dfs(grid, r, c - 1);
+
+            return perimiter;
+        }
+    }
 }
