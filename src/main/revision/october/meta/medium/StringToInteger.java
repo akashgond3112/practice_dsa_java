@@ -138,4 +138,37 @@ public class StringToInteger {
             return isNegative ? -(int) result : (int) result;
         }
     }
+
+    // revised on 1/25/2026
+    class SolutionRevisedOnDayThirty {
+        public int myAtoi(String s) {
+            s = s.trim();
+
+            if (s.isEmpty()) {
+                return 0;
+            }
+
+            int i = 0;
+            boolean isNegative = false;
+
+            if (s.charAt(i) == '+' || s.charAt(i) == '-') {
+                isNegative = s.charAt(i) == '-';
+                i++;
+            }
+
+            long result = 0;
+
+            while (i < s.length() && Character.isDigit(s.charAt(i))) {
+
+                result = result * 10 + (s.charAt(i) - '0');
+
+                if (result > Integer.MAX_VALUE) {
+                    return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                }
+                i++;
+            }
+
+            return isNegative ? -(int) result : (int) result;
+        }
+    }
 }
