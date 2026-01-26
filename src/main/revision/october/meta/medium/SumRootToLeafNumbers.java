@@ -107,4 +107,30 @@ public class SumRootToLeafNumbers {
             return leftSum + rightSum;
         }
     }
+
+    // revised on 1/25/2026
+    class SolutionRevisedOnDayThirty {
+        public int sumNumbers(TreeNode root) {
+
+            return dfs(root, 0);
+        }
+
+        private int dfs(TreeNode node, int curretnSum) {
+
+            if (node == null) {
+                return 0;
+            }
+
+            curretnSum += curretnSum * 10 + node.val;
+
+            if (node.left != null && node.right != null) {
+                return curretnSum;
+            }
+
+            int leftSum = dfs(node.left, curretnSum);
+            int rightSum = dfs(node.right, curretnSum);
+
+            return leftSum + rightSum;
+        }
+    }
 }
