@@ -5,50 +5,6 @@ import java.util.*;
 public class BestMeetingPoint {
 
     /**
-     * Yeh class grid mein best meeting point dhundne ka solution deti hai.
-     * "Best" meeting point woh (row, col) point hai jo saare gharon (grid mein '1'
-     * se dikhaya gaya hai)
-     * se uss point tak ka total Manhattan distance sabse kam karta hai.
-     *
-     * <p>
-     * Do points (x1, y1) aur (x2, y2) ke beech ka Manhattan distance |x1 - x2| +
-     * |y1 - y2| hota hai.
-     * Ek meeting point (x, y) tak ka total distance saare gharon (xi, yi) se
-     * Manhattan distances ka sum hota hai:
-     * Sum(|x - xi| + |y - yi|).
-     *
-     * <p>
-     * Isko hum do alag-alag one-dimensional problems mein tod sakte hain:
-     * 1. Sum(|x - xi|) ko minimize karna
-     * 2. Sum(|y - yi|) ko minimize karna
-     *
-     * <p>
-     * 1D problem ka sabse accha solution coordinates ka median chunna hota hai.
-     * Isliye, best meeting point ka x-coordinate saare gharon ke row coordinates ka
-     * median hoga,
-     * aur y-coordinate saare gharon ke column coordinates ka median hoga.
-     *
-     * <p>
-     * <b>Algorithm ke Steps:</b>
-     * <ol>
-     * <li><b>Coordinates Jama Karna:</b> Grid ko traverse karke saare gharon (jahan
-     * grid value 1 hai) ke row aur column coordinates ko collect karo. Inhe do alag
-     * lists, `rows` aur `cols` mein store karo.
-     * Note: Row-major aur phir column-major order mein traverse karne se,
-     * coordinates ki collected lists apne aap sorted ho jayengi.</li>
-     * <li><b>Rows ke liye 1D Distance Calculate Karna:</b> Har row coordinate se
-     * unke median tak ka distance ka sum calculate karo. Yeh median ko explicitly
-     * dhundhe bina efficiently kiya jaata hai. Ek sorted list mein median tak ke
-     * distances ka sum, sabse bade aur sabse chhote element ke difference, doosre
-     * sabse bade aur doosre sabse chhote element ke difference, aur aise hi aage,
-     * jab tak pointers beech mein mil nahi jaate, ke sum ke barabar hota hai.</li>
-     * <li><b>Columns ke liye 1D Distance Calculate Karna:</b> Yahi calculation
-     * column coordinates ke liye bhi karo.</li>
-     * <li><b>Distances ko Jodna:</b> Minimum total Manhattan distance step 2 aur 3
-     * ke results ka sum hai.</li>
-     * </ol>
-     *
-     * <p>
      * <b>Big O Notation:</b>
      * <ul>
      * <li><b>Time Complexity:</b> O(m * n), jahan 'm' rows ka number hai aur 'n'
@@ -278,6 +234,59 @@ public class BestMeetingPoint {
                 j--;
             }
 
+            return distance;
+        }
+    }
+
+    // revised on 2/1/2026
+    class SolutionRevisedOnDayThirty {
+        public int minTotalDistance(int[][] grid) {
+
+            if (grid == null || grid.length == 0 || grid[0].length == 0) {
+                return 0;
+            }
+
+            List<Integer> rows = new ArrayList<>();
+            List<Integer> cols = new ArrayList<>();
+
+            int m = grid.length;
+            int n = grid[0].length;
+
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == 1) {
+                        rows.add(i);
+                    }
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    if (grid[i][j] == 1) {
+                        cols.add(i);
+                    }
+                }
+            }
+
+            int totalDistance = 0;
+
+            totalDistance += getMedianDistance(rows);
+            totalDistance += getMedianDistance(cols);
+
+            return totalDistance;
+        }
+
+        private int getMedianDistance(List<Integer> points) {
+            int distance = 0;
+
+            int i = 0;
+            int j = points.size() - 1;
+
+            while (i < j) {
+                distance += points.get(j) - points.get(i);
+                i++;
+                j--;
+            }
             return distance;
         }
     }
