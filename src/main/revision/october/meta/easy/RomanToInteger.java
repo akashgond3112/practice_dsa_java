@@ -102,4 +102,24 @@ public class RomanToInteger {
             return result;
         }
     }
+
+    // revised on 2/2/2026
+    public class SolutionRevisedOnDayThirty {
+        public int romanToInt(String s) {
+
+            int result = 0;
+
+            for (int i = 0; i < s.length(); i++) {
+                int curVal = ROMAN_VALUES.get(s.charAt(i));
+
+                if (i < s.length() - 1 && curVal < ROMAN_VALUES.get(s.charAt(i + 1))) {
+                    result -= curVal;
+                } else {
+                    result += curVal;
+                }
+            }
+
+            return result;
+        }
+    }
 }
