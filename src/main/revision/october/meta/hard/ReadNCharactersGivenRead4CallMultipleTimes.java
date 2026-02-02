@@ -131,4 +131,32 @@ public class ReadNCharactersGivenRead4CallMultipleTimes {
             return n;
         }
     }
+
+    // revised on 2/2/2026
+    public class SolutionRevisedOnDayThirty extends Reader4 {
+
+        private final char[] internalBuffer = new char[4];
+
+        private int readPosition = 0;
+        private int writePosition = 0;
+
+        public int read(char[] buf, int n) {
+
+            for (int i = 0; i < n; i++) {
+                if (readPosition == writePosition) {
+
+                    writePosition = read4(internalBuffer);
+                    readPosition = 0;
+
+                    if (writePosition == 0) {
+                        return i;
+                    }
+                }
+
+                buf[i] = internalBuffer[readPosition++];
+            }
+
+            return n;
+        }
+    }
 }
