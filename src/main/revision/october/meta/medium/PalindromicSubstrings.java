@@ -108,4 +108,30 @@ public class PalindromicSubstrings {
             return count;
         }
     }
+
+    // revised on 2/4/2026
+    public class SolutionRevisedOnDayThirty {
+        public int countSubstrings(String s) {
+            int total = 0;
+
+            for (int i = 0; i < s.length(); i++) {
+                total += countPalindrome(s, i, i);
+                total += countPalindrome(s, i, i + 1);
+            }
+
+            return total;
+        }
+
+        int countPalindrome(String s, int left, int right) {
+            int count = 0;
+
+            while (left > 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                count++;
+                left++;
+                right--;
+            }
+
+            return count;
+        }
+    }
 }
