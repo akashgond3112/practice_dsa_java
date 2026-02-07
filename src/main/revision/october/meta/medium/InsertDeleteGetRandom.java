@@ -59,7 +59,7 @@ public class InsertDeleteGetRandom {
             numMap.put(lastElement, index); // Map mein last element ka naya index update karo
 
             // List aur map se remove hone wali value ko delete karo
-            nums.remove(nums.size() - 1); // List se last element remove karo
+            nums.removeLast(); // List se last element remove karo
             numMap.remove(val); // Map se value remove karo
 
             return true; // Remove successful
@@ -229,4 +229,52 @@ public class InsertDeleteGetRandom {
         }
     }
 
+    // revised on 2/7/2026
+    class RandomizedSetDayThirty {
+        private Map<Integer, Integer> map;
+        private List<Integer> list;
+        private Random rnd;
+
+        public RandomizedSetDayThirty() {
+            this.map = new HashMap<>();
+            this.list = new ArrayList<>();
+            this.rnd = new Random();
+        }
+
+        public boolean insert(int val) {
+            if (map.containsKey(val)) {
+                return false;
+            }
+
+            map.put(val, list.size());
+            list.add(val);
+            return true;
+        }
+
+        public boolean remove(int val) {
+
+            if (map.containsKey(val)) {
+                return false;
+            }
+
+            int currentIndex = map.get(val);
+            int lastElement = list.getLast();
+
+            list.set(currentIndex, lastElement);
+            map.put(lastElement, currentIndex);
+
+            list.removeLast();
+            map.remove(val);
+            return true;
+        }
+
+        public int getRandom() {
+
+            if (map.isEmpty()) {
+                throw new IllegalStateException("");
+            }
+
+            return list.get(rnd.nextInt(list.size()));
+        }
+    }
 }
