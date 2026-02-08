@@ -256,4 +256,50 @@ public class PaintHouseII {
             return Arrays.stream(previousRow).min().getAsInt();
         }
     }
+
+    // revised on 2/8/2026
+    class SolutionRevisedOnDayThirty {
+        public int minCostII(int[][] costs) {
+
+            if (costs == null || costs.length == 0 || costs[0].length == 0) {
+                return 0;
+            }
+
+            int numOfHouses = costs.length;
+            int numOfColors = costs[0].length;
+
+            int[] previousRow = costs[0].clone();
+
+            for (int houseIndex = 0; houseIndex < numOfHouses; houseIndex++) {
+
+                int min1 = Integer.MAX_VALUE;
+                int min2 = Integer.MAX_VALUE;
+
+                for (int cost : previousRow) {
+
+                    if (cost < min1) {
+                        min2 = min1;
+                        min1 = cost;
+                    } else {
+                        min2 = cost;
+                    }
+                }
+
+                int[] currentRow = costs[houseIndex].clone();
+
+                for (int curColor = 0; curColor < numOfColors; curColor++) {
+
+                    if (previousRow[curColor] == min1) {
+                        currentRow[curColor] += min2;
+                    } else {
+                        currentRow[curColor] += min1;
+                    }
+                }
+
+                previousRow = currentRow;
+            }
+
+            return Arrays.stream(previousRow).min().getAsInt();
+        }
+    }
 }
