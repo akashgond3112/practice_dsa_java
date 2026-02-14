@@ -158,4 +158,43 @@ public class FindLargestValueInEachTreeRow {
             return result;
         }
     }
+
+    // revised on 2/13/2026
+    class SolutionRevisedOnDayThirty {
+        public List<Integer> largestValues(TreeNode root) {
+
+            List<Integer> result = new ArrayList<>();
+
+            if (root == null) {
+                return result;
+            }
+
+            Queue<TreeNode> q = new LinkedList<>();
+            q.add(root);
+
+            while (!q.isEmpty()) {
+
+                int levelSize = q.size();
+                int max = Integer.MIN_VALUE;
+
+                for (int i = 0; i < levelSize; i++) {
+                    TreeNode cur = q.poll();
+
+                    max = Math.max(max, cur.val);
+
+                    if (cur.left != null) {
+                        q.add(cur.left);
+                    }
+
+                    if (cur.right != null) {
+                        q.add(cur.right);
+                    }
+                }
+
+                result.add(max);
+            }
+
+            return result;
+        }
+    }
 }
