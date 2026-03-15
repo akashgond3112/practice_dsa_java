@@ -4,18 +4,18 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-//        List<String> logs = new ArrayList<>();
-//        logs.add("6");
-//        logs.add("register Vikash gond123");
-//        logs.add("register Vikash gond123");
-//        logs.add("login Vikash gond123");
-//        logs.add("login Vikash gond12");
-//        logs.add("logout Vikash");
-//        logs.add("logout Akash");
-//
-//
-//        List<String> result = Result.implementAPI(logs);
-//        result.forEach(System.out::println);
+        // List<String> logs = new ArrayList<>();
+        // logs.add("6");
+        // logs.add("register Vikash gond123");
+        // logs.add("register Vikash gond123");
+        // logs.add("login Vikash gond123");
+        // logs.add("login Vikash gond12");
+        // logs.add("logout Vikash");
+        // logs.add("logout Akash");
+        //
+        //
+        // List<String> result = Result.implementAPI(logs);
+        // result.forEach(System.out::println);
 
         List<Integer> teamA = new ArrayList<>();
         List<Integer> teamB = new ArrayList<>();
@@ -42,7 +42,7 @@ public class App {
          *
          * The function is expected to return a STRING_ARRAY.
          * The function accepts STRING_ARRAY logs as parameter.
-
+         * 
          */
 
         /*
@@ -50,12 +50,11 @@ public class App {
          *
          * The function is expected to return an INTEGER_ARRAY.
          * The function accepts following parameters:
-         *  1. INTEGER_ARRAY teamA
-         *  2. INTEGER_ARRAY teamB
+         * 1. INTEGER_ARRAY teamA
+         * 2. INTEGER_ARRAY teamB
          */
 
         public static List<String> implementAPI(List<String> logs) {
-
 
             // Write your code here
             List<String> result = new ArrayList<>();
@@ -66,7 +65,6 @@ public class App {
 
             Map<String, String> userData = new HashMap<>();
             Map<String, Boolean> userLogin = new HashMap<>();
-
 
             int noOfLogs = Integer.parseInt(logs.get(0));
 
@@ -83,7 +81,6 @@ public class App {
                     }
 
                 } else if (data[0].contains("login") && userData.get(data[1]) != null) {
-
 
                     if (userData.get(data[1]).equals(data[2])) {
                         userLogin.put(data[1], true);
@@ -143,7 +140,6 @@ public class App {
                 res.add(low);
             }
             return res;
-
 
         }
 
