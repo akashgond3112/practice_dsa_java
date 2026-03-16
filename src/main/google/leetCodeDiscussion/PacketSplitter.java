@@ -1,4 +1,4 @@
-package main.dsa.google.leetCodeDiscussion;
+package main.google.leetCodeDiscussion;
 
 import java.util.ArrayList;
 import java.util.List;

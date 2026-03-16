@@ -119,7 +119,7 @@
  *   <li>2. Iterate linearly and check adjacent START/END pairs for the same ID; if duration &gt; timeout return true.</li>
  * </ul>
  */
-package main.dsa.google.leetCodeDiscussion;
+package main.google.leetCodeDiscussion;
 
 import java.util.*;
 
