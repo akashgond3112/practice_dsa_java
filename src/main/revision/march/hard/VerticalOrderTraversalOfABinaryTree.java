@@ -68,4 +68,55 @@ public class VerticalOrderTraversalOfABinaryTree {
             return res;
         }
     }
+
+    // 18/03/2026
+    class SolutionRevisedOnDayThird {
+        public List<List<Integer>> verticalTraversal(TreeNode root) {
+            Map<Integer, Map<Integer, PriorityQueue<Integer>>> map = new HashMap<>();
+
+            Queue<Tuple> q = new LinkedList<>();
+            q.offer(new Tuple(root, 0, 0));
+
+            while (!q.isEmpty()) {
+
+                Tuple cur = q.poll();
+                TreeNode node = cur.node;
+                int level = cur.level;
+                int vertical = cur.vertical;
+
+                if (!map.containsKey(vertical)) {
+                    map.put(vertical, new HashMap<>());
+                }
+
+                if (!map.get(vertical).containsKey(level)) {
+                    map.get(vertical).put(level, new PriorityQueue<>());
+                }
+
+                map.get(vertical).get(level).offer(node.val);
+
+                if (node.left != null) {
+                    q.offer(new Tuple(node.left, vertical--, level++));
+                }
+
+                if (node.right != null) {
+                    q.offer(new Tuple(node.left, vertical++, level++));
+                }
+            }
+
+            List<List<Integer>> result = new ArrayList<>();
+
+            for (Map<Integer, PriorityQueue<Integer>> m : map.values()) {
+
+                result.add(new ArrayList<>());
+
+                for (PriorityQueue<Integer> pq : m.values()) {
+                    while (!pq.isEmpty()) {
+                        result.getLast().add(pq.poll());
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
 }
