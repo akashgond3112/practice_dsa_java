@@ -1,0 +1,55 @@
+package main.revision.march.hard;
+
+import java.util.*;
+
+public class ExpressionAddOperators {
+
+    // 20/03/2026
+    class SolutionOnDayFirst {
+        public List<String> addOperators(String num, int target) {
+
+            List<String> result = new ArrayList<>();
+
+            if (num == null || num.isEmpty()) {
+                return result;
+            }
+
+            dfs(result, num, target, 0, "", 0, 0);
+
+            return result;
+        }
+
+        private void dfs(List<String> result, String num, int target, int index, String expr, long eval, long lastNum) {
+
+            if (index == num.length()) {
+                if (eval == target) {
+                    result.add(expr);
+                }
+                return;
+            }
+
+            for (int i = index; i < num.length(); i++) {
+
+                if (i > index && num.charAt(index) == '0') {
+                    break;
+                }
+
+                String current = num.substring(index, i + 1);
+                long currentNum = Long.parseLong(current);
+
+                if (index == 0) {
+                    dfs(result, num, target, i + 1, current, currentNum, currentNum);
+                } else {
+
+                    dfs(result, num, target, i + 1, (expr + "+" + current), eval + currentNum, currentNum);
+
+                    dfs(result, num, target, i + 1, (expr + "-" + current), eval - currentNum, -currentNum);
+
+                    dfs(result, num, target, i + 1, (expr + "*" + current),
+                            (eval - lastNum + (lastNum * currentNum)),
+                            (lastNum * currentNum));
+                }
+            }
+        }
+    }
+}
