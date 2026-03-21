@@ -1,6 +1,5 @@
 package main.meta.hard;
 
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -63,17 +62,20 @@ import java.util.Queue;
 public class ShortestDistanceFromAllBuildings {
 
 	/**
-	 * Solution for finding the shortest distance from an empty land to all buildings.
+	 * Solution for finding the shortest distance from an empty land to all
+	 * buildings.
 	 *
 	 * Problem: Given a 2D grid where:
 	 * - 1 represents a building
 	 * - 0 represents empty land
-	 * - 2 represents obstacle Find the empty land with the shortest total distance to all buildings.
+	 * - 2 represents obstacle Find the empty land with the shortest total distance
+	 * to all buildings.
 	 *
 	 * Approach:
 	 * - Run BFS from each building to find distances to all empty lands
 	 * - Keep track of how many buildings each empty land can reach
-	 * - Find the empty land that can reach all buildings with minimum total distance
+	 * - Find the empty land that can reach all buildings with minimum total
+	 * distance
 	 *
 	 * Time Complexity: O(k * m * n) where:
 	 * - m, n are the dimensions of the grid
