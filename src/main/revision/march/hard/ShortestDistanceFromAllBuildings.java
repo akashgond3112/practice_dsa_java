@@ -6,7 +6,8 @@ public class ShortestDistanceFromAllBuildings {
 
     private static final int[][] directions = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
 
-    public class Solution {
+    // 21/03/2026
+    public class SolutionOnDayFirst {
 
         public int shortDistance(int[][] grid) {
 
