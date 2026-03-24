@@ -5,67 +5,84 @@ import java.util.*;
 public class MinimumWindowSubstring {
 
     public String minWindow(String s, String t) {
-        // Step 1: Agar t bada hai s se -> koi valid window nahi, empty return karo
+        // Step 1: Quick reject
+        // Hinglish: "Agar t ka length, s se bada hai to koi valid window nahi milega —
+        // seedha empty return karo"
         if (t.length() > s.length()) {
             return "";
         }
 
-        // Step 2: Build frequency map for characters in t (tMap)
-        // "tMap" mein har char ka required count store kar rahe hain
+        // Step 2: Build frequency map for characters in t
+        // Hinglish: "tMap mein har character ka required count store kar rahe hain (jo
+        // hume window mein chahiye)"
         Map<Character, Integer> tMap = new HashMap<>();
         for (char c : t.toCharArray()) {
             tMap.put(c, tMap.getOrDefault(c, 0) + 1);
         }
 
-        // Step 3: Initialize variables
-        // required = kitne unique characters ko match karna hai
+        // Step 3: Initialize sliding window variables
+        // Hinglish: "required = kitne unique characters ka sahi count chahiye; formed =
+        // abhi tak kitne characters correct hue"
         int required = tMap.size();
-        // formed = abhi tak kitne unique characters required amount se match hue
-        int formed = 0;
-        int left = 0;
-        int minLength = Integer.MAX_VALUE;
-        int start = 0;
+        int formed = 0; // abhi tak matched unique char groups
+        int left = 0; // window ka left pointer
+        int minLength = Integer.MAX_VALUE; // best window length
+        int start = 0; // best window ka start index
 
         // windowCounts -> current window ke character counts
+        // Hinglish: "ye map current window ke char counts rakhta hai, compare karne ke
+        // liye"
         Map<Character, Integer> windowCounts = new HashMap<>();
 
-        // Step 4: Expand window by moving 'right'
-        // Right pointer se window expand karo aur windowCounts update karo
+        // Step 4: Expand the window by moving 'right'
+        // Hinglish: "Right pointer se window expand karte jao aur har char ka count
+        // update karo"
         for (int right = 0; right < s.length(); right++) {
             char c = s.charAt(right);
             windowCounts.put(c, windowCounts.getOrDefault(c, 0) + 1);
 
-            // Agar ye character tMap mein hai aur counts match ho gaye -> formed badhao
-            if (tMap.containsKey(c) && windowCounts.get(c) == tMap.get(c)) {
+            // Step 4.1: If this char is required and now its count matches required count,
+            // increment formed
+            // Hinglish: "Agar ye char tMap mein tha aur ab window mein required count poora
+            // ho gaya to formed++ karo"
+            if (tMap.containsKey(c) && windowCounts.get(c).intValue() == tMap.get(c).intValue()) {
                 formed++;
             }
 
-            // Step 5: Jab saare required characters formed ho jayein -> left se shrink karo
+            // Step 5: When all required unique chars are formed, try to shrink from the
+            // left
+            // Hinglish: "Jab formed == required ho jaye, left se shrink kar ke smallest
+            // valid window find karo"
             while (left <= right && formed == required) {
                 char ch = s.charAt(left);
 
-                // Update minimum window size agar chhota mila
+                // Step 5.1: Update minimum window if current is smaller
+                // Hinglish: "Agar current window chhota hai to usko best window bana lo"
                 if (right - left + 1 < minLength) {
                     minLength = right - left + 1;
                     start = left;
                 }
 
-                // Left se character nikal rahe hain, isliye windowCounts reduce karo
+                // Step 5.2: Remove leftmost char from windowCounts (we are shrinking window)
+                // Hinglish: "Left se char hata rahe hain, count ghata rahe hain"
                 windowCounts.put(ch, windowCounts.get(ch) - 1);
 
-                // Agar jo character t mein required tha uska count window mein kam ho gaya ->
-                // formed ghatado
+                // Step 5.3: If a required char count fell below required, decrement formed
+                // Hinglish: "Agar jo char t mein required tha uska count ab kam ho gaya to
+                // formed-- karo"
                 if (tMap.containsKey(ch) && windowCounts.get(ch) < tMap.get(ch)) {
                     formed--;
                 }
 
-                // Move left forward to try smaller window
+                // Step 5.4: Move left forward to continue shrinking
+                // Hinglish: "Left aage badhao taaki aur chhota window try kar sako"
                 left++;
             }
         }
 
-        // Step 6: Agar minLength update nahi hua to "" return karo, warna substring
-        // return karo
+        // Step 6: Return result (either empty or the best substring)
+        // Hinglish: "Agar minLength update nahi hua matlab koi valid window nahi mila,
+        // warna substring return karo"
         return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
     }
 
