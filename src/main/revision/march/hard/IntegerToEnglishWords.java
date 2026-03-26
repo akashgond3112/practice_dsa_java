@@ -9,7 +9,8 @@ public class IntegerToEnglishWords {
     final String[] tens = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
     final String[] thousands = { "", "Thousand", "Million", "Billion" };
 
-    class Solution {
+    // 23/03/2026
+    class SolutionOnDayFirst {
         public String numberToWords(int num) {
 
             if (num == 0) {
@@ -50,12 +51,64 @@ public class IntegerToEnglishWords {
                 sb.append(teens[num - 10]).append(" ");
             } else {
                 if (num >= 20) {
-                    sb.append(tens[num / 10]).append(" Hundred");
+                    sb.append(tens[num / 10]).append("");
                     num %= 10;
                 }
 
                 sb.append(units[num]).append(" ");
             }
         }
+    }
+
+    // 26/03/2026
+    class SolutionRevisedOnDayThird {
+        public String numberToWords(int num) {
+
+            if (num == 0) {
+                return "Zero";
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            int i = 0;
+
+            while (num > 0) {
+                if (num % 1000 != 0) {
+                    StringBuilder tmp = new StringBuilder();
+
+                    helper(num % 1000, tmp);
+
+                    tmp.append(thousands[i]).append(" ");
+
+                    sb.insert(0, tmp);
+                }
+
+                num /= 1000;
+                i++;
+            }
+
+            return sb.toString().trim();
+
+        }
+
+        private void helper(int num, StringBuilder tmp) {
+
+            if (num >= 100) {
+                tmp.append(units[num / 100]).append(" Hundred");
+                num %= 100;
+            }
+
+            if (num >= 10 && num <= 19) {
+                tmp.append(teens[num - 10]).append(" ");
+            } else {
+                if (num >= 20) {
+                    tmp.append(tens[num / 10]).append(" ");
+                    num %= 10;
+                }
+
+                tmp.append(units[num]).append(" ");
+            }
+        }
+
     }
 }
