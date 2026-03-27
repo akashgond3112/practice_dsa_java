@@ -4,7 +4,8 @@ import java.util.*;
 
 public class AlienDictionary {
 
-    public class Solution {
+    // 26/03/2026
+    public class SolutionOnDayFirst {
         public String foreignDictionary(String[] words) {
 
             Map<Character, Set<Character>> adj = new HashMap<>();
