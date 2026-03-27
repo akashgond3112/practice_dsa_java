@@ -11,60 +11,57 @@ import java.util.Map;
 public class MinimumWindowSubstring {
 
     public String minWindow(String s, String t) {
-        if (s.equals(t))
-            return s;
-        if (s.length() < t.length())
-            return "";
-        int startIndex = 0;
-        int endIndex = 0;
-        int max = Integer.MAX_VALUE; // Initialize max with a smaller value
-        int count = 0;
+        int n = s.length();
+        int m = t.length();
 
-        Map<Character, Integer> characterHashMap = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
 
-        for (char c : t.toCharArray()) {
-            characterHashMap.put(c, characterHashMap.getOrDefault(c, 0) + 1);
+        for (int i = 0; i < m; i++) {
+            char c = t.charAt(i);
+
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        count = characterHashMap.size();
+        int left = 0;
+        int right = 0;
+        int required = map.size();
+        int formed = 0;
 
-        int maxStart = 0; // to track Start index of substring
-        int maxEnd = 0; // to track End index of substring
+        Map<Character, Integer> windowCounts = new HashMap<>();
 
-        while (endIndex < s.length()) {
-            char ch = s.charAt(endIndex);
-            if (characterHashMap.containsKey(ch)) {
-                int freq = characterHashMap.get(s.charAt(endIndex));
-                freq--;
-                characterHashMap.put(ch, freq);
-                if (characterHashMap.get(ch) == 0)
-                    count--;
+        int minLength = Integer.MAX_VALUE;
+        int start = 0;
 
+        while (right < n) {
+
+            char c = s.charAt(right);
+            windowCounts.put(c, windowCounts.getOrDefault(c, 0) + 1);
+
+            if (map.containsKey(c) && windowCounts.get(c).intValue() == map.get(c).intValue()) {
+                formed++;
             }
 
-            while (count == 0) {
+            while (left <= right && formed == required) {
+                char ch = s.charAt(left);
 
-                // Get best solution
-                if (max > endIndex - startIndex + 1) {
-                    max = endIndex - startIndex + 1;
-                    maxStart = startIndex;
-                    maxEnd = endIndex + 1;
+                // calculate window size
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    start = left;
                 }
 
-                char tempCharStart = s.charAt(startIndex);
-                if (characterHashMap.containsKey(tempCharStart)) {
-                    int freq = characterHashMap.get(tempCharStart);
-                    freq++;
-                    characterHashMap.put(tempCharStart, freq);
-                    if (characterHashMap.get(tempCharStart) > 0) {
-                        count++;
-                    }
+                windowCounts.put(ch, windowCounts.getOrDefault(ch, 0) - 1);
+
+                if (map.containsKey(ch) && windowCounts.get(ch) < map.get(ch)) {
+                    formed--;
                 }
-                startIndex++;
+
+                left++;
             }
-            endIndex++;
+
+            right++;
         }
 
-        return s.substring(maxStart, maxEnd);
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
     }
 }
