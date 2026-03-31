@@ -65,4 +65,32 @@ public class RegularExpressionMatching {
             return dp[0][0];
         }
     }
+
+    // 25/03/2026
+    class SolutionRevisedOnDayThird {
+
+        public boolean isMatch(String s, String p) {
+            int sLen = s.length();
+            int pLen = p.length();
+
+            boolean[][] dp = new boolean[sLen + 1][pLen + 1];
+            dp[sLen][pLen] = true;
+
+            for (int i = 0; i < sLen; i++) {
+                for (int j = 0; j < pLen; j++) {
+
+                    boolean isFirstMatch = (i < sLen && (p.charAt(j) == s.charAt(i) || p.charAt(j) == '.'));
+
+                    if (j + 1 < pLen && p.charAt(j) == '*') {
+                        dp[i][j] = dp[i][j + 2] || isFirstMatch && dp[i + 1][j];
+                    } else {
+                        dp[i][j] = isFirstMatch && dp[+1][j + 1];
+                    }
+                }
+            }
+
+            return dp[0][0];
+
+        }
+    }
 }
