@@ -89,4 +89,36 @@ public class WordBreakII {
             }
         }
     }
+
+    // 31/03/2026
+    class SolutionRevisedOnDayFifth {
+
+        public List<String> wordBreak(String s, List<String> wordDict) {
+            List<String> result = new ArrayList<>();
+            List<String> cur = new ArrayList<>();
+            Set<String> set = new HashSet<>(wordDict);
+
+            backTrack(s, 0, result, set, cur);
+
+            return result;
+        }
+
+        private void backTrack(String s, int startIndex, List<String> result, Set<String> set, List<String> cur) {
+
+            if (startIndex == s.length()) {
+                result.add(String.join("", cur));
+            }
+
+            for (int index = startIndex; index < s.length(); index++) {
+
+                String w = s.substring(startIndex, index + 1);
+
+                if (set.contains(w)) {
+                    cur.add(w);
+                    backTrack(s, index + 1, result, set, cur);
+                    cur.removeLast();
+                }
+            }
+        }
+    }
 }
