@@ -111,4 +111,58 @@ public class IntegerToEnglishWords {
         }
 
     }
+
+    // 01/04/2026
+    class SolutionRevisedOnDayFifth {
+        public String numberToWords(int num) {
+
+            if (num == 0) {
+                return "zero";
+            }
+
+            StringBuilder result = new StringBuilder();
+            int i = 0;
+
+            while (num > 0) {
+
+                if (num % 1000 != 0) {
+
+                    StringBuilder tmp = new StringBuilder();
+
+                    helper(num % 1000, tmp);
+
+                    tmp.append(thousands[i]).append(" ");
+
+                    result.insert(0, tmp);
+                }
+
+                num /= 1000;
+                i++;
+            }
+
+            return result.toString().trim();
+        }
+
+        private void helper(int num, StringBuilder sb) {
+
+            if (num >= 100) {
+                sb.append(units[num / 100]).append(" Hundred");
+                num %= 100;
+            }
+
+            if (num >= 10 && num <= 19) {
+                sb.append(teens[num - 10]).append(" ");
+
+            } else {
+
+                if (num >= 20) {
+                    sb.append(tens[num / 10]).append(" ");
+                    num %= 10;
+                }
+
+                sb.append(units[num / 10]).append(" ");
+
+            }
+        }
+    }
 }
