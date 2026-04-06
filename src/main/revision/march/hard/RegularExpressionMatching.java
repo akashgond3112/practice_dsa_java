@@ -42,6 +42,12 @@ public class RegularExpressionMatching {
             return memo[i][j];
         }
 
+        /*
+         * Time: O(m * n) where m = s.length(), n = p.length() — you fill (m+1)×(n+1) DP
+         * table, O(1) work per cell.
+         * Space: O(m * n) for the boolean dp table.
+         * Note: a rolling-row optimization reduces space to O(n).
+         */
         public boolean isMatchBottomUp(String s, String p) {
             int sLen = s.length();
             int pLen = p.length();
@@ -84,13 +90,40 @@ public class RegularExpressionMatching {
                     if (j + 1 < pLen && p.charAt(j) == '*') {
                         dp[i][j] = dp[i][j + 2] || isFirstMatch && dp[i + 1][j];
                     } else {
-                        dp[i][j] = isFirstMatch && dp[+1][j + 1];
+                        dp[i][j] = isFirstMatch && dp[i + 1][j + 1];
                     }
                 }
             }
 
             return dp[0][0];
 
+        }
+    }
+
+    // 03/04/2026
+    class SolutionRevisedOnDayFifth {
+
+        public boolean isMatch(String s, String p) {
+            int sLen = s.length();
+            int pLen = p.length();
+
+            boolean[][] dp = new boolean[sLen + 1][pLen + 1];
+            dp[sLen][pLen] = true;
+
+            for (int i = 0; i < sLen; i++) {
+                for (int j = 0; i < pLen; j++) {
+
+                    boolean isFirstMatch = i < sLen && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.');
+
+                    if (j + 1 < pLen && p.charAt(j) == '*') {
+                        dp[i][j] = dp[i][j + 2] || isFirstMatch && dp[i + 1][j];
+                    } else {
+                        dp[i][j] = isFirstMatch && dp[i + 1][j + 1];
+                    }
+                }
+            }
+
+            return dp[0][0];
         }
     }
 }
