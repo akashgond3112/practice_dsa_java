@@ -121,7 +121,7 @@ public class VerticalOrderTraversalOfABinaryTree {
     }
 
     // 24/03/2026
-    class SolutionRevisedOnDayFifth {
+    class SolutionRevisedOnDaySeventh {
         public List<List<Integer>> verticalTraversal(TreeNode root) {
 
             Map<Integer, Map<Integer, PriorityQueue<Integer>>> map = new HashMap<>();
@@ -162,6 +162,60 @@ public class VerticalOrderTraversalOfABinaryTree {
                 List<Integer> res = new ArrayList<>();
 
                 for (PriorityQueue<Integer> pq : m.values()) {
+
+                    while (!pq.isEmpty()) {
+                        res.addLast(pq.poll());
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
+
+    // 24/03/2026
+    class SolutionRevisedOnDayFourteen {
+        public List<List<Integer>> verticalTraversal(TreeNode root) {
+
+            Map<Integer, Map<Integer, PriorityQueue<Integer>>> map = new HashMap<>();
+
+            Queue<Tuple> q = new LinkedList<>();
+
+            q.offer(new Tuple(root, 0, 0));
+
+            while (!q.isEmpty()) {
+                Tuple cur = q.poll();
+                TreeNode node = cur.node;
+                int vertical = cur.vertical;
+                int level = cur.level;
+
+                if (!map.containsKey(vertical)) {
+                    map.put(vertical, new HashMap<>());
+                }
+
+                if (!map.get(vertical).containsKey(level)) {
+                    map.get(vertical).put(level, new PriorityQueue<>());
+                }
+
+                map.get(vertical).get(level).offer(node.val);
+
+                if (node.left != null) {
+                    q.offer(new Tuple(node.left, vertical - 1, level + 1));
+
+                }
+
+                if (node.right != null) {
+                    q.offer(new Tuple(node.right, vertical + 1, level + 1));
+
+                }
+            }
+
+            List<List<Integer>> result = new ArrayList<>();
+
+            for (Map<Integer, PriorityQueue<Integer>> values : map.values()) {
+                List<Integer> res = new ArrayList<>();
+
+                for (PriorityQueue<Integer> pq : values.values()) {
 
                     while (!pq.isEmpty()) {
                         res.addLast(pq.poll());
