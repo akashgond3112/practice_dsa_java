@@ -43,7 +43,43 @@ public class BasicCalculator {
 
                     CalculatorState prev = st.pop();
 
+                    output = prev.output + (output * prev.sign);
+                }
+            }
+
+            return output + (currentNumber * sign);
+        }
+    }
+
+    // 05/04/2026
+    class SolutionRevisedOnDayThird {
+        public int calculate(String s) {
+            int output = 0;
+            int currentNumber = 0;
+            int sign = 1;
+
+            Stack<CalculatorState> st = new Stack<>();
+
+            for (char c : s.toCharArray()) {
+
+                if (Character.isDigit(c)) {
+                    currentNumber = currentNumber * 10 + c - '0';
+                } else if (c == '+' || c == '-') {
+                    output = currentNumber * sign;
+                    currentNumber = 0;
+                    sign = c == '+' ? 1 : -1;
+                } else if (c == '(') {
+                    st.push(new CalculatorState(sign, output));
+                    output = 0;
+                    sign = 1;
+                } else if (c == ')') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+
+                    CalculatorState prev = st.pop();
+
                     output += prev.output + (output * prev.sign);
+
                 }
             }
 
