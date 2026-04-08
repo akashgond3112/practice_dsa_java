@@ -2,6 +2,13 @@ package main.revision.october.meta.hard;
 
 import java.util.*;
 
+/**
+ * SlidingWindowMedian
+ *
+ * Complexity (only Big-O):
+ * Time: O(n log k) — n = nums.length, k = window size (heap ops per element)
+ * Space: O(k) — two heaps + lazy-deletion map store up to k elements
+ */
 public class SlidingWindowMedian {
 
     class Solution {
@@ -16,14 +23,27 @@ public class SlidingWindowMedian {
             Map<Integer, Integer> invalid = new HashMap<>();
             int balance = 0; // Track the balance: positive means maxHeap has more valid elements
 
+            // Hinglish explanation of variables:
+            // maxHeap: lower half ke elements (largest at top)
+            // minHeap: upper half ke elements (smallest at top)
+            // invalid: lazy-deletion map — jis element ko window se hataya gaya hai usko
+            // mark karte hain
+            // balance: logical difference in valid element counts between heaps
+
             for (int i = 0; i < nums.length; i++) {
-                // Remove outgoing element (if window is full)
+                // 1) Remove outgoing element (if window is full)
+                // Hinglish: "Agar window full ho gaya (i >= k), to jo element bahar jaa raha
+                // hai
+                // usko `invalid` map me mark karo. Hum turant heap se remove nahi karte — lazy
+                // deletion.")
                 if (i >= k) {
                     int elementToRemove = nums[i - k];
                     invalid.put(elementToRemove, invalid.getOrDefault(elementToRemove, 0) + 1);
 
                     // Update balance based on which heap the element conceptually belongs to
-                    if (elementToRemove <= maxHeap.peek()) {
+                    // Hinglish: "Agar element lower-half (maxHeap) se tha to balance--, warna
+                    // balance++"
+                    if (!maxHeap.isEmpty() && elementToRemove <= maxHeap.peek()) {
                         balance--;
                     } else {
                         balance++;
@@ -31,6 +51,9 @@ public class SlidingWindowMedian {
                 }
 
                 // Add incoming element
+                // 2) Add incoming element
+                // Hinglish: "Naya element maxHeap ya minHeap me daalte hain, phir balance
+                // update karte hain."
                 if (maxHeap.isEmpty() || nums[i] <= maxHeap.peek()) {
                     maxHeap.add(nums[i]);
                     balance++;
@@ -40,6 +63,10 @@ public class SlidingWindowMedian {
                 }
 
                 // Rebalance heaps based on balance counter
+                // 3) Rebalance so that size difference is at most 1
+                // Hinglish: "Agar maxHeap me zyada valid elements hain to ek element minHeap me
+                // bhejo,
+                // agar minHeap me zyada hain to ek element maxHeap me bhejo."
                 if (balance > 1) {
                     minHeap.add(maxHeap.poll());
                     balance -= 2;
@@ -49,9 +76,15 @@ public class SlidingWindowMedian {
                 }
 
                 // Clean invalid elements from heap tops
+                // 4) Lazy-delete: remove marked elements from heap tops
+                // Hinglish: "Top par agar koi element `invalid` map me marked hai to usko poll
+                // kar do."
                 cleanHeaps(maxHeap, minHeap, invalid);
 
                 // Calculate median when window is full
+                // 5) Compute median
+                // Hinglish: "Agar k odd hai to maxHeap ka top median hai,
+                // warna dono tops ka average median hai."
                 if (i >= k - 1) {
                     if (k % 2 == 1) {
                         result[i - k + 1] = (double) maxHeap.peek();
@@ -65,6 +98,9 @@ public class SlidingWindowMedian {
 
         private void cleanHeaps(PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap,
                 Map<Integer, Integer> invalid) {
+            // Hinglish: "Jab tak top element invalid map me marked hai, usko heap se hatao
+            // aur
+            // invalid map me count decrement karo."
             while (!maxHeap.isEmpty() && invalid.getOrDefault(maxHeap.peek(), 0) > 0) {
                 int removed = maxHeap.poll();
                 invalid.put(removed, invalid.get(removed) - 1);
