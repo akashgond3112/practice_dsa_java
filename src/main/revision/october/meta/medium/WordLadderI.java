@@ -22,6 +22,15 @@ public class WordLadderI {
          * or 0 if no such sequence exists. The return value 0 indicates that no
          * transformation
          * sequence is possible according to the problem's convention.
+         * Let N = wordList.size(), L = word length.
+         * 
+         * Time: O(N * L * 26) = O(N * L) — each word is visited once; for each visited
+         * word you try L positions × 26 letters (constant 26).
+         * 
+         * Space: O(N * L) — visited set + queue store up to all words (strings cost
+         * O(L) each). Temporary char[] is O(L).
+         * 
+         * 
          */
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
             if (!wordList.contains(endWord)) {
