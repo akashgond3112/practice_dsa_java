@@ -4,6 +4,23 @@ import java.util.*;
 
 public class AlienDictionary {
 
+    /*
+     * Time and space (let n = number of words, L = average word length, S = total
+     * characters = sum lengths; let V = # unique chars, E = # edges):
+     * 
+     * Time: O(S + E + V)
+     * 
+     * Building nodes/scan chars: O(S)
+     * Comparing adjacent words: O(S) (total over all pairs)
+     * Kahn (topo) processing: O(V + E)
+     * → overall O(S + E + V). For typical lowercase alphabet V ≤ 26 so practically
+     * O(S + E) ≈ O(S).
+     * Space: O(V + E)
+     * 
+     * adjacency sets store E edges, maps store V entries.
+     * plus queue and result O(V).
+     * Worst-case bounds: S = O(n·L); V ≤ alphabet size (e.g., 26); E ≤ V^2.
+     */
     public class Solution {
         public String foreignDictionary(String[] words) {
 
