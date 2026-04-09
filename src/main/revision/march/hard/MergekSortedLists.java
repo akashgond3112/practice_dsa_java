@@ -106,4 +106,38 @@ public class MergekSortedLists {
             return dummy.next;
         }
     }
+
+    // 08/04/2026
+    class SolutionRevisedOnDayFourteen {
+        public ListNode mergeKLists(ListNode[] lists) {
+
+            if (lists == null || lists.length == 0) {
+
+            }
+
+            PriorityQueue<ListNode> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
+
+            for (ListNode node : lists) {
+                if (node != null) {
+                    pq.offer(node);
+                }
+            }
+
+            ListNode dummy = new ListNode(0);
+            ListNode node = dummy;
+
+            while (!pq.isEmpty()) {
+
+                ListNode cur = pq.poll();
+
+                node.next = cur;
+                node = node.next;
+
+                if (cur.next != null) {
+                    pq.offer(cur.next);
+                }
+            }
+            return dummy.next;
+        }
+    }
 }
