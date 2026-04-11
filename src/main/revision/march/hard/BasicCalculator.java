@@ -86,4 +86,37 @@ public class BasicCalculator {
             return output + (currentNumber * sign);
         }
     }
+
+    // 11/04/2026
+    class SolutionRevisedOnDaySeventh {
+        public int calculate(String s) {
+
+            int output = 0;
+            int currentNumber = 0;
+            int sign = 1;
+            Stack<CalculatorState> st = new Stack<>();
+
+            for (char c : s.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    currentNumber += c * 10 + c - '0';
+                } else if (c == '+' || c == '-') {
+                    output = currentNumber * sign;
+                    currentNumber = 0;
+                    sign = sign == '+' ? 1 : -1;
+                } else if (c == '(') {
+                    CalculatorState cs = new CalculatorState(output, sign);
+                    st.push(cs);
+                    output = 0;
+                    sign = 1;
+                } else if (c == ')') {
+                    output += currentNumber * sign;
+                    currentNumber = 0;
+                    CalculatorState prev = st.pop();
+                    output += prev.output + (output * prev.sign);
+                }
+            }
+
+            return output + (currentNumber * sign);
+        }
+    }
 }
