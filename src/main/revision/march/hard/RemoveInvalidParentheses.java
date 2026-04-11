@@ -175,4 +175,64 @@ public class RemoveInvalidParentheses {
             }
         }
     }
+
+    // 10/04/2026
+    class SolutionRevisedOnDayFourteen {
+
+        public List<String> removeInvalidParentheses(String s) {
+            Set<String> res = new HashSet<>();
+            Set<String> visited = new HashSet<>();
+
+            solve(s, getMinInvalid(s), res, visited);
+            return new ArrayList<>(res);
+        }
+
+        private void solve(String s, int minInvaid, Set<String> res, Set<String> visited) {
+            if (minInvaid < 0 || visited.contains(s))
+                return;
+
+            visited.add(s);
+
+            // If no more removals needed, check validity and add
+            if (minInvaid == 0) {
+                if (getMinInvalid(s) == 0) {
+                    res.add(s);
+                }
+                return;
+            }
+
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                // only try removing parentheses
+                if (c != '(' && c != ')')
+                    continue;
+
+                // avoid removing duplicate consecutive parentheses to prevent duplicates
+                if (i > 0 && s.charAt(i - 1) == c)
+                    continue;
+
+                String next = s.substring(0, i) + s.substring(i + 1);
+                solve(next, minInvaid - 1, res, visited);
+            }
+        }
+
+        private int getMinInvalid(String s) {
+            int open = 0;
+            int close = 0;
+
+            for (char c : s.toCharArray()) {
+                if (c == '(') {
+                    open++;
+                } else if (c == ')') {
+                    if (open > 0) {
+                        open--;
+                    } else {
+                        close++;
+                    }
+                }
+            }
+
+            return open + close;
+        }
+    }
 }
