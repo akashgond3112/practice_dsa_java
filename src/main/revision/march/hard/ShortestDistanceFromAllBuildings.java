@@ -297,4 +297,88 @@ public class ShortestDistanceFromAllBuildings {
             return row >= 0 && col >= 0 && row < rows && col < cols && grid[row][col] == 0 && !visited[row][col];
         }
     }
+
+    // 13/04/2026
+    public class SolutionRevisedOnDayFourteen {
+
+        public int shortDistance(int[][] grid) {
+
+            int rows = grid.length;
+            int cols = grid[0].length;
+
+            int[][] reachCount = new int[rows][cols];
+            int[][] totalDistance = new int[rows][cols];
+
+            int totalBuilding = 0;
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+
+                    if (grid[i][j] == 1) {
+                        totalBuilding++;
+                        bfs(grid, i, j, reachCount, totalDistance);
+                    }
+                }
+            }
+
+            int min = Integer.MAX_VALUE;
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+
+                    if (grid[i][j] == 0 && reachCount[rows][cols] == totalBuilding) {
+                        min = Math.min(min, totalDistance[i][j]);
+                    }
+                }
+            }
+
+            return min == Integer.MAX_VALUE ? -1 : min;
+        }
+
+        private void bfs(int[][] grid, int i, int j, int[][] reachCount, int[][] totalDistance) {
+            int rows = grid.length;
+            int cols = grid[0].length;
+
+            boolean[][] visited = new boolean[rows][cols];
+            Queue<int[]> q = new LinkedList<>();
+            q.offer(new int[] { i, i });
+            visited[i][j] = true;
+
+            int distance = 0;
+
+            while (!q.isEmpty()) {
+
+                int size = q.size();
+
+                for (int k = 0; k < size; k++) {
+                    int[] cur = q.poll();
+
+                    for (int[] dir : directions) {
+                        int curRow = dir[0] + cur[0];
+                        int curCol = dir[1] + cur[1];
+
+                        if (isValid(grid, curRow, curCol, visited)) {
+
+                            visited[curRow][curCol] = true;
+
+                            reachCount[curRow][curCol]++;
+                            totalDistance[curRow][curCol] += distance += 1;
+
+                            q.offer(new int[] { curRow, curCol });
+                        }
+
+                    }
+                }
+
+                distance++;
+            }
+        }
+
+        private boolean isValid(int[][] grid, int row, int col, boolean[][] visited) {
+            int rows = grid.length;
+            int cols = grid[0].length;
+
+            return row >= 0 && col >= 0 && row < rows && col < cols && grid[row][col] == 0 && !visited[row][col];
+        }
+    }
 }
