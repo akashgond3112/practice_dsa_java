@@ -121,4 +121,36 @@ public class WordBreakII {
             }
         }
     }
+
+    // 14/04/2026
+    class SolutionRevisedOnDayFourteen {
+
+        public List<String> wordBreak(String s, List<String> wordDict) {
+            List<String> result = new ArrayList<>();
+            List<String> cur = new ArrayList<>();
+            Set<String> set = new HashSet<>(wordDict);
+
+            dfs(s, 0, set, cur, result);
+
+            return result;
+        }
+
+        private void dfs(String s, int index, Set<String> set, List<String> cur, List<String> result) {
+
+            if (index == s.length()) {
+                result.add(String.join("", cur));
+            }
+
+            for (int i = index; i < s.length(); i++) {
+
+                String w = s.substring(i, i + 1);
+
+                if (set.contains(w)) {
+                    cur.add(w);
+                    dfs(s, i + 1, set, cur, result);
+                    cur.removeLast();
+                }
+            }
+        }
+    }
 }
