@@ -32,4 +32,34 @@ public class SlidingWindowMaximum {
             return res;
         }
     }
+
+    // 16/04/2026
+    class SolutionRevisedOnDayThird {
+        public int[] maxSlidingWindow(int[] nums, int k) {
+
+            if (nums == null || nums.length == 0 || k <= 0 || k > nums.length) {
+                return new int[0];
+            }
+
+            int[] res = new int[nums.length - k + 1];
+            Deque<Integer> dq = new ArrayDeque<>();
+            for (int i = 0; i < nums.length; i++) {
+
+                if (!dq.isEmpty() && dq.peekFirst() <= i - k) {
+                    dq.pollFirst();
+                }
+
+                if (!dq.isEmpty() && nums[dq.peekFirst()] <= nums[i]) {
+                    dq.pollFirst();
+                }
+
+                dq.addLast(i);
+
+                if (i >= k - 1) {
+                    res[i - k + 1] = nums[dq.peekFirst()];
+                }
+            }
+            return res;
+        }
+    }
 }
