@@ -63,4 +63,63 @@ public class ReverseNodesInKGroup {
             return cur;
         }
     }
+
+    // 18/04/2026
+    class SolutionRevisedOnDayThird {
+        public ListNode reverseKGroup(ListNode head, int k) {
+
+            if (head == null || k == 1) {
+                return head;
+            }
+
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+
+            ListNode currentGroupHead = head;
+            ListNode prevGroupTail = dummy;
+
+            while (currentGroupHead != null) {
+
+                ListNode groupEnd = getGroupEnd(currentGroupHead, k);
+
+                ListNode nextGroupHead = groupEnd.next;
+                groupEnd.next = null;
+
+                prevGroupTail.next = reverseList(currentGroupHead);
+                currentGroupHead.next = nextGroupHead;
+
+                prevGroupTail = currentGroupHead;
+                currentGroupHead = nextGroupHead;
+
+            }
+
+            return dummy.next;
+
+        }
+
+        private ListNode reverseList(ListNode groupEnd) {
+            ListNode prev = null;
+            ListNode cur = groupEnd;
+
+            while (cur != null) {
+                ListNode tmp = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = tmp;
+            }
+            return prev;
+        }
+
+        private ListNode getGroupEnd(ListNode head, int k) {
+            int count = 1;
+            ListNode cur = head;
+
+            while (count < k && cur != null) {
+                cur = cur.next;
+                count++;
+            }
+
+            return cur;
+        }
+    }
 }
