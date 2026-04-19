@@ -11,7 +11,16 @@ public class ReconstructItinerary {
             Map<String, PriorityQueue<String>> map = new HashMap<>();
 
             for (List<String> ticket : tickets) {
-                map.computeIfAbsent(ticket.get(0), k -> new PriorityQueue<>()).add(ticket.get(1));
+                String from = ticket.get(0);
+                String to = ticket.get(1);
+
+                // If airport not in map, create new PriorityQueue
+                if (!map.containsKey(from)) {
+                    map.put(from, new PriorityQueue<>());
+                }
+
+                // Add destination to the queue
+                map.get(from).add(to);
             }
 
             List<String> iternary = new LinkedList<>();
@@ -41,7 +50,16 @@ public class ReconstructItinerary {
             Map<String, PriorityQueue<String>> map = new HashMap<>();
 
             for (List<String> ticket : tickets) {
-                map.computeIfAbsent(ticket.get(0), k -> new PriorityQueue<>()).add(ticket.get(1));
+                String from = ticket.get(0);
+                String to = ticket.get(1);
+
+                // If airport not in map, create new PriorityQueue
+                if (!map.containsKey(from)) {
+                    map.put(from, new PriorityQueue<>());
+                }
+
+                // Add destination to the queue
+                map.get(from).add(to);
             }
 
             List<String> iternary = new LinkedList<>();
@@ -61,6 +79,44 @@ public class ReconstructItinerary {
 
             return iternary;
 
+        }
+    }
+
+    // 18/04/2026
+    class SolutionRevisedOnDaySeventh {
+        public List<String> findItinerary(List<List<String>> tickets) {
+
+            Map<String, PriorityQueue<String>> map = new HashMap<>();
+
+            for (List<String> ticket : tickets) {
+                String from = ticket.get(0);
+                String to = ticket.get(1);
+
+                // If airport not in map, create new PriorityQueue
+                if (!map.containsKey(from)) {
+                    map.put(from, new PriorityQueue<>());
+                }
+
+                // Add destination to the queue
+                map.get(from).add(to);
+            }
+
+            List<String> iternary = new LinkedList<>();
+            Stack<String> st = new Stack<>();
+            st.push("JFK");
+
+            while (!st.isEmpty()) {
+
+                String from = st.peek();
+
+                if (map.containsKey(from) && !map.get(from).isEmpty()) {
+                    st.push(map.get(from).poll());
+                } else {
+                    iternary.add(st.pop());
+                }
+            }
+
+            return iternary;
         }
     }
 }
