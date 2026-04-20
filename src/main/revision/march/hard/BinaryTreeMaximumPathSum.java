@@ -55,7 +55,7 @@ public class BinaryTreeMaximumPathSum {
     }
 
     // 05/04/2026
-    class SolutionRevisedOnDayFifth {
+    class SolutionRevisedOnDaySeventh {
         public int maxPathSum(TreeNode root) {
             int[] res = new int[] { 0 };
 
@@ -76,6 +76,34 @@ public class BinaryTreeMaximumPathSum {
             res[0] = Math.max(res[0], root.val + leftMax + rightMax);
 
             return root.val + Math.min(leftMax, rightMax);
+        }
+    }
+
+    // 19/04/2026
+    class SolutionRevisedOnDayFourteen {
+        public int maxPathSum(TreeNode root) {
+
+            int[] res = new int[0];
+
+            if (root == null) {
+                return res[0];
+            }
+
+            dfs(root, res);
+            return res[0];
+        }
+
+        private int dfs(TreeNode root, int[] res) {
+
+            if (root == null)
+                return 0;
+
+            int leftMax = Math.max(0, dfs(root.left, res));
+            int rightMax = Math.max(0, dfs(root.right, res));
+
+            res[0] = Math.max(res[0], root.val + leftMax + rightMax);
+
+            return root.val + Math.max(leftMax, rightMax);
         }
     }
 }
