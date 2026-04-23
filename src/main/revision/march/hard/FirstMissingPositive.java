@@ -35,4 +35,36 @@ public class FirstMissingPositive {
             nums[correctIndex] = tmp;
         }
     }
+
+    // 23/04/2026
+    class SolutionRevisedOnDayThird {
+        public int firstMissingPositive(int[] nums) {
+
+            int n = nums.length;
+            int i = 0;
+
+            while (i < n) {
+
+                int correctIndex = nums[i] - 1;
+
+                if (nums[i] > 0 && nums[i] <= n && nums[i] != correctIndex) {
+                    // swap
+                    int tmp = nums[i];
+                    nums[i] = nums[correctIndex];
+                    nums[correctIndex] = tmp;
+                } else {
+                    i++;
+                }
+            }
+
+            for (i = 0; i < n; i++) {
+                if (nums[i] != i) {
+                    return i + 1;
+                }
+            }
+
+            return n + 1;
+
+        }
+    }
 }
