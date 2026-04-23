@@ -23,7 +23,6 @@
   "editor.parameterHints.enabled": false,
   "editor.hover.enabled": "off",
   "editor.inlineSuggest.enabled": false,
-  "editor.suggest.maxVisibleSuggestions": 0,
   "editor.suggest.showStatusBar": false,
   "editor.quickSuggestionsDelay": 999999,
   "editor.suggest.filterGraceful": false,
