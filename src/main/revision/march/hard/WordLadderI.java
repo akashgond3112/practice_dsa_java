@@ -153,4 +153,50 @@ public class WordLadderI {
             return 0;
         }
     }
+
+    // 24/04/2026
+    class SolutionOnDayFourteen {
+        public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+
+            if (!wordList.contains(beginWord)) {
+                return 0;
+            }
+
+            Queue<Pair> q = new LinkedList<>();
+            Pair p = new Pair(beginWord, 0);
+            Set<String> visited = new HashSet<>(wordList);
+            visited.remove(beginWord);
+
+            while (!q.isEmpty()) {
+                Pair cur = q.poll();
+                String str = cur.word;
+                int dist = cur.dist;
+
+                if (str.equals(endWord)) {
+                    return dist;
+                }
+
+                for (int i = 0; i < str.length(); i++) {
+
+                    char[] chars = str.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+
+                        if (c == str.charAt(i)) {
+                            continue;
+                        }
+
+                        chars[i] = c;
+                        String newWord = new String(chars);
+
+                        if (!visited.contains(newWord)) {
+                            visited.remove(newWord);
+                            q.add(new Pair(newWord, dist + 1));
+                        }
+                    }
+                }
+            }
+
+            return 0;
+        }
+    }
 }
