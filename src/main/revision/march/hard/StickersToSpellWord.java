@@ -59,4 +59,68 @@ public class StickersToSpellWord {
             return ans;
         }
     }
+
+    // 26/04/2026
+    class SolutionRevisedOnDayThird {
+        public int minStickers(String[] stickers, String target) {
+
+            Map<String, Integer> memo = new HashMap<>();
+            Map<String, Map<Character, Integer>> stickerCharMap = new HashMap<>();
+
+            for (String sticker : stickers) {
+                Map<Character, Integer> charMap = new HashMap<>();
+
+                for (char c : sticker.toCharArray()) {
+                    charMap.put(c, charMap.getOrDefault(c, 0) + 1);
+                }
+
+                stickerCharMap.put(sticker, charMap);
+            }
+
+            int result = dfs(memo, stickerCharMap, target);
+
+            return result == Integer.MAX_VALUE ? -1 : result;
+        }
+
+        private int dfs(Map<String, Integer> memo, Map<String, Map<Character, Integer>> stickerCharMap, String target) {
+
+            if (target.length() == 0) {
+                return 0;
+            }
+
+            if (memo.containsKey(target)) {
+                return memo.get(target);
+            }
+
+            int ans = Integer.MAX_VALUE;
+
+            for (Map<Character, Integer> charMap : stickerCharMap.values()) {
+
+                if (!charMap.containsKey(target.charAt(0))) {
+                    continue;
+                }
+
+                StringBuilder newTarget = new StringBuilder();
+
+                Map<Character, Integer> tmpCharMap = new HashMap<>(charMap);
+
+                for (char c : target.toCharArray()) {
+
+                    if (tmpCharMap.getOrDefault(c, 0) > 0) {
+                        tmpCharMap.put(c, tmpCharMap.get(c) - 1);
+                    } else {
+                        newTarget.append(c);
+                    }
+                }
+
+                int curAns = dfs(memo, stickerCharMap, newTarget.toString());
+                if (curAns != Integer.MAX_VALUE) {
+                    ans = Math.min(ans, curAns + 1);
+                }
+            }
+
+            memo.put(target, ans);
+            return ans;
+        }
+    }
 }
