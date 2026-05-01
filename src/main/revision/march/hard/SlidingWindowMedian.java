@@ -245,4 +245,60 @@ public class SlidingWindowMedian {
             }
         }
     }
+
+    // 30/04/2026
+    class SolutionOnDayFourteen {
+        public double[] medianSlidingWindow(int[] nums, int k) {
+
+            if (nums == null || nums.length == 0 || k <= 0) {
+                return new double[0];
+            }
+
+            double[] result = new double[nums.length - k + 1];
+            PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+            PriorityQueue<Integer> minHeap = new PriorityQueue<>(Collections.reverseOrder());
+            Map<Integer, Integer> invalid = new HashMap<>();
+            int balance = 0;
+
+            for (int i = 0; i < nums.length; i++) {
+
+                if (i >= k) {
+
+                }
+
+                if (maxHeap.isEmpty() || nums[i] <= maxHeap.peek()) {
+                    maxHeap.add(nums[i]);
+                    balance++;
+                } else {
+                    minHeap.add(nums[i]);
+                    balance--;
+                }
+
+                if (balance > 1) {
+                    minHeap.add(maxHeap.poll());
+                    balance -= 2;
+                } else {
+                    maxHeap.add(minHeap.poll());
+                    balance += 2;
+                }
+
+                cleanHeap(maxHeap, minHeap, invalid);
+
+                if (i >= k - 1) {
+                    if (k % 2 == 1) {
+                        result[i - k + 1] = (double) maxHeap.peek();
+                    } else {
+                        result[i - k + 1] = ((double) maxHeap.peek() + (double) minHeap.peek()) / 2.0;
+                    }
+                }
+            }
+
+            return result;
+
+        }
+
+        private void cleanHeap(PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap,
+                Map<Integer, Integer> map) {
+        }
+    }
 }
