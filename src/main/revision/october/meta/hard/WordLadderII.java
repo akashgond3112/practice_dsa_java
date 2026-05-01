@@ -3,6 +3,152 @@ package main.revision.october.meta.hard;
 import java.util.*;
 
 public class WordLadderII {
+
+    class SolutionWithoutTLE {
+        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+            // Final answer list banao jisme saari shortest transformation sequences aayengi
+            List<List<String>> ans = new ArrayList<>();
+
+            // Reverse graph banao: key = ek word, value = us word tak aane wale words
+            // (parents)
+            // Ye graph endWord se beginWord ki taraf traverse karne ke liye use hoga
+            Map<String, Set<String>> reverse = new HashMap<>();
+
+            // wordList ko HashSet me daalo taaki O(1) lookup mile aur duplicates remove ho
+            // jayein
+            Set<String> wordSet = new HashSet<>(wordList);
+
+            // beginWord ko wordSet se hata do taaki BFS me cycle na bane (wapas start pe na
+            // jaaye)
+            wordSet.remove(beginWord);
+
+            // BFS ke liye queue banao — sirf current level ke words store honge (poori path
+            // nahi)
+            Queue<String> queue = new LinkedList<>();
+
+            // BFS ki pehli layer mein sirf beginWord hai
+            queue.add(beginWord);
+
+            // Agla level (next layer) ke naye words track karne ke liye Set
+            Set<String> nextLevel = new HashSet<>();
+
+            // Flag: kya endWord BFS mein mil gaya?
+            boolean findEnd = false;
+
+            // BFS loop: jab tak queue empty na ho, current layer ke words process karo
+            while (!queue.isEmpty()) {
+
+                // Queue se ek word nikalo (current layer ka ek node)
+                String word = queue.remove();
+
+                // wordSet ke har word ke saath check karo — kya ye ek valid ladder step hai?
+                for (String next : wordSet) {
+                    if (isLadder(word, next)) { // sirf ek character different hai toh ladder hai
+
+                        // Reverse graph mein edge daalo: next -> word
+                        // Matlab "next" word tak 'word' se aaya ja sakta hai
+                        Set<String> reverseLadders = reverse.computeIfAbsent(next, k -> new HashSet<>());
+                        reverseLadders.add(word);
+
+                        // Agar next word hi endWord hai toh flag set karo
+                        if (endWord.equals(next)) {
+                            findEnd = true;
+                        }
+
+                        // next word ko agle level mein daalo
+                        nextLevel.add(next);
+                    }
+                }
+
+                // Jab current layer ke saare words process ho jayein (queue empty ho)
+                if (queue.isEmpty()) {
+                    // Agar endWord mil gaya hai toh aage jaane ki zaroorat nahi — break karo
+                    if (findEnd)
+                        break;
+
+                    // Nahi mila toh next layer ke words queue mein daalo
+                    queue.addAll(nextLevel);
+
+                    // Next layer ke words ko wordSet se hata do taaki wapas visit na ho
+                    wordSet.removeAll(nextLevel);
+
+                    // nextLevel clear karo — agli layer ke liye fresh start
+                    nextLevel.clear();
+                }
+            }
+
+            // Agar endWord kabhi reach nahi hua toh empty list return karo
+            if (!findEnd)
+                return ans;
+
+            // DFS ke liye path banao, endWord se shuru karo (reverse traversal hoga)
+            // LinkedHashSet use karo taaki insertion order maintain ho aur duplicates na ho
+            Set<String> path = new LinkedHashSet<>();
+            path.add(endWord);
+
+            // Reverse graph mein endWord se beginWord tak DFS karo, saari paths collect
+            // karo
+            findPath(endWord, beginWord, reverse, ans, path);
+
+            return ans;
+        }
+
+        // DFS helper: reverse graph mein endWord se beginWord tak saari paths dhundho
+        private void findPath(String endWord, String beginWord, Map<String, Set<String>> graph,
+                List<List<String>> ans, Set<String> path) {
+
+            // Current word ke parents (is word tak aane wale words) graph se nikalo
+            Set<String> next = graph.get(endWord);
+
+            // Agar koi parent nahi hai (beginWord se pehle) toh return karo
+            if (next == null)
+                return;
+
+            // Har parent word ke liye recursively path explore karo
+            for (String word : next) {
+                // word ko path mein add karo
+                path.add(word);
+
+                if (beginWord.equals(word)) {
+                    // Agar beginWord mil gaya toh poori path complete ho gayi
+                    // path ko list mein convert karo aur reverse karo (endWord->beginWord tha, ab
+                    // beginWord->endWord karo)
+                    List<String> shortestPath = new ArrayList<>(path);
+                    Collections.reverse(shortestPath);
+                    ans.add(shortestPath);
+                } else {
+                    // Abhi beginWord nahi mila, aur peeche jao
+                    findPath(word, beginWord, graph, ans, path);
+                }
+
+                // Backtrack: word ko path se hata do taaki dusri branch explore ho sake
+                path.remove(word);
+            }
+        }
+
+        // Helper: kya do words ladder hai? (sirf ek character different hona chahiye)
+        private boolean isLadder(String s, String t) {
+            // Alag length ke words kabhi ladder nahi ho sakte
+            if (s.length() != t.length())
+                return false;
+
+            int diffCount = 0; // different characters ki count
+            int n = s.length();
+
+            for (int i = 0; i < n; i++) {
+                if (s.charAt(i) != t.charAt(i))
+                    diffCount++; // ek aur character different mila
+
+                // Agar already 2 se zyada different characters hain toh ye ladder nahi hai
+                if (diffCount > 1)
+                    return false;
+            }
+
+            // Exactly 1 character different hona chahiye
+            return diffCount == 1;
+        }
+    }
+
     /**
      * Time Complexity:
      * - Let L be the length of each word, and N be the number of words in wordList.
