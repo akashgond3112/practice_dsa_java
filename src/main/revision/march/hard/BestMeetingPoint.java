@@ -25,10 +25,10 @@ public class BestMeetingPoint {
                 }
             }
 
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
+            for (int j = 0; j < n; j++) {
+                for (int i = 0; i < m; i++) {
                     if (grid[i][j] == 1) {
-                        rows.add(i);
+                        cols.add(j);
                     }
                 }
             }
@@ -50,6 +50,62 @@ public class BestMeetingPoint {
                 distance += points.get(j) - points.get(i);
                 i++;
                 j--;
+            }
+            return distance;
+        }
+    }
+
+    // 02/05/2026
+    public class SolutionRevisedOnDayThird {
+
+        public int minTotalDistance(int[][] grid) {
+            if (grid == null || grid.length == 0 || grid[0].length == 0) {
+                return 0;
+            }
+
+            List<Integer> rows = new ArrayList<>();
+            List<Integer> cols = new ArrayList<>();
+
+            int m = grid.length;
+            int n = grid[0].length;
+
+            int totalDistance = 0;
+
+            totalDistance += calculateTotalDistance(m, n, rows, grid, true);
+            totalDistance += calculateTotalDistance(m, n, cols, grid, false);
+
+            return totalDistance;
+        }
+
+        public int calculateTotalDistance(int m, int n, List<Integer> list, int[][] grid, boolean collectRow) {
+
+            if (collectRow) {
+                for (int i = 0; i < m; i++) {
+                    for (int j = 0; j < n; j++) {
+                        if (grid[i][j] == 1) {
+                            list.add(i);
+                        }
+                    }
+                }
+            } else {
+                for (int j = 0; j < n; j++) {
+                    for (int i = 0; i < m; i++) {
+                        if (grid[i][j] == 1) {
+                            list.add(j);
+                        }
+                    }
+                }
+            }
+
+            // get Median
+            int distance = 0;
+            int a = 0;
+            int b = list.size() - 1;
+
+            while (a < b) {
+                distance += list.get(b) - list.get(a);
+                a++;
+                b--;
             }
             return distance;
         }
