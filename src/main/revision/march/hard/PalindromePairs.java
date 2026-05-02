@@ -57,4 +57,49 @@ public class PalindromePairs {
             return result;
         }
     }
+
+    // 01/05/2026
+    class SolutionRevisedOnDayThird {
+        public List<List<Integer>> palindromePairs(String[] words) {
+
+            Map<String, Integer> map = new HashMap<>();
+
+            for (int i = 0; i < words.length; i++) {
+                map.put(new StringBuilder(words[i]).reverse().toString(), i);
+            }
+
+            List<List<Integer>> result = new ArrayList<>();
+
+            for (int i = 0; i < words.length; i++) {
+
+                String currentWord = words[i];
+
+                for (int j = 0; j < currentWord.length(); j++) {
+
+                    String prefix = currentWord.substring(0, j);
+                    String sufix = currentWord.substring(j);
+
+                    if (map.containsKey(prefix) && isPalindrome(sufix)) {
+
+                        int k = map.get(prefix);
+
+                        if (k != i) {
+                            result.add(Arrays.asList(i, k));
+                        }
+                    }
+
+                    if (!sufix.isEmpty() && map.containsKey(sufix) && isPalindrome(prefix)) {
+
+                        int k = map.get(sufix);
+
+                        if (k != i) {
+                            result.add(Arrays.asList(i, k));
+                        }
+                    }
+                }
+
+            }
+            return result;
+        }
+    }
 }
