@@ -61,4 +61,33 @@ public class SplitArrayWithEqualSum {
             return partitionFound >= 3;
         }
     }
+
+    // 04/05/2026
+    public class SolutionRevisedOnDaySeventh {
+        public boolean splitArray(int[] nums) {
+
+            int total = 0;
+            for (int num : nums) {
+                total += num;
+            }
+
+            if (total % 3 != 0) {
+                return false;
+            }
+
+            int targetSum = total / 3;
+            int partitionFound = 0;
+            int curSum = 0;
+
+            for (int num : nums) {
+                curSum += num;
+
+                if (curSum == targetSum * (partitionFound + 1)) {
+                    partitionFound++;
+                }
+            }
+
+            return partitionFound >= 3;
+        }
+    }
 }
