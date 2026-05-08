@@ -110,4 +110,61 @@ public class BestMeetingPoint {
             return distance;
         }
     }
+
+    // 02/05/2026
+    public class SolutionRevisedOnDaySeventh {
+
+        public int minTotalDistance(int[][] grid) {
+            if (grid == null || grid.length == 0 || grid[0].length == 0) {
+                return 0;
+            }
+
+            List<Integer> rows = new ArrayList<>();
+            List<Integer> cols = new ArrayList<>();
+
+            int m = grid.length;
+            int n = grid[0].length;
+
+            int totalDistance = 0;
+
+            totalDistance += calculateTotalDistance(m, n, rows, grid, true);
+            totalDistance += calculateTotalDistance(m, n, cols, grid, false);
+
+            return totalDistance;
+
+        }
+
+        private int calculateTotalDistance(int m, int n, List<Integer> list, int[][] grid, boolean collectRow) {
+
+            if (collectRow) {
+                for (int i = 0; i < m; i++) {
+                    for (int j = 0; j < n; j++) {
+                        if (grid[i][j] == 1) {
+                            list.add(i);
+                        }
+                    }
+                }
+            } else {
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < m; j++) {
+                        if (grid[i][j] == 1) {
+                            list.add(i);
+                        }
+                    }
+                }
+            }
+
+            int distance = 0;
+            int a = 0;
+            int b = list.size();
+
+            while (a < b) {
+                distance += list.get(b) - list.get(a);
+                a++;
+                b--;
+            }
+            return distance;
+
+        }
+    }
 }
