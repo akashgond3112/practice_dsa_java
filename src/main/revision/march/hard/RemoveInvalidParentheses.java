@@ -235,4 +235,66 @@ public class RemoveInvalidParentheses {
             return open + close;
         }
     }
+
+    // 09/05/2026
+    class SolutionRevisedOnDayThirty {
+
+        public List<String> removeInvalidParentheses(String s) {
+            Set<String> res = new HashSet<>();
+            Set<String> visited = new HashSet<>();
+
+            solve(s, getMinInvalid(s), res, visited);
+            return new ArrayList<>(res);
+        }
+
+        private void solve(String s, int minInvalid, Set<String> res, Set<String> visited) {
+
+            if (minInvalid < 0 || visited.contains(s)) {
+                return;
+            }
+            visited.add(s);
+
+            if (minInvalid == 0) {
+                if (getMinInvalid(s) == 0) {
+                    res.add(s);
+                }
+                return;
+            }
+
+            for (int i = 0; i < s.length(); i++) {
+
+                char c = s.charAt(i);
+
+                if (c != '(' && c != ')') {
+                    continue;
+                }
+
+                if (i > 0 && s.charAt(i - 1) == c) {
+                    continue;
+                }
+
+                String next = s.substring(0, i) + s.substring(i + 1);
+                solve(next, minInvalid, res, visited);
+            }
+        }
+
+        private int getMinInvalid(String s) {
+            int open = 0;
+            int close = 0;
+
+            for (char c : s.toCharArray()) {
+                if (c == '(') {
+                    open++;
+                } else if (c == ')') {
+                    if (open > 0) {
+                        open--;
+                    } else {
+                        close++;
+                    }
+                }
+            }
+
+            return open + close;
+        }
+    }
 }
