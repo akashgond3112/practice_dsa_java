@@ -201,4 +201,69 @@ public class WordLadderII {
             return result;
         }
     }
+
+    // 09/05/2026
+    class SolutionRevisedOnDayFourteen {
+        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+
+            Set<String> set = new HashSet<>(wordList);
+            Queue<List<String>> q = new LinkedList<>();
+            List<String> list = new ArrayList<>();
+            list.add(beginWord);
+            q.add(list);
+
+            List<String> usedOnLevel = new ArrayList<>();
+            usedOnLevel.add(beginWord);
+            int level = 0;
+
+            List<List<String>> result = new ArrayList<>();
+
+            while (!q.isEmpty()) {
+
+                List<String> cur = q.poll();
+
+                if (cur.size() > level) {
+                    level++;
+                    for (String word : usedOnLevel) {
+                        set.remove(word);
+                    }
+                    usedOnLevel.clear();
+                }
+
+                String word = cur.getLast();
+
+                if (word.equals(endWord)) {
+                    if (result.isEmpty()) {
+                        result.add(cur);
+                    } else if (result.get(0).size() == cur.size()) {
+                        result.add(cur);
+                    }
+
+                    continue;
+                }
+
+                for (int i = 0; i < word.length(); i++) {
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        char[] chars = word.toCharArray();
+
+                        if (c == word.charAt(i)) {
+                            continue;
+                        }
+
+                        chars[i] = c;
+                        String newWord = new String(chars);
+
+                        if (set.contains(newWord)) {
+                            cur.add(newWord);
+                            q.add(new ArrayList<>());
+                            usedOnLevel.add(newWord);
+                            cur.remove(cur.getLast());
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
 }
