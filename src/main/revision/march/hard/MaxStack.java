@@ -219,4 +219,67 @@ public class MaxStack {
         }
     }
 
+    // 25/04/2026
+    public class SolutionRevisedOnDayFourteen {
+
+        Stack<Pair<Integer, Integer>> st = new Stack<>();
+
+        public void push(int val) {
+            if (st.isEmpty()) {
+                st.push(new Pair<>(val, val));
+            } else {
+                int curMax = st.peek().max;
+                st.push(new Pair<>(val, Math.max(val, curMax)));
+            }
+        }
+
+        public void pop() {
+            if (st.isEmpty()) {
+                throw new EmptyStackException();
+            } else {
+                st.pop();
+            }
+        }
+
+        public int top() {
+            if (st.isEmpty()) {
+                throw new EmptyStackException();
+            } else {
+                return st.peek().val;
+            }
+        }
+
+        public int getMax() {
+            if (st.isEmpty()) {
+                // Agar stack khali hai, toh exception throw karo
+                throw new EmptyStackException();
+            }
+            // Top element ka max value return karo
+            return st.peek().max;
+        }
+
+        public int popMax() {
+            if (st.isEmpty()) {
+                throw new EmptyStackException();
+            }
+
+            int max = getMax();
+            Stack<Integer> buffer = new Stack<>();
+
+            while (!st.isEmpty() && st.peek().val != max) {
+                buffer.push(st.pop().val);
+            }
+
+            if (!st.isEmpty()) {
+                st.pop();
+            }
+
+            while (!buffer.isEmpty()) {
+                push(buffer.pop());
+            }
+
+            return max;
+
+        }
+    }
 }
