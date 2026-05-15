@@ -237,4 +237,59 @@ public class MinimumWindowSubstring {
             return s.substring(maxStart, maxEnd);
         }
     }
+
+    // 15/05/2026
+    class SolutionRevisedOnDayThirty {
+        public String minWindow(String s, String t) {
+            int n = s.length();
+            int m = t.length();
+
+            Map<Character, Integer> map = new HashMap<>();
+
+            for (int i = 0; i < m; i++) {
+                char c = t.charAt(i);
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            }
+
+            int left = 0;
+            int right = 0;
+            int required = map.size();
+            int formed = 0;
+
+            Map<Character, Integer> windowsCount = new HashMap<>();
+
+            int minLen = Integer.MAX_VALUE;
+            int start = 0;
+
+            while (right < n) {
+
+                char ch = s.charAt(right);
+                windowsCount.put(ch, windowsCount.getOrDefault(ch, 0) + 1);
+
+                if (map.containsKey(ch) && windowsCount.get(ch).intValue() == map.get(ch).intValue()) {
+                    formed++;
+                }
+
+                while (left <= right && formed == required) {
+
+                    char c = s.charAt(left);
+
+                    if (right - left + 1 < minLen) {
+                        minLen = right - left + 1;
+                        start = left;
+                    }
+
+                    windowsCount.put(c, windowsCount.getOrDefault(c, 0) - 1);
+
+                    if (map.containsKey(c) && windowsCount.get(c) < map.get(c)) {
+                        formed--;
+                    }
+                    left++;
+                }
+                right++;
+            }
+
+            return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+        }
+    }
 }
