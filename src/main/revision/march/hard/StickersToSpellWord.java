@@ -188,4 +188,66 @@ public class StickersToSpellWord {
         }
 
     }
+
+    // 16/05/2026
+    class SolutionRevisedOnDayFourteen {
+        public int minStickers(String[] stickers, String target) {
+
+            Map<String, Integer> memo = new HashMap<>();
+            Map<String, Map<Character, Integer>> stickerMap = new HashMap<>();
+
+            for (String sticker : stickers) {
+                Map<Character, Integer> charCount = new HashMap<>();
+
+                for (char c : sticker.toCharArray()) {
+                    charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+                }
+
+                stickerMap.put(sticker, charCount);
+            }
+
+            int result = dfs(stickerMap, target, memo);
+            return result == Integer.MAX_VALUE ? -1 : result;
+        }
+
+        private int dfs(Map<String, Map<Character, Integer>> stickerMap, String target, Map<String, Integer> memo) {
+
+            if (target.isEmpty()) {
+                return 0;
+            }
+
+            if (memo.containsKey(target)) {
+                return memo.get(target);
+            }
+
+            int ans = Integer.MAX_VALUE;
+
+            for (Map<Character, Integer> charCount : stickerMap.values()) {
+
+                if (!charCount.containsKey(target.charAt(0))) {
+                    continue;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                Map<Character, Integer> tmpCharCount = new HashMap<>(charCount);
+
+                for (char c : target.toCharArray()) {
+
+                    if (tmpCharCount.getOrDefault(c, 0) > 0) {
+                        tmpCharCount.put(c, tmpCharCount.get(c) - 1);
+                    } else {
+                        sb.append(c);
+                    }
+                }
+
+                int subResult = dfs(stickerMap, sb.toString(), memo);
+                if (subResult != Integer.MAX_VALUE) {
+                    ans = Math.min(subResult, ans);
+                }
+            }
+
+            memo.put(target, ans);
+            return ans;
+        }
+    }
 }
