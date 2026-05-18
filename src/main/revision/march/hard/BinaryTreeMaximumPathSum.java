@@ -106,4 +106,32 @@ public class BinaryTreeMaximumPathSum {
             return root.val + Math.max(leftMax, rightMax);
         }
     }
+
+    // 18/05/2026
+    class SolutionRevisedOnDayThirty {
+        public int maxPathSum(TreeNode root) {
+
+            int[] res = new int[0];
+
+            if (root == null) {
+                return res[0];
+            }
+
+            dfs(root, res);
+            return res[0];
+        }
+
+        private int dfs(TreeNode root, int[] res) {
+
+            if (root == null)
+                return 0;
+
+            int leftMax = Math.max(0, dfs(root.left, res));
+            int rightMax = Math.max(0, dfs(root.right, res));
+
+            res[0] = Math.max(res[0], root.val + leftMax + rightMax);
+
+            return root.val + Math.max(leftMax, rightMax);
+        }
+    }
 }
