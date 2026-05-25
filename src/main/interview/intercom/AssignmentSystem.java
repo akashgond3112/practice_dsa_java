@@ -123,7 +123,7 @@ public class AssignmentSystem {
 	public List<String> assign(List<Integer> conversationIds) {
 		List<String> assignments = new ArrayList<>();
 
-		for (Integer ignored : conversationIds) {
+		for (int i = 0; i < conversationIds.size(); i++) {
 			String selectedAgent = findBestAgent();
 			if (selectedAgent != null) {
 				assignments.add(selectedAgent);
@@ -149,12 +149,12 @@ public class AssignmentSystem {
 				continue;
 			}
 
-			// If no agent selected yet, or this agent has fewer conversations
-			if (bestAgent == null || agent.conversations < bestAgent.conversations) {
-				bestAgent = agent;
-			}
-			// If tied on conversation count, pick who's been waiting longest
-			else if (agent.conversations == bestAgent.conversations && agent.lastAssignmentTime < bestAgent.lastAssignmentTime) {
+			// If no agent selected yet, or this agent has fewer conversations,
+			// or it's tied and this agent has been waiting longer
+			if (bestAgent == null
+					|| agent.conversations < bestAgent.conversations
+					|| (agent.conversations == bestAgent.conversations
+							&& agent.lastAssignmentTime < bestAgent.lastAssignmentTime)) {
 				bestAgent = agent;
 			}
 		}
