@@ -86,7 +86,36 @@ public class WildcardMatching {
                 }
             }
 
-            return dp[pLen][pLen];
+            return dp[pLen][sLen];
+        }
+    }
+
+    // 15/05/2026
+    class SolutionRevisedOnDayFourteen {
+        public boolean isMatch(String text, String pattern) {
+
+            int plen = pattern.length();
+            int slen = text.length();
+
+            boolean[][] dp = new boolean[plen + 1][slen + 1];
+            dp[0][0] = true;
+
+            for (int i = 1; i < plen; i++) {
+                dp[i][0] = dp[i - 1][0];
+            }
+
+            for (int i = 1; i < plen; i++) {
+                for (int j = i; j < slen; j++) {
+
+                    if (pattern.charAt(i) == text.charAt(j) || pattern.charAt(i) == '.') {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    } else if (pattern.charAt(i) == '*') {
+                        dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+                    }
+                }
+            }
+
+            return dp[plen][slen];
         }
     }
 }
