@@ -141,4 +141,50 @@ public class PaintHouseII {
             return Arrays.stream(previousRows).min().getAsInt();
         }
     }
+
+    // 27/05/2026
+    public class SolutionRevisedOnDayFourteen {
+
+        public int minCostII(int[][] costs) {
+
+            if (costs == null || costs.length == 0 || costs[0].length == 0) {
+                return 0;
+            }
+
+            int numHouses = costs.length;
+            int numColors = costs[0].length;
+
+            int[] previousRows = costs[0].clone();
+
+            for (int houseIndex = 1; houseIndex < numHouses; houseIndex++) {
+
+                int min1 = Integer.MAX_VALUE;
+                int min2 = Integer.MAX_VALUE;
+
+                for (int cost : previousRows) {
+                    if (cost < min1) {
+                        min2 = min1;
+                        min1 = cost;
+                    } else {
+                        min2 = cost;
+                    }
+                }
+
+                int[] currentRows = costs[houseIndex].clone();
+
+                for (int color = 0; color < numColors; color++) {
+
+                    if (previousRows[color] == min1) {
+                        currentRows[color] += min2;
+                    } else {
+                        currentRows[color] += min1;
+                    }
+                }
+
+                previousRows = currentRows;
+            }
+
+            return Arrays.stream(previousRows).min().getAsInt();
+        }
+    }
 }
