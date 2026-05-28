@@ -12,6 +12,7 @@ General Behavioral Questions
 11.	How do you handle situations where work assigned to you keeps getting de-prioritized and changed repeatedly? How would you feel about it?
 12.	Have you encountered unreasonable tasks from your manager? How did you handle them?
 
+
 Project and Ambiguity Questions
 1.	Tell me about a time when you faced ambiguity in the requirements of a project.
 2.	Tell me about a time you had to get people on the same page about a decision.
