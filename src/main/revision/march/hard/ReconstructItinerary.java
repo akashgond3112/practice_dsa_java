@@ -156,4 +156,38 @@ public class ReconstructItinerary {
             return iternary;
         }
     }
+
+
+    // 31/05/2026
+    class SolutionRevisedOnDayThirty {
+        public List<String> findItinerary(List<List<String>> tickets) {
+
+            Map<String, PriorityQueue<String>> map = new HashMap<>();
+
+            for (List<String> ticket : tickets) {
+
+                String from = ticket.get(0);
+                String to = ticket.get(1);
+
+                map.computeIfAbsent(from, k -> new PriorityQueue<>()).add(to);
+            }
+
+            List<String> itinerary = new ArrayList<>();
+            Stack<String> st = new Stack<>();
+            st.push("JFK");
+
+            while (!st.isEmpty()) {
+
+                String from = st.peek();
+
+                if (map.containsKey(from) && !map.get(from).isEmpty()) {
+                    st.push(map.get(from).poll());
+                } else {
+                    itinerary.add(st.pop());
+                }
+            }
+
+            return itinerary;
+        }
+    }
 }
