@@ -316,4 +316,79 @@ public class WordSearchII {
 
         }
     }
+
+    // 05/06/2026
+    class SolutionRevisedOnDayThirty {
+
+        public class Trie {
+
+            Map<Character, Trie> children;
+            boolean isWord;
+
+            public Trie() {
+                this.children = new HashMap<>();
+                this.isWord = false;
+            }
+
+            public void addWord(String word) {
+                Trie node = this;
+                for (char c : word.toCharArray()) {
+                    node.children.putIfAbsent(c, new Trie());
+                    node = node.children.get(c);
+                }
+                node.isWord = true;
+            }
+        }
+
+        public List<String> findWords(char[][] board, String[] words) {
+
+            int rows = board.length;
+            int cols = board[0].length;
+
+            Trie node = new Trie();
+
+            Set<String> res = new HashSet<>();
+            boolean[][] visited = new boolean[rows][cols];
+
+            for (String word : words) {
+                node.addWord(word);
+            }
+
+            for (int row = 0; row < rows; row++) {
+                for (int col = 0; col < cols; col++) {
+                    dfs(board, row, col, node, visited, res, new StringBuilder());
+                }
+            }
+
+            return new ArrayList<>(res);
+        }
+
+        private void dfs(char[][] board, int row, int col, Trie node, boolean[][] visited, Set<String> res,
+                StringBuilder word) {
+            int rows = board.length;
+            int cols = board[0].length;
+
+            if (row < 0 || col < 0 || row >= rows || col >= cols || visited[row][col]
+                    || !node.children.containsKey(board[row][col])) {
+                return;
+            }
+
+            visited[row][col] = true;
+            node = node.children.get(board[row][col]);
+            word.append(board[row][col]);
+
+            if (node.isWord) {
+                res.add(word.toString());
+            }
+
+            dfs(board, row + 1, col, node, visited, res, word);
+            dfs(board, row - 1, col, node, visited, res, word);
+            dfs(board, row, col + 1, node, visited, res, word);
+            dfs(board, row, col - 1, node, visited, res, word);
+
+            visited[row][col] = false;
+        }
+
+    }
+
 }
