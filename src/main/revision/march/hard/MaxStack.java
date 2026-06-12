@@ -282,4 +282,76 @@ public class MaxStack {
 
         }
     }
+
+    // 12/06/2026
+    public class SolutionRevisedOnDayThirty {
+
+        Stack<Pair<Integer, Integer>> stack = new Stack<>();
+
+        public void push(int val) {
+            if (stack.isEmpty()) {
+                stack.push(new Pair(val, val));
+            } else {
+                int curMax = stack.peek().max;
+                stack.push(new Pair<>(val, Math.max(val, curMax)));
+            }
+        }
+
+        // Pop method: Stack ke top element ko hataana
+        public void pop() {
+            if (stack.isEmpty()) {
+                // Agar stack khali hai, toh exception throw karo
+                throw new EmptyStackException();
+            } else {
+                // Top element ko hata do
+                stack.pop();
+            }
+        }
+
+        // Top method: Stack ke top element ki value return karna
+        public int top() {
+            if (stack.isEmpty()) {
+                // Agar stack khali hai, toh exception throw karo
+                throw new EmptyStackException();
+            } else {
+                // Top element ki value return karo
+                return stack.peek().val;
+            }
+        }
+
+        // getMax method: Stack mein ab tak ka maximum element return karna
+        public int getMax() {
+            if (stack.isEmpty()) {
+                // Agar stack khali hai, toh exception throw karo
+                throw new EmptyStackException();
+            }
+            // Top element ka max value return karo
+            return stack.peek().max;
+        }
+
+        public int popMax() {
+
+            if (stack.isEmpty()) {
+                // Agar stack khali hai, toh exception throw karo
+                throw new EmptyStackException();
+            }
+
+            int max = getMax();
+            Stack<Integer> buffer = new Stack<>();
+
+            while (!stack.isEmpty() && stack.peek().val != max) {
+                buffer.push(stack.pop().val);
+            }
+
+            if (!stack.isEmpty()) {
+                stack.pop();
+            }
+
+            while (!buffer.isEmpty()) {
+                push(buffer.pop());
+            }
+
+            return max;
+        }
+    }
 }
