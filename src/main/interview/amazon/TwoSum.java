@@ -12,6 +12,10 @@ public class TwoSum {
 
     public class Solution {
         public int[] twoSum(int[] nums, int target) {
+            // Time complexity: O(n) — we scan the array once, doing O(1) hashmap
+            // operations for each element.
+            // Space complexity: O(n) — in the worst case we store each element in
+            // the hashmap.
             Map<Integer, Integer> seen = new HashMap<>(); // value -> index
 
             for (int i = 0; i < nums.length; i++) {
