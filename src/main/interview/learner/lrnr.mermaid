@@ -1,0 +1,22 @@
+graph TD
+    subgraph Authoring_Service [Question Service - Mongo]
+        UI[React Client] -->|PATCH/Save| API[Spring Boot]
+        API -->|Save/Update| Mongo[(MongoDB)]
+        API -->|Validate on Change| Lambda
+    end
+
+    subgraph Validation_Pipeline [Lambda Orchestrator]
+        Lambda -->|Check Rules| Rules[Business Rules]
+        Lambda -->|Transform| SQL_Format[SQL Normalization]
+    end
+
+    subgraph Assignment_Service [Monolith - SQL]
+        SQL[(Main SQL DB)]
+        Events[Event Listener]
+    end
+
+    Lambda -->|Sync Valid Data| SQL
+    SQL -->|Assignment Created| Events
+    Events -->|Lock Request| API
+    API -->|Set status: locked| Mongo
+    API -->|Block Updates| UI
