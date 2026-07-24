@@ -22,6 +22,10 @@ public class SortedIterator implements Iterator<Integer> {
 
     private PriorityQueue<Node> minHeap;
 
+    /**
+     * Time Complexity: O(k log k) where k is the number of iterators
+     * Space Complexity: O(k) for the minHeap
+     */
     public SortedIterator(Iterator<Integer>[] iterators) {
         minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a.value, b.value));
 
@@ -32,11 +36,19 @@ public class SortedIterator implements Iterator<Integer> {
         }
     }
 
+    /**
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     */
     @Override
     public boolean hasNext() {
         return !minHeap.isEmpty();
     }
 
+    /**
+     * Time Complexity: O(log k) where k is the number of iterators in the heap
+     * Space Complexity: O(1)
+     */
     @Override
     public Integer next() {
         Node node = minHeap.poll();
