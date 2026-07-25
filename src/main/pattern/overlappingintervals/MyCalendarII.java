@@ -13,7 +13,6 @@ public class MyCalendarII {
     class MyCalendarTwo {
 
         SortedMap<Integer, Integer> map;
-        int counter = 0;
 
         public MyCalendarTwo() {
             this.map = new TreeMap<>();
