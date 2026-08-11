@@ -5,6 +5,6 @@
  */
 package main.pattern.twopointers;
 
-public class bagOfTokens {
+public class BagOfTokens {
 
 }
