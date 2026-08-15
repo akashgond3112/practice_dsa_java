@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Aug 12, 2026
- * @time 7:45:26 PM
- */
 package main.pattern.twopointers;
 
 public class ContainerWithMostWater {
