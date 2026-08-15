@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Aug 13, 2026
- * @time 5:04:06 PM
- */
 package main.pattern.twopointers;
 
 public class TrappingRainWater {
