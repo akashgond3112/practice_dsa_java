@@ -11,7 +11,8 @@ public class SetMismatch {
                 freq[x]++;
             }
 
-            int dup = -1, missing = -1;
+            int dup = -1;
+            int missing = -1;
 
             // find duplicate and missing
             for (int i = 1; i <= n; i++) {
