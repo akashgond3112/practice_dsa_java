@@ -1,10 +1,5 @@
 package main.pattern.cyclicsort;
 
-/**
- * @author akash
- * @date Aug 17, 2026
- * @time 6:35:40 PM
- */
 public class SetMismatch {
     class Solution {
         public int[] findErrorNums(int[] nums) {
