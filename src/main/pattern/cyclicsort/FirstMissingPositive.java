@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Aug 17, 2026
- * @time 6:36:05 PM
- */
 package main.pattern.cyclicsort;
 
 public class FirstMissingPositive {
