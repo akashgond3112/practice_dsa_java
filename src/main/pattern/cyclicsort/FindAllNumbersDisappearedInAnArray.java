@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Aug 16, 2026
- * @time 3:08:20 PM
- */
 package main.pattern.cyclicsort;
 
 import java.util.ArrayList;
