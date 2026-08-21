@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Jul 23, 2026
- * @time 4:46:18 PM
- */
 package main.pattern.fastandslowpointer;
 
 public class FindTheDuplicateNumber {
