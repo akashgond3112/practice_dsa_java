@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Jul 22, 2026
- * @time 6:48:00 PM
- */
 package main.pattern.fastandslowpointer;
 
 import main.pattern.ListNode;
