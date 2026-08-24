@@ -1,8 +1,3 @@
-/**
- * @author akash
- * @date Jul 23, 2026
- * @time 5:23:38 PM
- */
 package main.pattern.overlappingintervals;
 
 import java.util.ArrayList;
