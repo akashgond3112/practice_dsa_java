@@ -1,12 +1,6 @@
-/**
- * @author akash
- * @date Jul 25, 2026
- * @time 8:19:47 AM
- */
 package main.pattern.overlappingintervals;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InsertInterval {
