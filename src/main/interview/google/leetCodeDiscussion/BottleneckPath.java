@@ -39,7 +39,7 @@
  * - The algorithm returns immediately when the destination is popped from the queue because
  *   the first pop of a node yields its optimal bottleneck value.
  */
-package main.google.leetCodeDiscussion;
+package main.interview.google.leetCodeDiscussion;
 
 import java.util.*;
 
