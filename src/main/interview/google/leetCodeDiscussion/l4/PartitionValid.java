@@ -1,4 +1,4 @@
-package main.google.leetCodeDiscussion.l4;
+package main.interview.google.leetCodeDiscussion.l4;
 
 // === PHONE INTERVIEW 1: Partition Array with isValid API ===
 // Approach (Hinglish):
