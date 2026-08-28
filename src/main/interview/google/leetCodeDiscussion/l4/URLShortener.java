@@ -1,4 +1,4 @@
-package main.google.leetCodeDiscussion.l4;
+package main.interview.google.leetCodeDiscussion.l4;
 
 // === ONSITE ROUND 1: URL Shortener with character frequency threshold ===
 // Strategy (Hinglish): strings ko base-26 counter ki tarah generate karenge.
