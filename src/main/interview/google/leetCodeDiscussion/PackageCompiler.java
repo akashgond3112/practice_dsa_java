@@ -1,4 +1,4 @@
-package main.google.leetCodeDiscussion;
+package main.interview.google.leetCodeDiscussion;
 
 import java.util.*;
 import java.util.concurrent.*;
