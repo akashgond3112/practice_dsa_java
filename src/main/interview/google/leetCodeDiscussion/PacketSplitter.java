@@ -1,4 +1,4 @@
-package main.google.leetCodeDiscussion;
+package main.interview.google.leetCodeDiscussion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +7,18 @@ import java.util.List;
  * The Logic
  * This is a two-step mathematical problem.
  * 1. Minimize the Number of Packets (Primary Goal)
- * To use the fewest packets possible, we must conceptually fill them up to their maximum capacity.
+ * To use the fewest packets possible, we must conceptually fill them up to
+ * their maximum capacity.
  * k=⌈dataSize/maxCapacity⌉
- * In integer arithmetic, this is calculated as: (dataSize + maxCapacity - 1) / maxCapacity.
+ * In integer arithmetic, this is calculated as: (dataSize + maxCapacity - 1) /
+ * maxCapacity.
  * 2. Minimize the Maximum Packet Size (Secondary Goal)
- * Now that we have fixed the number of packets to k, we need to distribute the dataSize across them.
- * To minimize the maximum element in a set of numbers that must sum up to a fixed total, the numbers should be as equal as possible.
- * If we use a "greedy" approach (e.g., fill the first packet to capacity, then the next), we might end up with [10, 4] (Max: 10).
+ * Now that we have fixed the number of packets to k, we need to distribute the
+ * dataSize across them.
+ * To minimize the maximum element in a set of numbers that must sum up to a
+ * fixed total, the numbers should be as equal as possible.
+ * If we use a "greedy" approach (e.g., fill the first packet to capacity, then
+ * the next), we might end up with [10, 4] (Max: 10).
  * If we use a "balanced" approach, we get [7, 7] (Max: 7).
  * Since 7 < 10, the balanced approach is the winner.
  *
@@ -21,11 +26,13 @@ import java.util.List;
  * Calculate packetCount.
  * Calculate the baseSize = dataSize / packetCount.
  * Calculate the remainder = dataSize % packetCount.
- * To distribute the data perfectly, remainder packets will have size baseSize + 1, and the rest will have size baseSize.
+ * To distribute the data perfectly, remainder packets will have size baseSize +
+ * 1, and the rest will have size baseSize.
  *
  * Complexity Analysis
  * Time Complexity: O(k)
- * , where k is the number of packets required. We simply loop k times to build the list.
+ * , where k is the number of packets required. We simply loop k times to build
+ * the list.
  * Space Complexity: O(k) to store the output list.
  *
  * Why this works (Example Trace)
@@ -39,7 +46,8 @@ import java.util.List;
  * remainder = 14%2=0.
  * Result: [7, 7].
  * Max packet size = 7.
- * Since 7 < 10 7<10 , the balanced approach satisfies the condition "minimize the maximum packet size".
+ * Since 7 < 10 7<10 , the balanced approach satisfies the condition "minimize
+ * the maximum packet size".
  */
 public class PacketSplitter {
 
