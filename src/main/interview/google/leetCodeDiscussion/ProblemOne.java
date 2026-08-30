@@ -32,7 +32,7 @@
  * - Implementation groups indices by the value (arr[i] - i) and sums the square of each group's frequency.
  * - Uses a HashMap<Integer, Long> to store frequencies to avoid integer overflow for large counts.
  */
-package main.google.leetCodeDiscussion;
+package main.interview.google.leetCodeDiscussion;
 
 import java.util.HashMap;
 import java.util.Map;
