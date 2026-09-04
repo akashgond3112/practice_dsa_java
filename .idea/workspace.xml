@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c45016e-0ee9-462c-b980-ce259e1891d2" name="Changes" comment="Add AssignmentSystem class to manage conversation assignments for customer support agents">
+    <list default="true" id="700ed0ca-7914-42e0-a3e3-7477810caffa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/interview/jp/RestaurantBookingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/interview/jp/ResourceScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/interview/jp/ResourceScheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +19,9 @@
   </component>
   <component name="ChangesViewManager">
     <option name="groupingKeys">
+      <option value="directory" />
       <option value="module" />
+      <option value="repository" />
     </option>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -28,33 +35,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {}
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;akashgond3112&quot;
+  }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/akashgond3112/PracticeDsaJava.git&quot;,
-    &quot;accountId&quot;: &quot;7bc9b73c-d18d-4e9c-a6fe-fa0ad0fc0bd1&quot;
+    &quot;url&quot;: &quot;https://github.com/akashgond3112/practice_dsa_java.git&quot;,
+    &quot;accountId&quot;: &quot;0c94aeda-26af-4c4f-bc2f-44b837f593fa&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/meta/easy/ClosestBinarySearchTreeValue.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/BinaryTreeRightSideView.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/ContinuousSubarraySum.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/CopyListWithRandomPointer.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/MergeIntervals.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/MinimumAddToMakeParenthesesValid.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/NestedListWeightSum.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/meta/medium/StringToInteger.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 1
+  &quot;associatedIndex&quot;: 1,
+  &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="2po52Tm4U5BOPTytHqeTAhsSSiN" />
+  <component name="ProjectId" id="3Ig8b5FDYvWCKAp4ZYbvvSf8W1l" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -64,63 +60,33 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.AssignmentSystem.executor&quot;: &quot;Run&quot;,
-    &quot;Application.BinaryTreeVerticalOrderTraversal.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CuttingRibbons$RibbonCutter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CuttingRibbons.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DiameterOfBinaryTree.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ExclusiveTimeOfFunctions (1).executor&quot;: &quot;Debug&quot;,
-    &quot;Application.ExclusiveTimeOfFunctions (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.ExclusiveTimeOfFunctions (3).executor&quot;: &quot;Debug&quot;,
-    &quot;Application.ExclusiveTimeOfFunctions.executor&quot;: &quot;Run&quot;,
-    &quot;Application.KthSmallestElementInASortedMatrix.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MinDaysToDeliverParcels.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.MinimumRemoveToMakeValidParentheses.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MinimumWindowSubstring (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.MinimumWindowSubstring.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NumberOfIsland.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PassingYearbooks$Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RotationalCipher$Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Subsets.executor&quot;: &quot;Run&quot;,
-    &quot;Application.main.dsa.nonlinear.graph.learning.NumberOfIsland.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;Application.AccountBalanceTracker.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CircuitBreaker.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RestaurantBookingSystem.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/space/IdeaProjects/OBTRAD&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/dsa/nonlinear/binarysearchtree" />
-      <recent name="$PROJECT_DIR$/src/main/dsa/nonlinear/tree" />
-      <recent name="$PROJECT_DIR$/src/main/dsa/nonlinear" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="main.meta.easy" />
-      <recent name="main.meta.hard" />
-      <recent name="main.meta.medium" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.AssignmentSystem">
-    <configuration name="AssignmentSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.interview.intercom.AssignmentSystem" />
-      <module name="PracticeDsaJava" />
+  <component name="RunManager" selected="Application.AccountBalanceTracker">
+    <configuration name="AccountBalanceTracker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.interview.jp.AccountBalanceTracker" />
+      <module name="practice_dsa_java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.interview.intercom.*" />
+          <option name="PATTERN" value="main.interview.jp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -128,12 +94,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BinaryTreeVerticalOrderTraversal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.BinaryTreeVerticalOrderTraversal" />
-      <module name="PracticeDsaJava" />
+    <configuration name="CircuitBreaker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.interview.jp.CircuitBreaker" />
+      <module name="practice_dsa_java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
+          <option name="PATTERN" value="main.interview.jp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,103 +107,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BinaryTreeVerticalOrderTraversal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.BinaryTreeVerticalOrderTraversal" />
-      <module name="PracticeDsaJava" />
+    <configuration name="RestaurantBookingSystem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.interview.jp.RestaurantBookingSystem" />
+      <module name="practice_dsa_java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuttingRibbons$RibbonCutter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.CuttingRibbons$RibbonCutter" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuttingRibbons$RibbonCutter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.CuttingRibbons$RibbonCutter" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CuttingRibbons" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.CuttingRibbons" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KthSmallestElementInASortedMatrix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.KthSmallestElementInASortedMatrix" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KthSmallestElementInASortedMatrix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.KthSmallestElementInASortedMatrix" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MinimumRemoveToMakeValidParentheses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.MinimumRemoveToMakeValidParentheses" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MinimumRemoveToMakeValidParentheses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.meta.medium.MinimumRemoveToMakeValidParentheses" />
-      <module name="PracticeDsaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.meta.medium.*" />
+          <option name="PATTERN" value="main.interview.jp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -247,598 +122,31 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AssignmentSystem" />
-        <item itemvalue="Application.KthSmallestElementInASortedMatrix" />
-        <item itemvalue="Application.BinaryTreeVerticalOrderTraversal" />
-        <item itemvalue="Application.MinimumRemoveToMakeValidParentheses" />
-        <item itemvalue="Application.CuttingRibbons$RibbonCutter" />
+        <item itemvalue="Application.AccountBalanceTracker" />
+        <item itemvalue="Application.RestaurantBookingSystem" />
+        <item itemvalue="Application.CircuitBreaker" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5c45016e-0ee9-462c-b980-ce259e1891d2" name="Changes" comment="" />
-      <created>1733419381203</created>
+      <changelist id="700ed0ca-7914-42e0-a3e3-7477810caffa" name="Changes" comment="" />
+      <created>1788174921468</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1733419381203</updated>
-      <workItem from="1733419382652" duration="386000" />
-      <workItem from="1733504009341" duration="3278000" />
-      <workItem from="1733587657450" duration="131000" />
-      <workItem from="1733593262510" duration="6215000" />
-      <workItem from="1733752863671" duration="7000" />
-      <workItem from="1733759673999" duration="7209000" />
-      <workItem from="1733837697959" duration="75000" />
-      <workItem from="1733925558858" duration="4453000" />
-      <workItem from="1734024187193" duration="6087000" />
-      <workItem from="1734100702718" duration="5915000" />
-      <workItem from="1734203358251" duration="13000" />
-      <workItem from="1734354957202" duration="10256000" />
-      <workItem from="1734450229535" duration="11436000" />
-      <workItem from="1734540767402" duration="4222000" />
-      <workItem from="1734617761022" duration="4228000" />
-      <workItem from="1734793567728" duration="6223000" />
-      <workItem from="1734871236935" duration="7247000" />
-      <workItem from="1734968160081" duration="1552000" />
-      <workItem from="1735070271657" duration="2517000" />
-      <workItem from="1735136768295" duration="12000" />
-      <workItem from="1735136789892" duration="1153000" />
-      <workItem from="1735224201965" duration="1669000" />
-      <workItem from="1735226947885" duration="4168000" />
-      <workItem from="1735396146669" duration="3081000" />
-      <workItem from="1735484231503" duration="9823000" />
-      <workItem from="1735587935157" duration="6892000" />
-      <workItem from="1735815655747" duration="7997000" />
-      <workItem from="1736029815158" duration="91000" />
-      <workItem from="1736193864816" duration="625000" />
-      <workItem from="1736282657415" duration="1542000" />
-      <workItem from="1736423576645" duration="5228000" />
-      <workItem from="1736433798409" duration="9000" />
-      <workItem from="1736447442236" duration="2303000" />
-      <workItem from="1736508309225" duration="5894000" />
-      <workItem from="1736671905166" duration="890000" />
-      <workItem from="1736856516372" duration="2749000" />
-      <workItem from="1737046844923" duration="3883000" />
-      <workItem from="1737129497799" duration="9423000" />
-      <workItem from="1737217715310" duration="17000" />
-      <workItem from="1737484406990" duration="1575000" />
-      <workItem from="1737566370503" duration="677000" />
-      <workItem from="1737567426244" duration="4206000" />
-      <workItem from="1737622096497" duration="11000" />
-      <workItem from="1737661963263" duration="3463000" />
-      <workItem from="1737707786658" duration="617000" />
-      <workItem from="1737832875822" duration="7156000" />
-      <workItem from="1738345695225" duration="1726000" />
-      <workItem from="1738410402782" duration="5806000" />
-      <workItem from="1738506027397" duration="612000" />
-      <workItem from="1738776732253" duration="2581000" />
-      <workItem from="1738835056652" duration="16000" />
-      <workItem from="1738855503408" duration="5178000" />
-      <workItem from="1739012963559" duration="3483000" />
-      <workItem from="1739093507447" duration="8000" />
-      <workItem from="1739104012888" duration="936000" />
-      <workItem from="1739175396631" duration="10000" />
-      <workItem from="1739386073861" duration="905000" />
-      <workItem from="1739393402866" duration="37000" />
-      <workItem from="1739466955579" duration="2340000" />
-      <workItem from="1739523654141" duration="12000" />
-      <workItem from="1739553611325" duration="1687000" />
-      <workItem from="1739560104023" duration="114000" />
-      <workItem from="1739567132304" duration="31709000" />
-      <workItem from="1739781052012" duration="8000" />
-      <workItem from="1739814084742" duration="3000" />
-      <workItem from="1739817201458" duration="1147000" />
-      <workItem from="1739818571886" duration="63000" />
-      <workItem from="1739826268628" duration="177000" />
-      <workItem from="1739828595785" duration="39000" />
-      <workItem from="1739829255885" duration="25000" />
-      <workItem from="1739866720650" duration="10000" />
-      <workItem from="1739904289863" duration="4787000" />
-      <workItem from="1739984329000" duration="115000" />
-      <workItem from="1739987307101" duration="9231000" />
-      <workItem from="1740056828785" duration="1544000" />
-      <workItem from="1740073793732" duration="8358000" />
-      <workItem from="1740151899916" duration="45975000" />
-      <workItem from="1740385928057" duration="7000" />
-      <workItem from="1740418286646" duration="7524000" />
-      <workItem from="1740506127150" duration="7102000" />
-      <workItem from="1740588149416" duration="7344000" />
-      <workItem from="1740666615652" duration="14367000" />
-      <workItem from="1740752119482" duration="961000" />
-      <workItem from="1740755865755" duration="27197000" />
-      <workItem from="1740994283260" duration="8063000" />
-      <workItem from="1741110290449" duration="54113000" />
-      <workItem from="1741275850527" duration="6983000" />
-      <workItem from="1741434162278" duration="119000" />
-      <workItem from="1741437517175" duration="61000" />
-      <workItem from="1741457705537" duration="671000" />
-      <workItem from="1741514987643" duration="221000" />
-      <workItem from="1741551620633" duration="24000" />
-      <workItem from="1741595107762" duration="184000" />
-      <workItem from="1741630704312" duration="1042000" />
-      <workItem from="1741806343685" duration="2062000" />
-      <workItem from="1741870879357" duration="3201000" />
-      <workItem from="1741891314016" duration="873000" />
-      <workItem from="1741942931529" duration="5000" />
-      <workItem from="1741983693718" duration="12952000" />
-      <workItem from="1742113565662" duration="4000" />
-      <workItem from="1742118419734" duration="118000" />
-      <workItem from="1742118576275" duration="3847000" />
-      <workItem from="1742199882466" duration="14000" />
-      <workItem from="1742233327876" duration="1725000" />
-      <workItem from="1742381443077" duration="6000" />
-      <workItem from="1742413717582" duration="2078000" />
-      <workItem from="1742837608579" duration="4845000" />
-      <workItem from="1742925229747" duration="19000" />
-      <workItem from="1742927355002" duration="28000" />
-      <workItem from="1742927388497" duration="1000" />
-      <workItem from="1742976637960" duration="13000" />
-      <workItem from="1743196992272" duration="35000" />
-      <workItem from="1743237909300" duration="49000" />
-      <workItem from="1743535874312" duration="38000" />
-      <workItem from="1755875663053" duration="808000" />
-      <workItem from="1756319278141" duration="18000" />
-      <workItem from="1756373114110" duration="320000" />
+      <updated>1788174921468</updated>
     </task>
-    <task id="LOCAL-00124" summary="Commit : 02/03/2025">
-      <option name="closed" value="true" />
-      <created>1740911693978</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1740911693979</updated>
-    </task>
-    <task id="LOCAL-00125" summary="Commit : 02/03/2025">
-      <option name="closed" value="true" />
-      <created>1740945267647</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1740945267648</updated>
-    </task>
-    <task id="LOCAL-00126" summary="Commit : 02/03/2025">
-      <option name="closed" value="true" />
-      <created>1741032800545</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1741032800545</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Commit : 02/03/2025">
-      <option name="closed" value="true" />
-      <created>1741035438825</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1741035438825</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Commit : 04/03/2025">
-      <option name="closed" value="true" />
-      <created>1741121223927</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1741121223928</updated>
-    </task>
-    <task id="LOCAL-00129" summary="Commit : 05/03/2025">
-      <option name="closed" value="true" />
-      <created>1741171775258</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1741171775258</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Commit : 05/03/2025">
-      <option name="closed" value="true" />
-      <created>1741174194452</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1741174194452</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Commit : 05/03/2025">
-      <option name="closed" value="true" />
-      <created>1741181600761</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1741181600761</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Commit : 05/03/2025">
-      <option name="closed" value="true" />
-      <created>1741184647088</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1741184647088</updated>
-    </task>
-    <task id="LOCAL-00133" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264094847</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264094847</updated>
-    </task>
-    <task id="LOCAL-00134" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264104535</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264104536</updated>
-    </task>
-    <task id="LOCAL-00135" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264111870</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264111870</updated>
-    </task>
-    <task id="LOCAL-00136" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264122662</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264122662</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264131371</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264131371</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264138677</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264138677</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264146514</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264146514</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741264154261</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1741264154261</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741287165333</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1741287165334</updated>
-    </task>
-    <task id="LOCAL-00142" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741287208941</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1741287208941</updated>
-    </task>
-    <task id="LOCAL-00143" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741292839214</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1741292839214</updated>
-    </task>
-    <task id="LOCAL-00144" summary="Commit : 06/03/2025">
-      <option name="closed" value="true" />
-      <created>1741434271416</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1741434271417</updated>
-    </task>
-    <task id="LOCAL-00145" summary="Commit : 08/03/2025">
-      <option name="closed" value="true" />
-      <created>1741437564472</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1741437564473</updated>
-    </task>
-    <task id="LOCAL-00146" summary="Commit : 09/03/2025">
-      <option name="closed" value="true" />
-      <created>1741515057596</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1741515057597</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Commit : 09/03/2025">
-      <option name="closed" value="true" />
-      <created>1741515186380</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1741515186380</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Commit : 09/03/2025">
-      <option name="closed" value="true" />
-      <created>1741551639147</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1741551639147</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Commit : 10/03/2025">
-      <option name="closed" value="true" />
-      <created>1741630725168</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1741630725168</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Commit : 12/03/2025">
-      <option name="closed" value="true" />
-      <created>1741806415596</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1741806415597</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Commit : 12/03/2025">
-      <option name="closed" value="true" />
-      <created>1741811035928</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1741811035928</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Commit : 12/03/2025">
-      <option name="closed" value="true" />
-      <created>1741811095410</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1741811095410</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Commit : 13/03/2025">
-      <option name="closed" value="true" />
-      <created>1741870910860</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1741870910861</updated>
-    </task>
-    <task id="LOCAL-00154" summary="Commit : 13/03/2025">
-      <option name="closed" value="true" />
-      <created>1741876094993</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1741876094993</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Commit : 13/03/2025">
-      <option name="closed" value="true" />
-      <created>1741876672989</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1741876672989</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Commit : 14/03/2025">
-      <option name="closed" value="true" />
-      <created>1741983747481</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1741983747481</updated>
-    </task>
-    <task id="LOCAL-00157" summary="Commit : 14/03/2025">
-      <option name="closed" value="true" />
-      <created>1741985689547</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1741985689547</updated>
-    </task>
-    <task id="LOCAL-00158" summary="Commit : 15/03/2025">
-      <option name="closed" value="true" />
-      <created>1742031478772</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1742031478772</updated>
-    </task>
-    <task id="LOCAL-00159" summary="Commit : 15/03/2025">
-      <option name="closed" value="true" />
-      <created>1742035078255</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1742035078255</updated>
-    </task>
-    <task id="LOCAL-00160" summary="Commit : 15/03/2025">
-      <option name="closed" value="true" />
-      <created>1742066055929</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1742066055929</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Commit : 15/03/2025">
-      <option name="closed" value="true" />
-      <created>1742067008096</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1742067008097</updated>
-    </task>
-    <task id="LOCAL-00162" summary="Commit : 16/03/2025">
-      <option name="closed" value="true" />
-      <created>1742118451451</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1742118451452</updated>
-    </task>
-    <task id="LOCAL-00163" summary="Commit : 16/03/2025">
-      <option name="closed" value="true" />
-      <created>1742118790709</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1742118790709</updated>
-    </task>
-    <task id="LOCAL-00164" summary="Commit : 16/03/2025">
-      <option name="closed" value="true" />
-      <created>1742123334179</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1742123334179</updated>
-    </task>
-    <task id="LOCAL-00165" summary="Commit : 16/03/2025">
-      <option name="closed" value="true" />
-      <created>1742125883335</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1742125883335</updated>
-    </task>
-    <task id="LOCAL-00166" summary="Commit : 17/03/2025">
-      <option name="closed" value="true" />
-      <created>1742234952530</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1742234952530</updated>
-    </task>
-    <task id="LOCAL-00167" summary="Commit : 18/03/2025">
-      <option name="closed" value="true" />
-      <created>1742323649380</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1742323649381</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Commit : 18/03/2025">
-      <option name="closed" value="true" />
-      <created>1742323659912</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1742323659912</updated>
-    </task>
-    <task id="LOCAL-00169" summary="Commit : 18/03/2025">
-      <option name="closed" value="true" />
-      <created>1742325176104</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1742325176104</updated>
-    </task>
-    <task id="LOCAL-00170" summary="Commit : 19/03/2025">
-      <option name="closed" value="true" />
-      <created>1742413724851</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1742413724851</updated>
-    </task>
-    <task id="LOCAL-00171" summary="Commit : 24/03/2025">
-      <option name="closed" value="true" />
-      <created>1742847059149</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1742847059149</updated>
-    </task>
-    <task id="LOCAL-00172" summary="Add AssignmentSystem class to manage conversation assignments for customer support agents">
-      <option name="closed" value="true" />
-      <created>1755876132800</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1755876132801</updated>
-    </task>
-    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit : 21/02/2025" />
-    <MESSAGE value="Commit : 22/02/2025" />
-    <MESSAGE value="Commit : 23/02/2025" />
-    <MESSAGE value="Commit : 24/02/2025" />
-    <MESSAGE value="Commit : 25/02/2025" />
-    <MESSAGE value="Commit : 27/02/2025" />
-    <MESSAGE value="Commit : 28/02/2025" />
-    <MESSAGE value="Commit : 01/03/2025" />
-    <MESSAGE value="Commit : 02/03/2025" />
-    <MESSAGE value="Commit : 04/03/2025" />
-    <MESSAGE value="Commit : 05/03/2025" />
-    <MESSAGE value="Commit : 06/03/2025" />
-    <MESSAGE value="Commit : 08/03/2025" />
-    <MESSAGE value="Commit : 09/03/2025" />
-    <MESSAGE value="Commit : 10/03/2025" />
-    <MESSAGE value="Commit : 12/03/2025" />
-    <MESSAGE value="Commit : 13/03/2025" />
-    <MESSAGE value="Commit : 14/03/2025" />
-    <MESSAGE value="Commit : 15/03/2025" />
-    <MESSAGE value="Commit : 16/03/2025" />
-    <MESSAGE value="Commit : 17/03/2025" />
-    <MESSAGE value="Commit : 18/03/2025" />
-    <MESSAGE value="Commit : 19/03/2025" />
-    <MESSAGE value="Commit : 24/03/2025" />
-    <MESSAGE value="Add AssignmentSystem class to manage conversation assignments for customer support agents" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add AssignmentSystem class to manage conversation assignments for customer support agents" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/meta/medium/ExclusiveTimeOfFunctions.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/meta/medium/ExclusiveTimeOfFunctions.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/meta/medium/ExclusiveTimeOfFunctions.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/meta/medium/ExclusiveTimeOfFunctions.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
